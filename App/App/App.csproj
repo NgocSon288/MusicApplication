@@ -57,6 +57,12 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\UIHelper.cs" />
+    <Compile Include="fHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fHistory.Designer.cs">
+      <DependentUpon>fHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="fLayout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,12 @@
     </Compile>
     <Compile Include="fMain.Designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fOrder.Designer.cs">
+      <DependentUpon>fOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="fPersonal.cs">
       <SubType>UserControl</SubType>
@@ -93,11 +105,17 @@
     <Compile Include="UCs\PlaylistItemUC.Designer.cs">
       <DependentUpon>PlaylistItemUC.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="fHistory.resx">
+      <DependentUpon>fHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fLayout.resx">
       <DependentUpon>fLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fOrder.resx">
+      <DependentUpon>fOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fPersonal.resx">
       <DependentUpon>fPersonal.cs</DependentUpon>

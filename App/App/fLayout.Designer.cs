@@ -34,21 +34,11 @@ namespace App
             this.timerThumbnail = new System.Windows.Forms.Timer(this.components);
             this.timerTimeline = new System.Windows.Forms.Timer(this.components);
             this.panelFooter = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panelMenu = new System.Windows.Forms.Panel();
-            this.imgThumbnail = new System.Windows.Forms.PictureBox();
-            this.btnOrderSecond = new FontAwesome.Sharp.IconButton();
-            this.btnOrderFirst = new FontAwesome.Sharp.IconButton();
-            this.btnHistory = new FontAwesome.Sharp.IconButton();
-            this.btnSongs = new FontAwesome.Sharp.IconButton();
-            this.btnPersonal = new FontAwesome.Sharp.IconButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.imgLogo = new System.Windows.Forms.PictureBox();
-            this.panelSongInfo = new System.Windows.Forms.Panel();
-            this.lblSongName = new System.Windows.Forms.Label();
-            this.lblArtistName = new System.Windows.Forms.Label();
-            this.media = new AxWMPLib.AxWindowsMediaPlayer();
+            this.lblVolume = new System.Windows.Forms.Label();
+            this.trackBarVolume = new System.Windows.Forms.TrackBar();
+            this.btnVolume = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.progressBarSongTime = new Bunifu.Framework.UI.BunifuSlider();
             this.lblMaxTime = new System.Windows.Forms.Label();
             this.lblMinTime = new System.Windows.Forms.Label();
             this.btnRepeat = new FontAwesome.Sharp.IconButton();
@@ -56,22 +46,32 @@ namespace App
             this.btnPlay = new FontAwesome.Sharp.IconButton();
             this.btnPrevious = new FontAwesome.Sharp.IconButton();
             this.btnRandom = new FontAwesome.Sharp.IconButton();
-            this.btnVolume = new FontAwesome.Sharp.IconButton();
-            this.trackBarVolume = new System.Windows.Forms.TrackBar();
-            this.lblVolume = new System.Windows.Forms.Label();
-            this.progressBarSongTime = new Bunifu.Framework.UI.BunifuSlider();
+            this.media = new AxWMPLib.AxWindowsMediaPlayer();
+            this.panelSongInfo = new System.Windows.Forms.Panel();
+            this.lblArtistName = new System.Windows.Forms.Label();
+            this.lblSongName = new System.Windows.Forms.Label();
+            this.imgThumbnail = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnOrderSecond = new FontAwesome.Sharp.IconButton();
+            this.btnOrderFirst = new FontAwesome.Sharp.IconButton();
+            this.btnHistory = new FontAwesome.Sharp.IconButton();
+            this.btnSongs = new FontAwesome.Sharp.IconButton();
+            this.btnPersonal = new FontAwesome.Sharp.IconButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.imgLogo = new System.Windows.Forms.PictureBox();
             this.timerSongName = new System.Windows.Forms.Timer(this.components);
             this.panelContent = new System.Windows.Forms.Panel();
             this.fPlaylist = new App.fPlaylist();
             this.panelFooter.SuspendLayout();
-            this.panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.media)).BeginInit();
+            this.panelSongInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).BeginInit();
+            this.panelMenu.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).BeginInit();
-            this.panelSongInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.media)).BeginInit();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
             this.SuspendLayout();
             // 
             // timerThumbnail
@@ -100,229 +100,45 @@ namespace App
             this.panelFooter.Size = new System.Drawing.Size(1309, 100);
             this.panelFooter.TabIndex = 0;
             // 
-            // panel3
+            // lblVolume
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 609);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1309, 1);
-            this.panel3.TabIndex = 2;
+            this.lblVolume.AutoSize = true;
+            this.lblVolume.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVolume.ForeColor = System.Drawing.Color.White;
+            this.lblVolume.Location = new System.Drawing.Point(1258, 35);
+            this.lblVolume.Name = "lblVolume";
+            this.lblVolume.Size = new System.Drawing.Size(40, 22);
+            this.lblVolume.TabIndex = 26;
+            this.lblVolume.Text = "50%";
             // 
-            // panelMenu
+            // trackBarVolume
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.panelMenu.Controls.Add(this.btnOrderSecond);
-            this.panelMenu.Controls.Add(this.btnOrderFirst);
-            this.panelMenu.Controls.Add(this.btnHistory);
-            this.panelMenu.Controls.Add(this.btnSongs);
-            this.panelMenu.Controls.Add(this.btnPersonal);
-            this.panelMenu.Controls.Add(this.panel2);
-            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(238, 609);
-            this.panelMenu.TabIndex = 3;
+            this.trackBarVolume.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
+            this.trackBarVolume.Location = new System.Drawing.Point(1082, 36);
+            this.trackBarVolume.Maximum = 100;
+            this.trackBarVolume.Name = "trackBarVolume";
+            this.trackBarVolume.Size = new System.Drawing.Size(177, 45);
+            this.trackBarVolume.SmallChange = 5;
+            this.trackBarVolume.TabIndex = 25;
+            this.trackBarVolume.TickFrequency = 10;
+            this.trackBarVolume.Value = 50;
+            this.trackBarVolume.Scroll += new System.EventHandler(this.trackBarVolume_Scroll);
             // 
-            // imgThumbnail
+            // btnVolume
             // 
-            this.imgThumbnail.Location = new System.Drawing.Point(9, 5);
-            this.imgThumbnail.Name = "imgThumbnail";
-            this.imgThumbnail.Size = new System.Drawing.Size(90, 90);
-            this.imgThumbnail.TabIndex = 0;
-            this.imgThumbnail.TabStop = false;
-            // 
-            // btnOrderSecond
-            // 
-            this.btnOrderSecond.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.btnOrderSecond.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrderSecond.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrderSecond.FlatAppearance.BorderSize = 0;
-            this.btnOrderSecond.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnOrderSecond.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderSecond.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderSecond.ForeColor = System.Drawing.Color.White;
-            this.btnOrderSecond.IconChar = FontAwesome.Sharp.IconChar.Hamsa;
-            this.btnOrderSecond.IconColor = System.Drawing.Color.White;
-            this.btnOrderSecond.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnOrderSecond.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderSecond.Location = new System.Drawing.Point(0, 312);
-            this.btnOrderSecond.Name = "btnOrderSecond";
-            this.btnOrderSecond.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnOrderSecond.Size = new System.Drawing.Size(238, 53);
-            this.btnOrderSecond.TabIndex = 15;
-            this.btnOrderSecond.TabStop = false;
-            this.btnOrderSecond.Text = "...";
-            this.btnOrderSecond.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderSecond.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnOrderSecond.UseVisualStyleBackColor = false;
-            this.btnOrderSecond.Click += new System.EventHandler(this.btnOrderSecond_Click);
-            // 
-            // btnOrderFirst
-            // 
-            this.btnOrderFirst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.btnOrderFirst.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrderFirst.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrderFirst.FlatAppearance.BorderSize = 0;
-            this.btnOrderFirst.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnOrderFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderFirst.ForeColor = System.Drawing.Color.White;
-            this.btnOrderFirst.IconChar = FontAwesome.Sharp.IconChar.HandHoldingMedical;
-            this.btnOrderFirst.IconColor = System.Drawing.Color.White;
-            this.btnOrderFirst.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnOrderFirst.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderFirst.Location = new System.Drawing.Point(0, 259);
-            this.btnOrderFirst.Name = "btnOrderFirst";
-            this.btnOrderFirst.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnOrderFirst.Size = new System.Drawing.Size(238, 53);
-            this.btnOrderFirst.TabIndex = 14;
-            this.btnOrderFirst.TabStop = false;
-            this.btnOrderFirst.Text = "...";
-            this.btnOrderFirst.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderFirst.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnOrderFirst.UseVisualStyleBackColor = false;
-            this.btnOrderFirst.Click += new System.EventHandler(this.btnOrderFirst_Click);
-            // 
-            // btnHistory
-            // 
-            this.btnHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.btnHistory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHistory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnHistory.FlatAppearance.BorderSize = 0;
-            this.btnHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistory.ForeColor = System.Drawing.Color.White;
-            this.btnHistory.IconChar = FontAwesome.Sharp.IconChar.Hammer;
-            this.btnHistory.IconColor = System.Drawing.Color.White;
-            this.btnHistory.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistory.Location = new System.Drawing.Point(0, 206);
-            this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnHistory.Size = new System.Drawing.Size(238, 53);
-            this.btnHistory.TabIndex = 13;
-            this.btnHistory.TabStop = false;
-            this.btnHistory.Text = "Lịch sử";
-            this.btnHistory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHistory.UseVisualStyleBackColor = false;
-            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
-            // 
-            // btnSongs
-            // 
-            this.btnSongs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.btnSongs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSongs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSongs.FlatAppearance.BorderSize = 0;
-            this.btnSongs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnSongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSongs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSongs.ForeColor = System.Drawing.Color.White;
-            this.btnSongs.IconChar = FontAwesome.Sharp.IconChar.Hackerrank;
-            this.btnSongs.IconColor = System.Drawing.Color.White;
-            this.btnSongs.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSongs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSongs.Location = new System.Drawing.Point(0, 153);
-            this.btnSongs.Name = "btnSongs";
-            this.btnSongs.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnSongs.Size = new System.Drawing.Size(238, 53);
-            this.btnSongs.TabIndex = 12;
-            this.btnSongs.TabStop = false;
-            this.btnSongs.Text = "Khám phá";
-            this.btnSongs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSongs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSongs.UseVisualStyleBackColor = false;
-            this.btnSongs.Click += new System.EventHandler(this.btnSongs_Click);
-            // 
-            // btnPersonal
-            // 
-            this.btnPersonal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.btnPersonal.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPersonal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPersonal.FlatAppearance.BorderSize = 0;
-            this.btnPersonal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPersonal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPersonal.ForeColor = System.Drawing.Color.White;
-            this.btnPersonal.IconChar = FontAwesome.Sharp.IconChar.HackerNews;
-            this.btnPersonal.IconColor = System.Drawing.Color.White;
-            this.btnPersonal.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPersonal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPersonal.Location = new System.Drawing.Point(0, 100);
-            this.btnPersonal.Name = "btnPersonal";
-            this.btnPersonal.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnPersonal.Size = new System.Drawing.Size(238, 53);
-            this.btnPersonal.TabIndex = 11;
-            this.btnPersonal.TabStop = false;
-            this.btnPersonal.Text = "Cá  nhân";
-            this.btnPersonal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPersonal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPersonal.UseVisualStyleBackColor = false;
-            this.btnPersonal.Click += new System.EventHandler(this.btnPersonal_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.imgLogo);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(238, 100);
-            this.panel2.TabIndex = 10;
-            // 
-            // imgLogo
-            // 
-            this.imgLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.imgLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgLogo.Location = new System.Drawing.Point(0, 0);
-            this.imgLogo.Name = "imgLogo";
-            this.imgLogo.Size = new System.Drawing.Size(238, 100);
-            this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgLogo.TabIndex = 1;
-            this.imgLogo.TabStop = false;
-            this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
-            // 
-            // panelSongInfo
-            // 
-            this.panelSongInfo.Controls.Add(this.lblArtistName);
-            this.panelSongInfo.Controls.Add(this.lblSongName);
-            this.panelSongInfo.Location = new System.Drawing.Point(118, 5);
-            this.panelSongInfo.Name = "panelSongInfo";
-            this.panelSongInfo.Size = new System.Drawing.Size(289, 90);
-            this.panelSongInfo.TabIndex = 1;
-            // 
-            // lblSongName
-            // 
-            this.lblSongName.AutoSize = true;
-            this.lblSongName.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSongName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblSongName.Location = new System.Drawing.Point(3, 12);
-            this.lblSongName.Name = "lblSongName";
-            this.lblSongName.Size = new System.Drawing.Size(120, 22);
-            this.lblSongName.TabIndex = 0;
-            this.lblSongName.Text = "Tên bài hát";
-            // 
-            // lblArtistName
-            // 
-            this.lblArtistName.AutoSize = true;
-            this.lblArtistName.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArtistName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblArtistName.Location = new System.Drawing.Point(-2, 53);
-            this.lblArtistName.Name = "lblArtistName";
-            this.lblArtistName.Size = new System.Drawing.Size(70, 15);
-            this.lblArtistName.TabIndex = 1;
-            this.lblArtistName.Text = "Trình bày";
-            // 
-            // media
-            // 
-            this.media.Enabled = true;
-            this.media.Location = new System.Drawing.Point(0, 0);
-            this.media.Name = "media";
-            this.media.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("media.OcxState")));
-            this.media.Size = new System.Drawing.Size(10, 10);
-            this.media.TabIndex = 22;
+            this.btnVolume.FlatAppearance.BorderSize = 0;
+            this.btnVolume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
+            this.btnVolume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
+            this.btnVolume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolume.IconChar = FontAwesome.Sharp.IconChar.VolumeDown;
+            this.btnVolume.IconColor = System.Drawing.Color.White;
+            this.btnVolume.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVolume.IconSize = 64;
+            this.btnVolume.Location = new System.Drawing.Point(1044, 36);
+            this.btnVolume.Name = "btnVolume";
+            this.btnVolume.Size = new System.Drawing.Size(25, 30);
+            this.btnVolume.TabIndex = 24;
+            this.btnVolume.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -338,6 +154,22 @@ namespace App
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(515, 93);
             this.panel4.TabIndex = 23;
+            // 
+            // progressBarSongTime
+            // 
+            this.progressBarSongTime.BackColor = System.Drawing.Color.Transparent;
+            this.progressBarSongTime.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(85)))), ((int)(((byte)(96)))));
+            this.progressBarSongTime.BorderRadius = 0;
+            this.progressBarSongTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressBarSongTime.IndicatorColor = System.Drawing.Color.White;
+            this.progressBarSongTime.Location = new System.Drawing.Point(54, 64);
+            this.progressBarSongTime.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.progressBarSongTime.MaximumValue = 0;
+            this.progressBarSongTime.Name = "progressBarSongTime";
+            this.progressBarSongTime.Size = new System.Drawing.Size(400, 30);
+            this.progressBarSongTime.TabIndex = 8;
+            this.progressBarSongTime.Value = 0;
+            this.progressBarSongTime.ValueChanged += new System.EventHandler(this.progressBarSongTime_ValueChanged);
             // 
             // lblMaxTime
             // 
@@ -467,61 +299,229 @@ namespace App
             this.btnRandom.MouseHover += new System.EventHandler(this.btnRandom_MouseHover);
             this.btnRandom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnRandom_MouseUp);
             // 
-            // btnVolume
+            // media
             // 
-            this.btnVolume.FlatAppearance.BorderSize = 0;
-            this.btnVolume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.btnVolume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.btnVolume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVolume.IconChar = FontAwesome.Sharp.IconChar.VolumeDown;
-            this.btnVolume.IconColor = System.Drawing.Color.White;
-            this.btnVolume.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVolume.IconSize = 64;
-            this.btnVolume.Location = new System.Drawing.Point(1044, 36);
-            this.btnVolume.Name = "btnVolume";
-            this.btnVolume.Size = new System.Drawing.Size(25, 30);
-            this.btnVolume.TabIndex = 24;
-            this.btnVolume.UseVisualStyleBackColor = true;
+            this.media.Enabled = true;
+            this.media.Location = new System.Drawing.Point(0, 0);
+            this.media.Name = "media";
+            this.media.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("media.OcxState")));
+            this.media.Size = new System.Drawing.Size(10, 10);
+            this.media.TabIndex = 22;
             // 
-            // trackBarVolume
+            // panelSongInfo
             // 
-            this.trackBarVolume.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.trackBarVolume.Location = new System.Drawing.Point(1082, 36);
-            this.trackBarVolume.Maximum = 100;
-            this.trackBarVolume.Name = "trackBarVolume";
-            this.trackBarVolume.Size = new System.Drawing.Size(177, 45);
-            this.trackBarVolume.SmallChange = 5;
-            this.trackBarVolume.TabIndex = 25;
-            this.trackBarVolume.TickFrequency = 10;
-            this.trackBarVolume.Value = 50;
-            this.trackBarVolume.Scroll += new System.EventHandler(this.trackBarVolume_Scroll);
+            this.panelSongInfo.Controls.Add(this.lblArtistName);
+            this.panelSongInfo.Controls.Add(this.lblSongName);
+            this.panelSongInfo.Location = new System.Drawing.Point(118, 5);
+            this.panelSongInfo.Name = "panelSongInfo";
+            this.panelSongInfo.Size = new System.Drawing.Size(289, 90);
+            this.panelSongInfo.TabIndex = 1;
             // 
-            // lblVolume
+            // lblArtistName
             // 
-            this.lblVolume.AutoSize = true;
-            this.lblVolume.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVolume.ForeColor = System.Drawing.Color.White;
-            this.lblVolume.Location = new System.Drawing.Point(1258, 35);
-            this.lblVolume.Name = "lblVolume";
-            this.lblVolume.Size = new System.Drawing.Size(40, 22);
-            this.lblVolume.TabIndex = 26;
-            this.lblVolume.Text = "50%";
+            this.lblArtistName.AutoSize = true;
+            this.lblArtistName.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArtistName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblArtistName.Location = new System.Drawing.Point(-2, 53);
+            this.lblArtistName.Name = "lblArtistName";
+            this.lblArtistName.Size = new System.Drawing.Size(70, 15);
+            this.lblArtistName.TabIndex = 1;
+            this.lblArtistName.Text = "Trình bày";
             // 
-            // progressBarSongTime
+            // lblSongName
             // 
-            this.progressBarSongTime.BackColor = System.Drawing.Color.Transparent;
-            this.progressBarSongTime.BackgroudColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(85)))), ((int)(((byte)(96)))));
-            this.progressBarSongTime.BorderRadius = 0;
-            this.progressBarSongTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.progressBarSongTime.IndicatorColor = System.Drawing.Color.White;
-            this.progressBarSongTime.Location = new System.Drawing.Point(54, 64);
-            this.progressBarSongTime.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.progressBarSongTime.MaximumValue = 0;
-            this.progressBarSongTime.Name = "progressBarSongTime";
-            this.progressBarSongTime.Size = new System.Drawing.Size(400, 17);
-            this.progressBarSongTime.TabIndex = 8;
-            this.progressBarSongTime.Value = 0;
-            this.progressBarSongTime.ValueChanged += new System.EventHandler(this.progressBarSongTime_ValueChanged);
+            this.lblSongName.AutoSize = true;
+            this.lblSongName.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSongName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblSongName.Location = new System.Drawing.Point(3, 12);
+            this.lblSongName.Name = "lblSongName";
+            this.lblSongName.Size = new System.Drawing.Size(120, 22);
+            this.lblSongName.TabIndex = 0;
+            this.lblSongName.Text = "Tên bài hát";
+            // 
+            // imgThumbnail
+            // 
+            this.imgThumbnail.Location = new System.Drawing.Point(9, 5);
+            this.imgThumbnail.Name = "imgThumbnail";
+            this.imgThumbnail.Size = new System.Drawing.Size(90, 90);
+            this.imgThumbnail.TabIndex = 0;
+            this.imgThumbnail.TabStop = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 609);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1309, 1);
+            this.panel3.TabIndex = 2;
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
+            this.panelMenu.Controls.Add(this.btnOrderSecond);
+            this.panelMenu.Controls.Add(this.btnOrderFirst);
+            this.panelMenu.Controls.Add(this.btnHistory);
+            this.panelMenu.Controls.Add(this.btnSongs);
+            this.panelMenu.Controls.Add(this.btnPersonal);
+            this.panelMenu.Controls.Add(this.panel2);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(238, 609);
+            this.panelMenu.TabIndex = 3;
+            // 
+            // btnOrderSecond
+            // 
+            this.btnOrderSecond.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
+            this.btnOrderSecond.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrderSecond.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOrderSecond.FlatAppearance.BorderSize = 0;
+            this.btnOrderSecond.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
+            this.btnOrderSecond.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderSecond.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrderSecond.ForeColor = System.Drawing.Color.White;
+            this.btnOrderSecond.IconChar = FontAwesome.Sharp.IconChar.Hamsa;
+            this.btnOrderSecond.IconColor = System.Drawing.Color.White;
+            this.btnOrderSecond.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnOrderSecond.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrderSecond.Location = new System.Drawing.Point(0, 312);
+            this.btnOrderSecond.Name = "btnOrderSecond";
+            this.btnOrderSecond.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnOrderSecond.Size = new System.Drawing.Size(238, 53);
+            this.btnOrderSecond.TabIndex = 15;
+            this.btnOrderSecond.TabStop = false;
+            this.btnOrderSecond.Text = "...";
+            this.btnOrderSecond.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrderSecond.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOrderSecond.UseVisualStyleBackColor = false;
+            this.btnOrderSecond.Click += new System.EventHandler(this.btnOrderSecond_Click);
+            // 
+            // btnOrderFirst
+            // 
+            this.btnOrderFirst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
+            this.btnOrderFirst.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrderFirst.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOrderFirst.FlatAppearance.BorderSize = 0;
+            this.btnOrderFirst.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
+            this.btnOrderFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrderFirst.ForeColor = System.Drawing.Color.White;
+            this.btnOrderFirst.IconChar = FontAwesome.Sharp.IconChar.HandHoldingMedical;
+            this.btnOrderFirst.IconColor = System.Drawing.Color.White;
+            this.btnOrderFirst.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnOrderFirst.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrderFirst.Location = new System.Drawing.Point(0, 259);
+            this.btnOrderFirst.Name = "btnOrderFirst";
+            this.btnOrderFirst.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnOrderFirst.Size = new System.Drawing.Size(238, 53);
+            this.btnOrderFirst.TabIndex = 14;
+            this.btnOrderFirst.TabStop = false;
+            this.btnOrderFirst.Text = "...";
+            this.btnOrderFirst.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrderFirst.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOrderFirst.UseVisualStyleBackColor = false;
+            this.btnOrderFirst.Click += new System.EventHandler(this.btnOrderFirst_Click);
+            // 
+            // btnHistory
+            // 
+            this.btnHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
+            this.btnHistory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHistory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHistory.FlatAppearance.BorderSize = 0;
+            this.btnHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
+            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistory.ForeColor = System.Drawing.Color.White;
+            this.btnHistory.IconChar = FontAwesome.Sharp.IconChar.History;
+            this.btnHistory.IconColor = System.Drawing.Color.White;
+            this.btnHistory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistory.Location = new System.Drawing.Point(0, 206);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnHistory.Size = new System.Drawing.Size(238, 53);
+            this.btnHistory.TabIndex = 13;
+            this.btnHistory.TabStop = false;
+            this.btnHistory.Text = "Lịch sử";
+            this.btnHistory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHistory.UseVisualStyleBackColor = false;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
+            // 
+            // btnSongs
+            // 
+            this.btnSongs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
+            this.btnSongs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSongs.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSongs.FlatAppearance.BorderSize = 0;
+            this.btnSongs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
+            this.btnSongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSongs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSongs.ForeColor = System.Drawing.Color.White;
+            this.btnSongs.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.btnSongs.IconColor = System.Drawing.Color.White;
+            this.btnSongs.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSongs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSongs.Location = new System.Drawing.Point(0, 153);
+            this.btnSongs.Name = "btnSongs";
+            this.btnSongs.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnSongs.Size = new System.Drawing.Size(238, 53);
+            this.btnSongs.TabIndex = 12;
+            this.btnSongs.TabStop = false;
+            this.btnSongs.Text = "Khám phá";
+            this.btnSongs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSongs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSongs.UseVisualStyleBackColor = false;
+            this.btnSongs.Click += new System.EventHandler(this.btnSongs_Click);
+            // 
+            // btnPersonal
+            // 
+            this.btnPersonal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
+            this.btnPersonal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPersonal.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPersonal.FlatAppearance.BorderSize = 0;
+            this.btnPersonal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
+            this.btnPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPersonal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPersonal.ForeColor = System.Drawing.Color.White;
+            this.btnPersonal.IconChar = FontAwesome.Sharp.IconChar.User;
+            this.btnPersonal.IconColor = System.Drawing.Color.White;
+            this.btnPersonal.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPersonal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPersonal.Location = new System.Drawing.Point(0, 100);
+            this.btnPersonal.Name = "btnPersonal";
+            this.btnPersonal.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnPersonal.Size = new System.Drawing.Size(238, 53);
+            this.btnPersonal.TabIndex = 11;
+            this.btnPersonal.TabStop = false;
+            this.btnPersonal.Text = "Cá  nhân";
+            this.btnPersonal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPersonal.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPersonal.UseVisualStyleBackColor = false;
+            this.btnPersonal.Click += new System.EventHandler(this.btnPersonal_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.imgLogo);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(238, 100);
+            this.panel2.TabIndex = 10;
+            // 
+            // imgLogo
+            // 
+            this.imgLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.imgLogo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgLogo.Location = new System.Drawing.Point(0, 0);
+            this.imgLogo.Name = "imgLogo";
+            this.imgLogo.Size = new System.Drawing.Size(238, 100);
+            this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogo.TabIndex = 1;
+            this.imgLogo.TabStop = false;
+            this.imgLogo.Click += new System.EventHandler(this.imgLogo_Click);
             // 
             // timerSongName
             // 
@@ -560,16 +560,16 @@ namespace App
             this.Text = "fLayout";
             this.panelFooter.ResumeLayout(false);
             this.panelFooter.PerformLayout();
-            this.panelMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).EndInit();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
-            this.panelSongInfo.ResumeLayout(false);
-            this.panelSongInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.media)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.media)).EndInit();
+            this.panelSongInfo.ResumeLayout(false);
+            this.panelSongInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).EndInit();
+            this.panelMenu.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

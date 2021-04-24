@@ -1,7 +1,7 @@
 ﻿
 namespace App
 {
-    partial class fPersonal
+    partial class fHistory
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,9 +33,9 @@ namespace App
             this.pnlSearchUnderline = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@ namespace App
             this.panel4.Margin = new System.Windows.Forms.Padding(6);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(420, 59);
-            this.panel4.TabIndex = 11;
+            this.panel4.TabIndex = 16;
             // 
             // pnlSearchUnderline
             // 
@@ -93,6 +93,17 @@ namespace App
             this.iconButton1.TabStop = false;
             this.iconButton1.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(455, 234);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 28);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "History";
+            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -107,7 +118,7 @@ namespace App
             this.btnClose.Margin = new System.Windows.Forms.Padding(6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(30, 30);
-            this.btnClose.TabIndex = 13;
+            this.btnClose.TabIndex = 17;
             this.btnClose.TabStop = false;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -127,34 +138,23 @@ namespace App
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(6);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(30, 30);
-            this.btnMinimize.TabIndex = 14;
+            this.btnMinimize.TabIndex = 18;
             this.btnMinimize.TabStop = false;
             this.btnMinimize.Text = "--";
             this.btnMinimize.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnMinimize.UseVisualStyleBackColor = false;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(466, 224);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 28);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Personal";
-            // 
-            // fPersonal
+            // fHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnMinimize);
-            this.Controls.Add(this.panel4);
-            this.Name = "fPersonal";
+            this.Name = "fHistory";
             this.Size = new System.Drawing.Size(1071, 609);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -169,8 +169,8 @@ namespace App
         private System.Windows.Forms.Panel pnlSearchUnderline;
         private System.Windows.Forms.TextBox txtSearch;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Label label1;
     }
 }

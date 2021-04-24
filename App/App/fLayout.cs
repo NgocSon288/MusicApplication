@@ -105,8 +105,11 @@ namespace App
             leftBorderBtn.Visible = false;
 
             //Show user control tương ứng
-            //var fPersonal = new fPersonal();
-            //UIHelper.ShowControl(fPersonal, panelContent);
+            var fPersonal = new fPersonal();
+            UIHelper.ShowControl(fPersonal, panelContent);
+
+            panelContent.Visible = true;
+            fPlaylist.Visible = false;
         }
 
         private void VisibleButton()
@@ -184,26 +187,31 @@ namespace App
 
         private void btnSongs_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, true);
-
-            //PlaylistItemUC.STT = 1;
-            //var fPlaylist = new fPlaylist();
-            //UIHelper.ShowControl(fPlaylist, panelContent); 
+            ActivateButton(sender, true); 
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+
+            var fHistory = new fHistory();
+            UIHelper.ShowControl(fHistory, panelContent);
         }
 
         private void btnOrderFirst_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+
+            var fOrder = new fOrder();
+            UIHelper.ShowControl(fOrder, panelContent);
         }
 
         private void btnOrderSecond_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+
+            var fOrder = new fOrder();
+            UIHelper.ShowControl(fOrder, panelContent);
         }
 
 
