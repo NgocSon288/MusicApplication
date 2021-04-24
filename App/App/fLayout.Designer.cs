@@ -357,7 +357,6 @@ namespace App
             this.media.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("media.OcxState")));
             this.media.Size = new System.Drawing.Size(10, 10);
             this.media.TabIndex = 22;
-            this.media.Visible = false;
             // 
             // panel4
             // 

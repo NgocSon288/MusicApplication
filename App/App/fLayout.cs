@@ -1,5 +1,6 @@
 ﻿using App.Common;
 using App.Models;
+using App.Services;
 using App.UCs;
 using FontAwesome.Sharp;
 using System;
@@ -34,7 +35,7 @@ namespace App
 
         #region Methods
 
-        new private void Load()
+        new private async void Load()
         {
             imgLogo.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/logo-zing.png");
             imgLogo.BackgroundImageLayout = ImageLayout.Stretch;
@@ -57,6 +58,12 @@ namespace App
             timerThumbnail.Start();
             timerTimeline.Start();
             timerSongName.Start();
+
+
+            var s = (await new SongService().GetAll())[0];
+
+            LoadDataSong(s);
+
 
         }
 
@@ -124,6 +131,9 @@ namespace App
         {
             secondMin = 0;
             rotateThumbnail = 0;
+            //
+            media.URL = song.URL;
+             
 
             var request = WebRequest.Create(song.Thumbnail);
 
@@ -140,6 +150,8 @@ namespace App
 
             lblSongName.Text = song.DisplayName;
             lblArtistName.Text = song.ArtistsNames;
+
+            media.Ctlcontrols.play();
         }
 
 
@@ -199,7 +211,7 @@ namespace App
         }
 
         private void timerTimeline_Tick(object sender, EventArgs e)
-        {
+        { 
             if (isPlaying())
             {
                 secondMin++;
@@ -258,6 +270,7 @@ namespace App
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+
             if (isPlaying())
             {
                 media.Ctlcontrols.pause();
@@ -291,11 +304,9 @@ namespace App
 
         private void progressBarSongTime_ValueChanged(object sender, EventArgs e)
         {
-            // test
-
-            //var a = progressBarSongTime.Value;
-
-            //lblMinTime.Text = $"{(a / 60).ToString().PadLeft(2, '0')}:{(a % 60).ToString().PadLeft(2, '0')}";
+            secondMin = progressBarSongTime.Value;
+            lblMinTime.Text = $"{(secondMin / 60).ToString().PadLeft(2, '0')}:{(secondMin % 60).ToString().PadLeft(2, '0')}";
+            media.Ctlcontrols.currentPosition = progressBarSongTime.Value;
         }
 
         private void timerSongName_Tick(object sender, EventArgs e)
