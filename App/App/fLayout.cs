@@ -58,13 +58,6 @@ namespace App
             timerThumbnail.Start();
             timerTimeline.Start();
             timerSongName.Start();
-
-
-            var s = (await new SongService().GetAll())[0];
-
-            LoadDataSong(s);
-
-
         }
 
         private void ActivateButton(object senderBtn)
@@ -130,10 +123,8 @@ namespace App
         public void LoadDataSong(Song song)
         {
             secondMin = 0;
-            rotateThumbnail = 0;
-            //
+            rotateThumbnail = 0; 
             media.URL = song.URL;
-             
 
             var request = WebRequest.Create(song.Thumbnail);
 
@@ -178,6 +169,9 @@ namespace App
         private void btnSongs_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+
+            var fPlaylist = new fPlaylist();
+            UIHelper.ShowControl(fPlaylist, panelContent);
         }
 
         private void btnHistory_Click(object sender, EventArgs e)

@@ -69,6 +69,12 @@
     <Compile Include="fMain.Designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="fPlaylist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fPlaylist.Designer.cs">
+      <DependentUpon>fPlaylist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SongCategory.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Program.cs" />
@@ -86,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fPlaylist.resx">
+      <DependentUpon>fPlaylist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -181,7 +181,7 @@ namespace App.UCs
             this.Controls.Add(this.visualiation);
             this.Controls.Add(this.lblSTT);
             this.Name = "PlaylistItemUC";
-            this.Size = new System.Drawing.Size(1050, 70);
+            this.Size = new System.Drawing.Size(1020, 70);
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualiation)).EndInit();
             this.ResumeLayout(false);

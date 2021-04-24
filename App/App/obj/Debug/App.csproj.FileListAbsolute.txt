@@ -20,3 +20,4 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicAppli
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.csproj.ResolveComReference.cache
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.UCs.PlaylistItemUC.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.fLayout.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.fPlaylist.resources

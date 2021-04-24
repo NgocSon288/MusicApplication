@@ -104,13 +104,8 @@ namespace App.UCs
                 timerVisualiation.Stop();
                 visualiation.Visible = false;
             }
-
-            Constants.MainMedia.URL = Song.URL;
-            Constants.MainMedia.Ctlcontrols.play();
-
-            MessageBox.Show((Constants.MainMedia.playState == WMPLib.WMPPlayState.wmppsPlaying).ToString());
-
-            //Constants.MainForm.LoadDataSong(Song);
+                
+            Constants.MainForm.LoadDataSong(Song);
         }
 
         public void Reset(PlaylistItemUC item = null)
@@ -145,7 +140,11 @@ namespace App.UCs
 
         private void timerVisualiation_Tick(object sender, EventArgs e)
         {
+            var urlImg = $"../../Assets/Images/visualiation-{new Random().Next(1, VisualiationMusicCount)}.png";
 
+            visualiation.BackgroundImage = new Bitmap(urlImg);
+            visualiation.BackgroundImageLayout = ImageLayout.Stretch;
+            visualiation.BringToFront();
         }
 
         #endregion
