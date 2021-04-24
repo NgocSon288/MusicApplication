@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CompareStringHelper.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\UIHelper.cs" />
     <Compile Include="fHistory.cs">

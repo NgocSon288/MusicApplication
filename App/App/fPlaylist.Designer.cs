@@ -38,6 +38,9 @@ namespace App
             this.flpPlaylist = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.flpCategory = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblCount = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +78,7 @@ namespace App
             this.txtSearch.TabIndex = 2;
             this.txtSearch.Text = "Nhập tên bài hát, nghệ sĩ hoặc MV...";
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // iconButton1
@@ -95,6 +99,7 @@ namespace App
             this.iconButton1.TabIndex = 4;
             this.iconButton1.TabStop = false;
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // btnMinimize
             // 
@@ -141,17 +146,17 @@ namespace App
             // 
             this.flpPlaylist.AutoScroll = true;
             this.flpPlaylist.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flpPlaylist.Location = new System.Drawing.Point(0, 68);
+            this.flpPlaylist.Location = new System.Drawing.Point(0, 137);
             this.flpPlaylist.Margin = new System.Windows.Forms.Padding(0);
             this.flpPlaylist.Name = "flpPlaylist";
-            this.flpPlaylist.Size = new System.Drawing.Size(1071, 541);
+            this.flpPlaylist.Size = new System.Drawing.Size(1071, 472);
             this.flpPlaylist.TabIndex = 13;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 67);
+            this.panel1.Location = new System.Drawing.Point(0, 136);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1071, 1);
             this.panel1.TabIndex = 14;
@@ -163,14 +168,47 @@ namespace App
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(988, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(83, 67);
+            this.panel2.Size = new System.Drawing.Size(83, 136);
             this.panel2.TabIndex = 15;
+            // 
+            // flpCategory
+            // 
+            this.flpCategory.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flpCategory.Location = new System.Drawing.Point(0, 71);
+            this.flpCategory.Name = "flpCategory";
+            this.flpCategory.Size = new System.Drawing.Size(988, 65);
+            this.flpCategory.TabIndex = 16;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Consolas", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(226)))), ((int)(((byte)(255)))));
+            this.lblName.Location = new System.Drawing.Point(761, 15);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(120, 26);
+            this.lblName.TabIndex = 17;
+            this.lblName.Text = "Số lượng:";
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Font = new System.Drawing.Font("Consolas", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(226)))), ((int)(((byte)(255)))));
+            this.lblCount.Location = new System.Drawing.Point(887, 15);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(48, 26);
+            this.lblCount.TabIndex = 18;
+            this.lblCount.Text = "100";
             // 
             // fPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.Controls.Add(this.lblCount);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.flpCategory);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flpPlaylist);
@@ -181,6 +219,7 @@ namespace App
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -195,5 +234,8 @@ namespace App
         private System.Windows.Forms.FlowLayoutPanel flpPlaylist;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flpCategory;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblCount;
     }
 }

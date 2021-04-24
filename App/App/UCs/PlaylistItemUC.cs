@@ -51,23 +51,8 @@ namespace App.UCs
 
 
             this.MouseDoubleClick += PlayListItemMouseDoubleClick;
-
-            lblSTT.Text = STT.ToString();
-            switch (STT)
-            {
-                case 1:
-                    lblSTT.ForeColor = Constants.COLOR_FIRST;
-                    break;
-                case 2:
-                    lblSTT.ForeColor = Constants.COLOR_SECONDE;
-                    break;
-                case 3:
-                    lblSTT.ForeColor = Constants.COLOR_THRID;
-                    break;
-                default:
-                    lblSTT.ForeColor = Constants.COLOR_DEFAULT;
-                    break;
-            }
+             
+            SetColorTop(STT);
 
             STT++;
 
@@ -82,6 +67,27 @@ namespace App.UCs
             lblSongName.Text = Song.DisplayName.Length > 35 ? Song.DisplayName.Substring(0, 35) + "..." : Song.DisplayName;
             lblDuration.Text = $"{(Song.Duration / 60).ToString().PadLeft(2, '0')}:{(Song.Duration % 60).ToString().PadLeft(2, '0')}";
             lblArtistsName.Text = Song.ArtistsNames;
+        }
+
+        public void SetColorTop(int stt)
+        {
+            lblSTT.Text = stt.ToString();
+
+            switch (stt)
+            {
+                case 1:
+                    lblSTT.ForeColor = Constants.COLOR_FIRST;
+                    break;
+                case 2:
+                    lblSTT.ForeColor = Constants.COLOR_SECONDE;
+                    break;
+                case 3:
+                    lblSTT.ForeColor = Constants.COLOR_THRID;
+                    break;
+                default:
+                    lblSTT.ForeColor = Constants.COLOR_DEFAULT;
+                    break;
+            }
         }
 
         private void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
@@ -113,6 +119,20 @@ namespace App.UCs
             }
 
             Constants.MainForm.LoadDataSong(Song);
+        }
+
+        public void SetVisualiation()
+        {
+            if (!visualiation.Visible)
+            {
+                timerVisualiation.Start();
+                visualiation.Visible = true;
+            }
+            else
+            {
+                timerVisualiation.Stop();
+                visualiation.Visible = false;
+            }
         }
 
         public void Reset(PlaylistItemUC item = null)

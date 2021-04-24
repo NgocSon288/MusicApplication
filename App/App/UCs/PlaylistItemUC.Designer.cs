@@ -211,9 +211,9 @@ namespace App.UCs
         private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.Label lblSongName;
         private System.Windows.Forms.PictureBox imgThumbnail;
-        private System.Windows.Forms.PictureBox visualiation;
-        private System.Windows.Forms.Timer timerVisualiation;
         private FontAwesome.Sharp.IconButton btnArrowAll;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Timer timerVisualiation;
+        public System.Windows.Forms.PictureBox visualiation;
     }
 }
