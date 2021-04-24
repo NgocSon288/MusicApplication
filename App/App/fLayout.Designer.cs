@@ -150,7 +150,7 @@ namespace App
             this.panel4.Controls.Add(this.btnPlay);
             this.panel4.Controls.Add(this.btnPrevious);
             this.panel4.Controls.Add(this.btnRandom);
-            this.panel4.Location = new System.Drawing.Point(503, 0);
+            this.panel4.Location = new System.Drawing.Point(473, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(515, 93);
             this.panel4.TabIndex = 23;
