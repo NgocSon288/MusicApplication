@@ -69,6 +69,12 @@
     <Compile Include="fMain.Designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="fPersonal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fPersonal.Designer.cs">
+      <DependentUpon>fPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="fPlaylist.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fPersonal.resx">
+      <DependentUpon>fPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fPlaylist.resx">
       <DependentUpon>fPlaylist.cs</DependentUpon>

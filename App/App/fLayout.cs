@@ -60,10 +60,13 @@ namespace App
             timerSongName.Start();
         }
 
-        private void ActivateButton(object senderBtn)
+        private void ActivateButton(object senderBtn, bool isPlaylist = false)
         {
             if (senderBtn != null)
             {
+                fPlaylist.Visible = true;
+                panelContent.Visible = !isPlaylist;
+
                 DisableButton();
 
                 //Button transition
@@ -175,17 +178,17 @@ namespace App
             ActivateButton(sender);
 
             // Show user control tương ứng
-            //var fPersonal = new fPersonal();
-            //UIHelper.ShowControl(fPersonal, panelContent);
+            var fPersonal = new fPersonal();
+            UIHelper.ShowControl(fPersonal, panelContent);
         }
 
         private void btnSongs_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            ActivateButton(sender, true);
 
-            PlaylistItemUC.STT = 1;
-            var fPlaylist = new fPlaylist();
-            UIHelper.ShowControl(fPlaylist, panelContent);
+            //PlaylistItemUC.STT = 1;
+            //var fPlaylist = new fPlaylist();
+            //UIHelper.ShowControl(fPlaylist, panelContent); 
         }
 
         private void btnHistory_Click(object sender, EventArgs e)

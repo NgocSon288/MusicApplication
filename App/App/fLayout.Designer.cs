@@ -36,7 +36,6 @@ namespace App
             this.panelFooter = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.panelContent = new System.Windows.Forms.Panel();
             this.imgThumbnail = new System.Windows.Forms.PictureBox();
             this.btnOrderSecond = new FontAwesome.Sharp.IconButton();
             this.btnOrderFirst = new FontAwesome.Sharp.IconButton();
@@ -62,6 +61,8 @@ namespace App
             this.lblVolume = new System.Windows.Forms.Label();
             this.progressBarSongTime = new Bunifu.Framework.UI.BunifuSlider();
             this.timerSongName = new System.Windows.Forms.Timer(this.components);
+            this.panelContent = new System.Windows.Forms.Panel();
+            this.fPlaylist = new App.fPlaylist();
             this.panelFooter.SuspendLayout();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).BeginInit();
@@ -122,15 +123,6 @@ namespace App
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(238, 609);
             this.panelMenu.TabIndex = 3;
-            // 
-            // panelContent
-            // 
-            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(238, 0);
-            this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1071, 609);
-            this.panelContent.TabIndex = 4;
             // 
             // imgThumbnail
             // 
@@ -536,12 +528,29 @@ namespace App
             this.timerSongName.Interval = 10;
             this.timerSongName.Tick += new System.EventHandler(this.timerSongName_Tick);
             // 
+            // panelContent
+            // 
+            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.panelContent.Location = new System.Drawing.Point(238, 0);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(1071, 609);
+            this.panelContent.TabIndex = 5;
+            // 
+            // fPlaylist
+            // 
+            this.fPlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.fPlaylist.Location = new System.Drawing.Point(238, 0);
+            this.fPlaylist.Name = "fPlaylist";
+            this.fPlaylist.Size = new System.Drawing.Size(1071, 609);
+            this.fPlaylist.TabIndex = 4;
+            // 
             // fLayout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1309, 710);
             this.Controls.Add(this.panelContent);
+            this.Controls.Add(this.fPlaylist);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelFooter);
@@ -572,7 +581,6 @@ namespace App
         private System.Windows.Forms.Panel panelFooter;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.PictureBox imgThumbnail;
         private FontAwesome.Sharp.IconButton btnOrderSecond;
         private FontAwesome.Sharp.IconButton btnOrderFirst;
@@ -598,5 +606,7 @@ namespace App
         private System.Windows.Forms.Label lblVolume;
         private Bunifu.Framework.UI.BunifuSlider progressBarSongTime;
         private System.Windows.Forms.Timer timerSongName;
+        private fPlaylist fPlaylist;
+        private System.Windows.Forms.Panel panelContent;
     }
 }
