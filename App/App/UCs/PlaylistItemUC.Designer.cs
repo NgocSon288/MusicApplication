@@ -31,7 +31,6 @@ namespace App.UCs
         {
             this.components = new System.ComponentModel.Container();
             this.lblSTT = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.btnEllipsis = new FontAwesome.Sharp.IconButton();
             this.btnHeart = new FontAwesome.Sharp.IconButton();
             this.lblArtistsName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,6 +39,8 @@ namespace App.UCs
             this.imgThumbnail = new System.Windows.Forms.PictureBox();
             this.visualiation = new System.Windows.Forms.PictureBox();
             this.timerVisualiation = new System.Windows.Forms.Timer(this.components);
+            this.btnArrowAll = new FontAwesome.Sharp.IconButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualiation)).BeginInit();
             this.SuspendLayout();
@@ -55,26 +56,6 @@ namespace App.UCs
             this.lblSTT.Size = new System.Drawing.Size(37, 41);
             this.lblSTT.TabIndex = 5;
             this.lblSTT.Text = "1";
-            // 
-            // btnEllipsis
-            // 
-            this.btnEllipsis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.btnEllipsis.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEllipsis.FlatAppearance.BorderSize = 0;
-            this.btnEllipsis.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(37)))), ((int)(((byte)(55)))));
-            this.btnEllipsis.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(37)))), ((int)(((byte)(55)))));
-            this.btnEllipsis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEllipsis.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEllipsis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnEllipsis.IconChar = FontAwesome.Sharp.IconChar.EllipsisH;
-            this.btnEllipsis.IconColor = System.Drawing.Color.White;
-            this.btnEllipsis.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEllipsis.Location = new System.Drawing.Point(969, 9);
-            this.btnEllipsis.Margin = new System.Windows.Forms.Padding(1);
-            this.btnEllipsis.Name = "btnEllipsis";
-            this.btnEllipsis.Size = new System.Drawing.Size(48, 48);
-            this.btnEllipsis.TabIndex = 21;
-            this.btnEllipsis.UseVisualStyleBackColor = false;
             // 
             // btnHeart
             // 
@@ -102,7 +83,7 @@ namespace App.UCs
             this.lblArtistsName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblArtistsName.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArtistsName.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblArtistsName.Location = new System.Drawing.Point(332, 37);
+            this.lblArtistsName.Location = new System.Drawing.Point(332, 40);
             this.lblArtistsName.Name = "lblArtistsName";
             this.lblArtistsName.Size = new System.Drawing.Size(70, 15);
             this.lblArtistsName.TabIndex = 19;
@@ -138,7 +119,7 @@ namespace App.UCs
             this.lblSongName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblSongName.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongName.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblSongName.Location = new System.Drawing.Point(331, 6);
+            this.lblSongName.Location = new System.Drawing.Point(331, 9);
             this.lblSongName.Name = "lblSongName";
             this.lblSongName.Size = new System.Drawing.Size(230, 22);
             this.lblSongName.TabIndex = 16;
@@ -165,13 +146,44 @@ namespace App.UCs
             // timerVisualiation
             // 
             this.timerVisualiation.Interval = 50;
+            this.timerVisualiation.Tick += new System.EventHandler(this.timerVisualiation_Tick_1);
+            // 
+            // btnArrowAll
+            // 
+            this.btnArrowAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.btnArrowAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnArrowAll.FlatAppearance.BorderSize = 0;
+            this.btnArrowAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(37)))), ((int)(((byte)(55)))));
+            this.btnArrowAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(37)))), ((int)(((byte)(55)))));
+            this.btnArrowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnArrowAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArrowAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnArrowAll.IconChar = FontAwesome.Sharp.IconChar.ArrowsAlt;
+            this.btnArrowAll.IconColor = System.Drawing.Color.White;
+            this.btnArrowAll.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnArrowAll.Location = new System.Drawing.Point(961, 12);
+            this.btnArrowAll.Margin = new System.Windows.Forms.Padding(1);
+            this.btnArrowAll.Name = "btnArrowAll";
+            this.btnArrowAll.Size = new System.Drawing.Size(48, 48);
+            this.btnArrowAll.TabIndex = 23;
+            this.btnArrowAll.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(47)))), ((int)(((byte)(66)))));
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 69);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1047, 1);
+            this.panel1.TabIndex = 24;
             // 
             // PlaylistItemUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.Controls.Add(this.btnEllipsis);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnArrowAll);
             this.Controls.Add(this.btnHeart);
             this.Controls.Add(this.lblArtistsName);
             this.Controls.Add(this.label1);
@@ -180,8 +192,9 @@ namespace App.UCs
             this.Controls.Add(this.imgThumbnail);
             this.Controls.Add(this.visualiation);
             this.Controls.Add(this.lblSTT);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "PlaylistItemUC";
-            this.Size = new System.Drawing.Size(1020, 70);
+            this.Size = new System.Drawing.Size(1047, 70);
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualiation)).EndInit();
             this.ResumeLayout(false);
@@ -192,7 +205,6 @@ namespace App.UCs
         #endregion
 
         private Bunifu.Framework.UI.BunifuCustomLabel lblSTT;
-        private FontAwesome.Sharp.IconButton btnEllipsis;
         private FontAwesome.Sharp.IconButton btnHeart;
         private System.Windows.Forms.Label lblArtistsName;
         private System.Windows.Forms.Label label1;
@@ -201,5 +213,7 @@ namespace App.UCs
         private System.Windows.Forms.PictureBox imgThumbnail;
         private System.Windows.Forms.PictureBox visualiation;
         private System.Windows.Forms.Timer timerVisualiation;
+        private FontAwesome.Sharp.IconButton btnArrowAll;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -28,11 +28,14 @@ namespace App
             this._songService = new SongService();
 
             Load();
+
+            
         }
         #region Methods
 
         new private async Task Load()
         {
+
             Songs = await _songService.GetAll();
 
             await LoadPlaylistItem(); 
@@ -45,6 +48,7 @@ namespace App
                 foreach (var item in Songs)
                 {
                     var playlistItem = new PlaylistItemUC(item);
+                    playlistItem.Margin = new Padding(0, 0, 0, 0);
 
                     this.BeginInvoke((Action)(() =>
                     {

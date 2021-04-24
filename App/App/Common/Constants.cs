@@ -1,4 +1,6 @@
-﻿using AxWMPLib;
+﻿using App.Models;
+using App.UCs;
+using AxWMPLib;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -40,6 +42,7 @@ namespace App.Common
 
         public static fLayout MainForm;
         public static AxWindowsMediaPlayer MainMedia;
+        public static PlaylistItemUC CurrentPlaylistItemUC;
 
 
         //public static List<Song> APISongs = null;

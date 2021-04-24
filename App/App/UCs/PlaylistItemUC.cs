@@ -17,8 +17,7 @@ namespace App.UCs
     {
         public static int STT = 1;
 
-        private Song Song;
-        private static PlaylistItemUC CurrentPlaylistItem;
+        public Song Song;
 
         public PlaylistItemUC(Song song)
         {
@@ -80,12 +79,20 @@ namespace App.UCs
                 imgThumbnail.BackgroundImage = Bitmap.FromStream(stream);
             }
 
-            lblSongName.Text = Song.DisplayName;
+            lblSongName.Text = Song.DisplayName.Length > 35 ? Song.DisplayName.Substring(0, 35) + "..." : Song.DisplayName;
             lblDuration.Text = $"{(Song.Duration / 60).ToString().PadLeft(2, '0')}:{(Song.Duration % 60).ToString().PadLeft(2, '0')}";
+            lblArtistsName.Text = Song.ArtistsNames;
         }
 
         private void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
         {
+            if (Constants.CurrentPlaylistItemUC == this)
+            {
+                Constants.MainForm.ClickButtonPauseOrPlay();
+
+                return;
+            }
+
             PlaylistItemDoubleClick();
         }
 
@@ -96,15 +103,15 @@ namespace App.UCs
                 timerVisualiation.Start();
                 visualiation.Visible = true;
 
-                Reset(CurrentPlaylistItem);
-                CurrentPlaylistItem = this;
+                Reset(Constants.CurrentPlaylistItemUC);
+                Constants.CurrentPlaylistItemUC = this;
             }
             else
             {
                 timerVisualiation.Stop();
                 visualiation.Visible = false;
             }
-                
+
             Constants.MainForm.LoadDataSong(Song);
         }
 
@@ -128,25 +135,28 @@ namespace App.UCs
             {
                 this.BackColor = color;
                 btnHeart.BackColor = color;
-                btnEllipsis.BackColor = color;
+                btnArrowAll.BackColor = color;
             }
             else
             {
                 PlaylistItemUC.BackColor = color;
                 PlaylistItemUC.btnHeart.BackColor = color;
-                PlaylistItemUC.btnEllipsis.BackColor = color;
+                PlaylistItemUC.btnArrowAll.BackColor = color;
             }
         }
 
-        private void timerVisualiation_Tick(object sender, EventArgs e)
+        private void timerVisualiation_Tick_1(object sender, EventArgs e)
         {
+            if (!Constants.MainForm.isPlaying())
+                return;
+
             var urlImg = $"../../Assets/Images/visualiation-{new Random().Next(1, VisualiationMusicCount)}.png";
 
             visualiation.BackgroundImage = new Bitmap(urlImg);
             visualiation.BackgroundImageLayout = ImageLayout.Stretch;
             visualiation.BringToFront();
         }
-
+         
         #endregion
     }
 }

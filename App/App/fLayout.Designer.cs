@@ -48,7 +48,6 @@ namespace App
             this.panelSongInfo = new System.Windows.Forms.Panel();
             this.lblSongName = new System.Windows.Forms.Label();
             this.lblArtistName = new System.Windows.Forms.Label();
-            this.btnHeart = new FontAwesome.Sharp.IconButton();
             this.media = new AxWMPLib.AxWindowsMediaPlayer();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblMaxTime = new System.Windows.Forms.Label();
@@ -61,7 +60,6 @@ namespace App
             this.btnVolume = new FontAwesome.Sharp.IconButton();
             this.trackBarVolume = new System.Windows.Forms.TrackBar();
             this.lblVolume = new System.Windows.Forms.Label();
-            this.btnLyric = new FontAwesome.Sharp.IconButton();
             this.progressBarSongTime = new Bunifu.Framework.UI.BunifuSlider();
             this.timerSongName = new System.Windows.Forms.Timer(this.components);
             this.panelFooter.SuspendLayout();
@@ -88,13 +86,11 @@ namespace App
             // panelFooter
             // 
             this.panelFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.panelFooter.Controls.Add(this.btnLyric);
             this.panelFooter.Controls.Add(this.lblVolume);
             this.panelFooter.Controls.Add(this.trackBarVolume);
             this.panelFooter.Controls.Add(this.btnVolume);
             this.panelFooter.Controls.Add(this.panel4);
             this.panelFooter.Controls.Add(this.media);
-            this.panelFooter.Controls.Add(this.btnHeart);
             this.panelFooter.Controls.Add(this.panelSongInfo);
             this.panelFooter.Controls.Add(this.imgThumbnail);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -312,9 +308,9 @@ namespace App
             this.lblSongName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblSongName.Location = new System.Drawing.Point(3, 12);
             this.lblSongName.Name = "lblSongName";
-            this.lblSongName.Size = new System.Drawing.Size(230, 22);
+            this.lblSongName.Size = new System.Drawing.Size(120, 22);
             this.lblSongName.TabIndex = 0;
-            this.lblSongName.Text = "Chỉ là không cùng nhau";
+            this.lblSongName.Text = "Tên bài hát";
             // 
             // lblArtistName
             // 
@@ -323,31 +319,9 @@ namespace App
             this.lblArtistName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblArtistName.Location = new System.Drawing.Point(-2, 53);
             this.lblArtistName.Name = "lblArtistName";
-            this.lblArtistName.Size = new System.Drawing.Size(196, 15);
+            this.lblArtistName.Size = new System.Drawing.Size(70, 15);
             this.lblArtistName.TabIndex = 1;
-            this.lblArtistName.Text = "Tăng Phúc, Trương thảo  nhi";
-            // 
-            // btnHeart
-            // 
-            this.btnHeart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.btnHeart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHeart.FlatAppearance.BorderSize = 0;
-            this.btnHeart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.btnHeart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.btnHeart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHeart.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHeart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnHeart.IconChar = FontAwesome.Sharp.IconChar.Heart;
-            this.btnHeart.IconColor = System.Drawing.Color.White;
-            this.btnHeart.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnHeart.IconSize = 64;
-            this.btnHeart.Location = new System.Drawing.Point(422, 5);
-            this.btnHeart.Margin = new System.Windows.Forms.Padding(1);
-            this.btnHeart.Name = "btnHeart";
-            this.btnHeart.Size = new System.Drawing.Size(64, 64);
-            this.btnHeart.TabIndex = 21;
-            this.btnHeart.UseVisualStyleBackColor = false;
-            this.btnHeart.Click += new System.EventHandler(this.btnHeart_Click);
+            this.lblArtistName.Text = "Trình bày";
             // 
             // media
             // 
@@ -541,31 +515,6 @@ namespace App
             this.lblVolume.TabIndex = 26;
             this.lblVolume.Text = "50%";
             // 
-            // btnLyric
-            // 
-            this.btnLyric.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.btnLyric.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLyric.FlatAppearance.BorderSize = 0;
-            this.btnLyric.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.btnLyric.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.btnLyric.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLyric.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLyric.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnLyric.IconChar = FontAwesome.Sharp.IconChar.ArrowsAlt;
-            this.btnLyric.IconColor = System.Drawing.Color.White;
-            this.btnLyric.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLyric.IconSize = 64;
-            this.btnLyric.Location = new System.Drawing.Point(422, 46);
-            this.btnLyric.Margin = new System.Windows.Forms.Padding(1);
-            this.btnLyric.Name = "btnLyric";
-            this.btnLyric.Size = new System.Drawing.Size(64, 64);
-            this.btnLyric.TabIndex = 27;
-            this.btnLyric.UseVisualStyleBackColor = false;
-            this.btnLyric.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRandom_MouseDown);
-            this.btnLyric.MouseLeave += new System.EventHandler(this.btnRandom_MouseLeave);
-            this.btnLyric.MouseHover += new System.EventHandler(this.btnRandom_MouseHover);
-            this.btnLyric.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnRandom_MouseUp);
-            // 
             // progressBarSongTime
             // 
             this.progressBarSongTime.BackColor = System.Drawing.Color.Transparent;
@@ -575,7 +524,7 @@ namespace App
             this.progressBarSongTime.IndicatorColor = System.Drawing.Color.White;
             this.progressBarSongTime.Location = new System.Drawing.Point(54, 64);
             this.progressBarSongTime.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.progressBarSongTime.MaximumValue = 100;
+            this.progressBarSongTime.MaximumValue = 0;
             this.progressBarSongTime.Name = "progressBarSongTime";
             this.progressBarSongTime.Size = new System.Drawing.Size(400, 17);
             this.progressBarSongTime.TabIndex = 8;
@@ -635,7 +584,6 @@ namespace App
         private System.Windows.Forms.Panel panelSongInfo;
         private System.Windows.Forms.Label lblSongName;
         private System.Windows.Forms.Label lblArtistName;
-        private FontAwesome.Sharp.IconButton btnHeart;
         private AxWMPLib.AxWindowsMediaPlayer media;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblMaxTime;
@@ -648,7 +596,6 @@ namespace App
         private FontAwesome.Sharp.IconButton btnVolume;
         private System.Windows.Forms.TrackBar trackBarVolume;
         private System.Windows.Forms.Label lblVolume;
-        private FontAwesome.Sharp.IconButton btnLyric;
         private Bunifu.Framework.UI.BunifuSlider progressBarSongTime;
         private System.Windows.Forms.Timer timerSongName;
     }

@@ -115,7 +115,7 @@ namespace App
             btnOrderSecond.Visible = true;
         }
 
-        private bool isPlaying()
+        public bool isPlaying()
         {
             return media.playState == WMPLib.WMPPlayState.wmppsPlaying;
         }
@@ -123,7 +123,8 @@ namespace App
         public void LoadDataSong(Song song)
         {
             secondMin = 0;
-            rotateThumbnail = 0; 
+            rotateThumbnail = 0;
+            lblSongName.Left = 0;
             media.URL = song.URL;
 
             var request = WebRequest.Create(song.Thumbnail);
@@ -145,7 +146,19 @@ namespace App
             media.Ctlcontrols.play();
         }
 
-
+        public void ClickButtonPauseOrPlay()
+        {
+            if (isPlaying())
+            {
+                media.Ctlcontrols.pause();
+                btnPlay.IconChar = IconChar.PauseCircle;
+            }
+            else
+            {
+                media.Ctlcontrols.play();
+                btnPlay.IconChar = IconChar.PlayCircle;
+            }
+        }
 
         #endregion
 
@@ -170,6 +183,7 @@ namespace App
         {
             ActivateButton(sender);
 
+            PlaylistItemUC.STT = 1;
             var fPlaylist = new fPlaylist();
             UIHelper.ShowControl(fPlaylist, panelContent);
         }
@@ -216,6 +230,9 @@ namespace App
 
         private void btnHeart_Click(object sender, EventArgs e)
         {
+            if (lblSongName.Text == "Tên bài hát")
+                return;
+
             var btn = sender as IconButton;
 
             if (btn.IconChar == IconChar.Heart)
@@ -264,17 +281,7 @@ namespace App
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-
-            if (isPlaying())
-            {
-                media.Ctlcontrols.pause();
-                btnPlay.IconChar = IconChar.PauseCircle;
-            }
-            else
-            {
-                media.Ctlcontrols.play();
-                btnPlay.IconChar = IconChar.PlayCircle;
-            }
+            ClickButtonPauseOrPlay();
         }
 
         private void trackBarVolume_Scroll(object sender, EventArgs e)
@@ -305,14 +312,17 @@ namespace App
 
         private void timerSongName_Tick(object sender, EventArgs e)
         {
+            if (lblSongName.Text == "Tên bài hát")
+                return;
+
             var width = lblSongName.Width;
 
             lblSongName.Left -= 2;
-            
-            if(lblSongName.Location.X + width <= 0 + 10)
+
+            if (lblSongName.Location.X + width <= 0 + 10)
             {
                 lblSongName.Left = panelSongInfo.Width;
-            } 
+            }
         }
 
         #endregion
