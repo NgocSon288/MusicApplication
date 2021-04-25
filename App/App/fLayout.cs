@@ -24,7 +24,6 @@ namespace App
         private IconButton currentBtn;
         private Panel leftBorderBtn;
 
-        private int secondMin;
         private Image thumbnailMain;
         private int rotateThumbnail;
 
@@ -138,7 +137,6 @@ namespace App
 
         public void LoadDataSong(Song song)
         {
-            secondMin = 0;
             rotateThumbnail = 0;
             lblSongName.Left = 0;
             media.URL = song.URL;
@@ -151,10 +149,10 @@ namespace App
                 thumbnailMain = UIHelper.ClipToCircle(Bitmap.FromStream(stream), Constants.FOOTER_BACKGROUND);
                 imgThumbnail.BackgroundImage = thumbnailMain;
             }
-            lblMinTime.Text = $"{(secondMin / 60).ToString().PadLeft(2, '0')}:{(secondMin % 60).ToString().PadLeft(2, '0')}";
+            lblMinTime.Text = $"{(0 / 60).ToString().PadLeft(2, '0')}:{(0 % 60).ToString().PadLeft(2, '0')}";
             lblMaxTime.Text = $"{(song.Duration / 60).ToString().PadLeft(2, '0')}:{(song.Duration % 60).ToString().PadLeft(2, '0')}";
             progressBarSongTime.MaximumValue = song.Duration;
-            progressBarSongTime.Value = secondMin;
+            progressBarSongTime.Value = 0;
 
             lblSongName.Text = song.DisplayName;
             lblArtistName.Text = song.ArtistsNames;
@@ -264,9 +262,9 @@ namespace App
         {
             if (isPlaying())
             {
-                secondMin++;
-                lblMinTime.Text = $"{(secondMin / 60).ToString().PadLeft(2, '0')}:{(secondMin % 60).ToString().PadLeft(2, '0')}";
-                progressBarSongTime.Value = secondMin;
+                var second = (int)media.Ctlcontrols.currentPosition;
+                lblMinTime.Text = $"{(second / 60).ToString().PadLeft(2, '0')}:{(second % 60).ToString().PadLeft(2, '0')}";
+                progressBarSongTime.Value = second;
             }
         }
 
@@ -347,8 +345,8 @@ namespace App
 
         private void progressBarSongTime_ValueChanged(object sender, EventArgs e)
         {
-            secondMin = progressBarSongTime.Value;
-            lblMinTime.Text = $"{(secondMin / 60).ToString().PadLeft(2, '0')}:{(secondMin % 60).ToString().PadLeft(2, '0')}";
+            var second = progressBarSongTime.Value;
+            lblMinTime.Text = $"{(second / 60).ToString().PadLeft(2, '0')}:{(second % 60).ToString().PadLeft(2, '0')}";
             media.Ctlcontrols.currentPosition = progressBarSongTime.Value;
         }
 

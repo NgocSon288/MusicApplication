@@ -605,9 +605,9 @@ namespace App
         private FontAwesome.Sharp.IconButton btnVolume;
         private System.Windows.Forms.TrackBar trackBarVolume;
         private System.Windows.Forms.Label lblVolume;
-        private Bunifu.Framework.UI.BunifuSlider progressBarSongTime;
         private System.Windows.Forms.Timer timerSongName;
         private fPlaylist fPlaylist;
         private System.Windows.Forms.Panel panelContent;
+        public Bunifu.Framework.UI.BunifuSlider progressBarSongTime;
     }
 }

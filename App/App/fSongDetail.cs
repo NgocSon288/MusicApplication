@@ -22,6 +22,7 @@ namespace App
         private Song Song;
         private Image thumbnailMain;
         private List<LyricLine> Lyrics;
+        private List<Label> LyricLabel;
 
         private Label PreviousLabel;
 
@@ -51,6 +52,7 @@ namespace App
 
         private async void LoadDetail()
         {
+            LyricLabel = new List<Label>();
             lblSongName.Text = Song.DisplayName;
             lblSongName.Left = this.Width / 2 - lblSongName.Width / 2;
 
@@ -86,19 +88,30 @@ namespace App
             {
                 var lbl = new Label();
                 lbl.AutoSize = false;
-                lbl.Width = flpLyrics.Width -40;
+                lbl.Width = flpLyrics.Width - 40;
                 lbl.Height = 55;
                 lbl.Padding = new Padding(0, 0, 0, 0);
                 lbl.Margin = new Padding(0, 0, 0, 0);
                 lbl.Text = item.Line;
                 lbl.ForeColor = Color.FromArgb(202, 202, 202);
-                lbl.Font = new Font("Consolas", 14  , FontStyle.Bold);
+                lbl.Font = new Font("Consolas", 14, FontStyle.Bold);
                 lbl.TextAlign = ContentAlignment.MiddleCenter;
                 lbl.Tag = item.Time;
+                lbl.Cursor = Cursors.Hand;
+                lbl.Click += Lbl_Click;
 
                 flpLyrics.Controls.Add(lbl);
+                LyricLabel.Add(lbl);
             }
 
+        }
+
+        private void Lbl_Click(object sender, EventArgs e)
+        {
+            var position = double.Parse((sender as Label).Tag.ToString());
+
+            Constants.MainMedia.Ctlcontrols.currentPosition = position + 0.1;
+            Constants.MainForm.progressBarSongTime.Value = (int)position;
         }
 
         private double ConvertToSecond(string s)
@@ -167,6 +180,17 @@ namespace App
             }
         }
 
+        private Label FindMiddleLabelByCurrentLabelMax(Label lbl)
+        {
+            var index = LyricLabel.IndexOf(lbl);
+            return index > 8 && index < LyricLabel.Count - 8 ? LyricLabel[index + 8] : lbl;
+        }
+
+        private Label FindMiddleLabelByCurrentLabelMin(Label lbl)
+        {
+            var index = LyricLabel.IndexOf(lbl);
+            return index > 8 && index < LyricLabel.Count - 8 ? LyricLabel[index - 9] : lbl;
+        }
         #endregion
 
 
@@ -235,9 +259,9 @@ namespace App
 
             // handle right
             var lbl = GetLyricLineLabel(Constants.MainMedia.Ctlcontrols.currentPosition);
-            if(lbl != null)
+            if (lbl != null)
             {
-                if(PreviousLabel != null)
+                if (PreviousLabel != null)
                 {
                     PreviousLabel.ForeColor = Color.FromArgb(202, 202, 202);
                 }
@@ -246,7 +270,12 @@ namespace App
 
                 lbl.ForeColor = Color.FromArgb(68, 226, 255);
 
-                flpLyrics.ScrollControlIntoView(lbl);
+
+                var lblMiddleMin = FindMiddleLabelByCurrentLabelMin(lbl);
+                var lblMiddleMax = FindMiddleLabelByCurrentLabelMax(lbl);
+
+                flpLyrics.ScrollControlIntoView(lblMiddleMin != null ? lblMiddleMin : lbl);
+                flpLyrics.ScrollControlIntoView(lblMiddleMax != null ? lblMiddleMax : lbl);
             }
         }
     }
