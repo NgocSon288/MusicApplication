@@ -23,7 +23,7 @@ namespace App.UCs
         public static int STT = 1;
 
         public Song Song;
-         
+
         public PlaylistItemUC(Song song)
         {
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace App.UCs
 
 
             this.MouseDoubleClick += PlayListItemMouseDoubleClick;
-             
+
             SetColorTop(STT);
 
             STT++;
@@ -201,7 +201,7 @@ namespace App.UCs
         {
             var btn = sender as IconButton;
 
-            if(btn.IconChar == IconChar.Heart)
+            if (btn.IconChar == IconChar.Heart)
             {
                 btn.IconColor = Color.FromArgb(144, 0, 161);
                 btn.IconChar = IconChar.Heartbeat;
@@ -216,11 +216,37 @@ namespace App.UCs
                 btn.IconColor = Color.White;
                 btn.IconChar = IconChar.Heart;
 
-                var s = Constants.SongPersonals.FirstOrDefault(sp=>sp.ID == Song.ID);
+                var s = Constants.SongPersonals.FirstOrDefault(sp => sp.ID == Song.ID);
 
                 Constants.SongPersonals.Remove(s);
                 _songPersonalService.InsertRange(Constants.SongPersonals);
             }
+        }
+
+        private void btnArrowAll_Click(object sender, EventArgs e)
+        {
+            if (!Constants.MainForm.isPlaying())
+            {
+                if (Constants.CurrentPlaylistItemUC == this)
+                {
+                    Constants.MainForm.ClickButtonPauseOrPlay();
+
+                    return;
+                }
+                PlaylistItemDoubleClick();
+            }
+            else
+            {
+                if (Constants.CurrentPlaylistItemUC != this)
+                {
+                    PlaylistItemDoubleClick();
+
+                }
+            }
+
+            // Show detail
+
+            MessageBox.Show(Constants.CURRENT_PLAYLIST.ToString());
         }
     }
 }

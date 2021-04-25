@@ -168,6 +168,7 @@ namespace App.UCs
             this.btnArrowAll.Size = new System.Drawing.Size(48, 48);
             this.btnArrowAll.TabIndex = 23;
             this.btnArrowAll.UseVisualStyleBackColor = false;
+            this.btnArrowAll.Click += new System.EventHandler(this.btnArrowAll_Click);
             // 
             // panel1
             // 

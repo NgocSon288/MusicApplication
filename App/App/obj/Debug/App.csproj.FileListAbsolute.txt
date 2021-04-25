@@ -24,3 +24,4 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicAppli
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.fPersonal.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.fHistory.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.fOrder.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\OnlyApp\MusicApplication\App\App\obj\Debug\App.fSongDetail.resources

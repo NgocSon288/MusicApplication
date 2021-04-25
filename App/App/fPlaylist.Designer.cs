@@ -41,6 +41,7 @@ namespace App
             this.flpCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.lblName = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
+            this.panelContent = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -201,6 +202,14 @@ namespace App
             this.lblCount.TabIndex = 18;
             this.lblCount.Text = "100";
             // 
+            // panelContent
+            // 
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContent.Location = new System.Drawing.Point(0, 0);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(1071, 609);
+            this.panelContent.TabIndex = 0;
+            // 
             // fPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,6 +222,7 @@ namespace App
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flpPlaylist);
             this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panelContent);
             this.Name = "fPlaylist";
             this.Size = new System.Drawing.Size(1071, 609);
             this.panel4.ResumeLayout(false);
@@ -237,5 +247,6 @@ namespace App
         private System.Windows.Forms.FlowLayoutPanel flpCategory;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblCount;
+        public System.Windows.Forms.Panel panelContent;
     }
 }

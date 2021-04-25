@@ -159,6 +159,19 @@ namespace App
             lblArtistName.Text = song.ArtistsNames;
 
             media.Ctlcontrols.play();
+
+            switch (Constants.CURRENT_PAGE)
+            {
+                case CURRENT_PAGE.PERSONAL:
+                    Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.PERSONA_PLAYLISTL;
+                    break;
+                case CURRENT_PAGE.PLAYLIST:
+                    Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.PLAYLIST_PLAYLIST;
+                    break;
+                case CURRENT_PAGE.HISTORY:
+                    Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.HISTORY_PLAYLIST;
+                    break;
+            }
         }
 
         public void ClickButtonPauseOrPlay()
@@ -187,6 +200,8 @@ namespace App
 
         private void btnPersonal_Click(object sender, EventArgs e)
         {
+            Constants.CURRENT_PAGE = CURRENT_PAGE.PERSONAL;
+
             ActivateButton(sender);
 
             // Show user control tương ứng
@@ -196,11 +211,15 @@ namespace App
 
         private void btnSongs_Click(object sender, EventArgs e)
         {
+            Constants.CURRENT_PAGE = CURRENT_PAGE.PLAYLIST;
+
             ActivateButton(sender, true); 
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
         {
+            Constants.CURRENT_PAGE = CURRENT_PAGE.HISTORY;
+
             ActivateButton(sender);
 
             var fHistory = new fHistory();

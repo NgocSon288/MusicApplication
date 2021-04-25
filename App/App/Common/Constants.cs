@@ -45,11 +45,28 @@ namespace App.Common
         public static fLayout MainForm;
         public static AxWindowsMediaPlayer MainMedia;
         public static PlaylistItemUC CurrentPlaylistItemUC;
+        public static CURRENT_PAGE CURRENT_PAGE;
+        public static CURRENT_PLAYLIST CURRENT_PLAYLIST;
+
 
         public static List<SongPersonal> SongPersonals;
 
         //public static List<Song> APISongs = null;
         //public static List<SongCategory> APISongCategories = null;
 
+    }
+
+    public enum CURRENT_PAGE
+    {
+        PERSONAL,
+        PLAYLIST,
+        HISTORY
+    }
+
+    public enum CURRENT_PLAYLIST
+    {
+        PERSONA_PLAYLISTL,
+        PLAYLIST_PLAYLIST,
+        HISTORY_PLAYLIST
     }
 }
