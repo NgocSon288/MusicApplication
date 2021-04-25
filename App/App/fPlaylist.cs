@@ -4,11 +4,9 @@ using App.Services;
 using App.UCs;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -43,16 +41,19 @@ namespace App
         }
         #region Methods
 
-        new private async void Load()
+        new private async Task Load()
         {
             Songs = await _songService.GetAll();
             SongCategories = await _songCategoryService.GetAll();
             CategoryListActive = new List<int>();
             PlaylistItemUCMockData = new List<PlaylistItemUC>();
 
+
             LoadCategory();
 
-            LoadPlaylistItem();
+            SetStatusFilter(false);
+
+            LoadPlaylistItem(new Action<bool>(SetStatusFilter));
         }
 
         private void LoadCategory()
@@ -172,30 +173,43 @@ namespace App
             return task;
         }
 
-        private void LoadPlaylistItem()
+        private async Task LoadPlaylistItem(Action<bool> callback)
         {
-            flpPlaylist.Controls.Clear();
-            PlaylistItemUC.STT = 1;
-
-            foreach (var item in Songs)
+            Task task = new Task(() =>
             {
-                var playlistItem = new PlaylistItemUC(item);
-                playlistItem.Margin = new Padding(0, 0, 0, 0);
-                playlistItem.Tag = item;
+                flpPlaylist.Controls.Clear();
+                PlaylistItemUC.STT = 1;
 
-                flpPlaylist.Controls.Add(playlistItem);
-                lblCount.Text = (PlaylistItemUC.STT - 1).ToString();
-
-                if (Constants.CurrentPlaylistItemUC != null && item.ID == Constants.CurrentPlaylistItemUC.Song.ID)
+                foreach (var item in Songs)
                 {
-                    playlistItem.timerVisualiation.Start();
-                    playlistItem.visualiation.Visible = true;
+                    var playlistItem = new PlaylistItemUC(item);
+                    playlistItem.Margin = new Padding(0, 0, 0, 0);
+                    playlistItem.Tag = item;
 
-                    Constants.CurrentPlaylistItemUC = playlistItem;
+
+                    this.BeginInvoke((Action)(() =>
+                    {
+                        flpPlaylist.Controls.Add(playlistItem);
+                    }));
+                    lblCount.Text = (PlaylistItemUC.STT - 1).ToString();
+
+                    if (Constants.CurrentPlaylistItemUC != null && item.ID == Constants.CurrentPlaylistItemUC.Song.ID)
+                    {
+                        playlistItem.timerVisualiation.Start();
+                        playlistItem.visualiation.Visible = true;
+
+                        Constants.CurrentPlaylistItemUC = playlistItem;
+                    }
+
+                    PlaylistItemUCMockData.Add(playlistItem);
                 }
+            });
 
-                PlaylistItemUCMockData.Add(playlistItem);
-            }
+            task.Start();
+
+            await task;
+
+            callback(true);
         }
 
         private Task LoadPlaylistItemUC()
@@ -219,7 +233,7 @@ namespace App
             task.Start();
             return task;
         }
-
+         
         private async Task LoadPlaylistItemUC(Action<bool> callback)
         {
             await LoadPlaylistItemUC();
@@ -233,10 +247,7 @@ namespace App
             txtSearch.Enabled = status;
 
             // block category
-            foreach (Button item in flpCategory.Controls)
-            {
-                item.Enabled = status;
-            }
+            flpCategory.Enabled = status;
         }
 
         #endregion
