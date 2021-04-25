@@ -1,4 +1,5 @@
 ﻿using App.Common;
+using App.DatabaseLocal.Services;
 using App.Models;
 using App.Services;
 using App.UCs;
@@ -18,6 +19,8 @@ namespace App
 {
     public partial class fLayout : Form
     {
+        private readonly ISongPersonalService _songPersonalService;
+
         private IconButton currentBtn;
         private Panel leftBorderBtn;
 
@@ -28,8 +31,12 @@ namespace App
         public fLayout()
         {
             InitializeComponent();
+
+            this._songPersonalService = new SongPersonalService();
+
             Constants.MainForm = this;
             Constants.MainMedia = media;
+
             Load();
         }
 
@@ -37,6 +44,8 @@ namespace App
 
         new private async void Load()
         {
+            Constants.SongPersonals = _songPersonalService.GetAll();
+
             imgLogo.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/logo-zing.png");
             imgLogo.BackgroundImageLayout = ImageLayout.Stretch;
             imgThumbnail.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/thumnail-default.png");

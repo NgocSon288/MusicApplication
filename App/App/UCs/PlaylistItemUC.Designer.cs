@@ -76,6 +76,7 @@ namespace App.UCs
             this.btnHeart.Size = new System.Drawing.Size(48, 48);
             this.btnHeart.TabIndex = 20;
             this.btnHeart.UseVisualStyleBackColor = false;
+            this.btnHeart.Click += new System.EventHandler(this.btnHeart_Click);
             // 
             // lblArtistsName
             // 

@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.DatabaseLocal.Models;
+using App.Models;
 using App.UCs;
 using AxWMPLib;
 using System;
@@ -14,6 +15,7 @@ namespace App.Common
     {
 
         public static readonly string ROOT_PATH = "../../";
+        public static readonly string SEPERATE_CHAR = "CS511";
 
         public static readonly string DOMAIN = "http://localhost/MusicApplicationAPI/";
         public static readonly string SAY_HELLO = DOMAIN + "Api/MusicAPIController/SayHello";
@@ -44,6 +46,7 @@ namespace App.Common
         public static AxWindowsMediaPlayer MainMedia;
         public static PlaylistItemUC CurrentPlaylistItemUC;
 
+        public static List<SongPersonal> SongPersonals;
 
         //public static List<Song> APISongs = null;
         //public static List<SongCategory> APISongCategories = null;

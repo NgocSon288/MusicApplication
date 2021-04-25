@@ -1,4 +1,6 @@
 ﻿using App.Common;
+using App.DatabaseLocal.Models;
+using App.DatabaseLocal.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +15,35 @@ namespace App
 {
     public partial class fPersonal : UserControl
     {
+        private readonly ISongPersonalService _songPersonalService;
+
         public fPersonal()
         {
             InitializeComponent();
+
+            this._songPersonalService = new SongPersonalService();
+
+            Load();
         }
+
+        #region Events
+
+
+
+        #endregion
+
+
+
+        #region Methods
+
+        new private void Load()
+        {
+
+        }
+
+
+        #endregion
+
 
         #region Header
 

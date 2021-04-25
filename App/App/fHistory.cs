@@ -1,4 +1,5 @@
 ﻿using App.Common;
+using App.DatabaseLocal.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,12 @@ namespace App
 {
     public partial class fHistory : UserControl
     {
+
         public fHistory()
         {
             InitializeComponent();
         }
+
 
         #region Header
 

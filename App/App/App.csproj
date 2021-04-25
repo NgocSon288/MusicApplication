@@ -57,7 +57,15 @@
   <ItemGroup>
     <Compile Include="Common\CompareStringHelper.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\UIHelper.cs" />
+    <Compile Include="DatabaseLocal\Data\FileHelper.cs" />
+    <Compile Include="DatabaseLocal\Models\SongPersonal.cs" />
+    <Compile Include="DatabaseLocal\Repository\Interface\IRepository.cs" />
+    <Compile Include="DatabaseLocal\Repository\Interface\ISongPersonalRepository.cs" />
+    <Compile Include="DatabaseLocal\Repository\RepositoryBase.cs" />
+    <Compile Include="DatabaseLocal\Repository\SongPersonalRepository.cs" />
+    <Compile Include="DatabaseLocal\Services\SongPersonalService.cs" />
     <Compile Include="fHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +186,8 @@
     <Content Include="Assets\Images\visualiation-3.png" />
     <Content Include="Assets\Images\visualiation-4.png" />
     <Content Include="Assets\Images\visualiation-5.png" />
+    <Content Include="DatabaseLocal\DB\SongPersonal.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

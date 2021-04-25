@@ -1,5 +1,8 @@
 ﻿using App.Common;
+using App.DatabaseLocal.Models;
+using App.DatabaseLocal.Services;
 using App.Models;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +18,17 @@ namespace App.UCs
 {
     public partial class PlaylistItemUC : UserControl
     {
+        private readonly ISongPersonalService _songPersonalService;
+
         public static int STT = 1;
 
         public Song Song;
-
+         
         public PlaylistItemUC(Song song)
         {
             InitializeComponent();
+
+            this._songPersonalService = new SongPersonalService();
 
             this.Song = song;
 
@@ -67,6 +74,17 @@ namespace App.UCs
             lblSongName.Text = Song.DisplayName.Length > 35 ? Song.DisplayName.Substring(0, 35) + "..." : Song.DisplayName;
             lblDuration.Text = $"{(Song.Duration / 60).ToString().PadLeft(2, '0')}:{(Song.Duration % 60).ToString().PadLeft(2, '0')}";
             lblArtistsName.Text = Song.ArtistsNames;
+
+            if (IsFavorite())
+            {
+                btnHeart.IconColor = Color.FromArgb(144, 0, 161);
+                btnHeart.IconChar = IconChar.Heartbeat;
+            }
+        }
+
+        private bool IsFavorite()
+        {
+            return Constants.SongPersonals.Any(s => s.ID == Song.ID);
         }
 
         public void SetColorTop(int stt)
@@ -176,7 +194,33 @@ namespace App.UCs
             visualiation.BackgroundImageLayout = ImageLayout.Stretch;
             visualiation.BringToFront();
         }
-         
+
         #endregion
+
+        private void btnHeart_Click(object sender, EventArgs e)
+        {
+            var btn = sender as IconButton;
+
+            if(btn.IconChar == IconChar.Heart)
+            {
+                btn.IconColor = Color.FromArgb(144, 0, 161);
+                btn.IconChar = IconChar.Heartbeat;
+
+                var s = new SongPersonal(Song.ID);
+
+                Constants.SongPersonals.Add(s);
+                _songPersonalService.Insert(s);
+            }
+            else
+            {
+                btn.IconColor = Color.White;
+                btn.IconChar = IconChar.Heart;
+
+                var s = Constants.SongPersonals.FirstOrDefault(sp=>sp.ID == Song.ID);
+
+                Constants.SongPersonals.Remove(s);
+                _songPersonalService.InsertRange(Constants.SongPersonals);
+            }
+        }
     }
 }

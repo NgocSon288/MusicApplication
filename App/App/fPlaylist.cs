@@ -36,9 +36,62 @@ namespace App
             this._songService = new SongService();
             this._songCategoryService = new SongCategoryService();
 
-
             Load();
         }
+
+        #region Events
+
+        private async void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SetStatusFilter(false);
+
+                stt = 1;
+                await FilterPlaylistItem();
+
+                LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+            }
+        }
+
+        private async void iconButton1_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter(false);
+
+            stt = 1;
+            await FilterPlaylistItem();
+
+            LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+        }
+
+        private async void Btn_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter(false);
+
+            var btn = sender as Button;
+            var categoryID = (int)btn.Tag;
+
+            if (btn.ForeColor == Color.FromArgb(58, 216, 245))
+            {
+                CategoryListActive.Add(categoryID);
+                btn.ForeColor = Color.FromArgb(40, 40, 40);
+                btn.BackColor = Color.FromArgb(58, 216, 245);
+            }
+            else
+            {
+                CategoryListActive.RemoveAt(CategoryListActive.IndexOf(categoryID));
+                btn.ForeColor = Color.FromArgb(58, 216, 245);
+                btn.BackColor = Color.FromArgb(40, 40, 40);
+            }
+
+            stt = 1;
+            await FilterPlaylistItem();
+
+            LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+        }
+
+        #endregion Events
+
         #region Methods
 
         new private async Task Load()
@@ -47,7 +100,6 @@ namespace App
             SongCategories = await _songCategoryService.GetAll();
             CategoryListActive = new List<int>();
             PlaylistItemUCMockData = new List<PlaylistItemUC>();
-
 
             LoadCategory();
 
@@ -83,32 +135,6 @@ namespace App
             }
         }
 
-        private async void Btn_Click(object sender, EventArgs e)
-        {
-            SetStatusFilter(false);
-
-            var btn = sender as Button;
-            var categoryID = (int)btn.Tag;
-
-            if (btn.ForeColor == Color.FromArgb(58, 216, 245))
-            {
-                CategoryListActive.Add(categoryID);
-                btn.ForeColor = Color.FromArgb(40, 40, 40);
-                btn.BackColor = Color.FromArgb(58, 216, 245);
-            }
-            else
-            {
-                CategoryListActive.RemoveAt(CategoryListActive.IndexOf(categoryID));
-                btn.ForeColor = Color.FromArgb(58, 216, 245);
-                btn.BackColor = Color.FromArgb(40, 40, 40);
-            }
-
-            stt = 1;
-            await FilterPlaylistItem();
-
-            LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
-        }
-
         private Task FilterSongs()
         {
             Task task = new Task(() =>
@@ -128,7 +154,6 @@ namespace App
                 {
                     Songs = Songs.Where(s => CategoryListActive.Any(c => c == s.CategorySongID)).ToList();
                 }
-
             });
 
             task.Start();
@@ -149,7 +174,6 @@ namespace App
                         var s = p.Tag as Song;
 
                         return CompareStringHelper.Contanins(s.DisplayName, keyword) || CompareStringHelper.Contanins(s.ArtistsNames, keyword) || CompareStringHelper.Contanins(s.Performer, keyword);
-
                     }).ToList();
                 }
                 else
@@ -165,7 +189,6 @@ namespace App
                         return CategoryListActive.Any(c => c == s.CategorySongID);
                     }).ToList();
                 }
-
             });
 
             task.Start();
@@ -185,7 +208,6 @@ namespace App
                     var playlistItem = new PlaylistItemUC(item);
                     playlistItem.Margin = new Padding(0, 0, 0, 0);
                     playlistItem.Tag = item;
-
 
                     this.BeginInvoke((Action)(() =>
                     {
@@ -233,7 +255,7 @@ namespace App
             task.Start();
             return task;
         }
-         
+
         private async Task LoadPlaylistItemUC(Action<bool> callback)
         {
             await LoadPlaylistItemUC();
@@ -250,7 +272,7 @@ namespace App
             flpCategory.Enabled = status;
         }
 
-        #endregion
+        #endregion Methods
 
         #region Header
 
@@ -285,24 +307,6 @@ namespace App
             }
         }
 
-        #endregion
-
-        private async void txtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                SetStatusFilter(false);
-
-                stt = 1;
-                await FilterPlaylistItem();
-
-
-                LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
-            }
-        }
-
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-        }
+        #endregion Header
     }
 }
