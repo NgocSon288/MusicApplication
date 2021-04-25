@@ -30,8 +30,7 @@ namespace App.Common
 
             parent.SendToBack();
         }
-
-
+        
         public static Image ClipToCircle(Image srcImage, Color backGround)
         {
             Image dstImage = new Bitmap(srcImage.Width, srcImage.Height, srcImage.PixelFormat);

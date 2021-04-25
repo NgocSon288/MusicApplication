@@ -45,6 +45,7 @@ namespace App
         new private async void Load()
         {
             Constants.SongPersonals = _songPersonalService.GetAll();
+            Constants.CurrentPlaylist = fPlaylist;
 
             imgLogo.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/logo-zing.png");
             imgLogo.BackgroundImageLayout = ImageLayout.Stretch;
@@ -213,7 +214,7 @@ namespace App
         {
             Constants.CURRENT_PAGE = CURRENT_PAGE.PLAYLIST;
 
-            ActivateButton(sender, true); 
+            ActivateButton(sender, true);
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
@@ -253,12 +254,14 @@ namespace App
         {
             if (isPlaying())
             {
-                imgThumbnail.BackgroundImage = UIHelper.RotateImage(thumbnailMain, rotateThumbnail += 5);
+                rotateThumbnail += 3;
+                Constants.CURRENT_ROTATION = rotateThumbnail;
+                imgThumbnail.BackgroundImage = UIHelper.RotateImage(thumbnailMain, rotateThumbnail);
             }
         }
 
         private void timerTimeline_Tick(object sender, EventArgs e)
-        { 
+        {
             if (isPlaying())
             {
                 secondMin++;
@@ -365,5 +368,14 @@ namespace App
         }
 
         #endregion
+
+        private void btnRepeat_Click(object sender, EventArgs e)
+        {
+            //foreach (Control item in Constants.CurrentPlaylist.Controls)
+            //{
+            //    item.Visible = true;
+            //}
+            //Constants.CurrentPlaylist.panelContent.SendToBack();
+        }
     }
 }

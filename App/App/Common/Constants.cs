@@ -41,10 +41,13 @@ namespace App.Common
 
 
 
+        public static int CURRENT_ROTATION = 0;
+
 
         public static fLayout MainForm;
         public static AxWindowsMediaPlayer MainMedia;
         public static PlaylistItemUC CurrentPlaylistItemUC;
+        public static fPlaylist CurrentPlaylist;
         public static CURRENT_PAGE CURRENT_PAGE;
         public static CURRENT_PLAYLIST CURRENT_PLAYLIST;
 

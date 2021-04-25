@@ -209,6 +209,7 @@ namespace App
             this.btnRepeat.Size = new System.Drawing.Size(25, 30);
             this.btnRepeat.TabIndex = 4;
             this.btnRepeat.UseVisualStyleBackColor = true;
+            this.btnRepeat.Click += new System.EventHandler(this.btnRepeat_Click);
             this.btnRepeat.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRandom_MouseDown);
             this.btnRepeat.MouseLeave += new System.EventHandler(this.btnRandom_MouseLeave);
             this.btnRepeat.MouseHover += new System.EventHandler(this.btnRandom_MouseHover);

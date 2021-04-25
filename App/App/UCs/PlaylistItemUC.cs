@@ -245,8 +245,23 @@ namespace App.UCs
             }
 
             // Show detail
+            if(Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PLAYLIST_PLAYLIST)
+            {
+                //fSongDetail fSongDetail = new fSongDetail();
+                //UIHelper.ShowControl(fSongDetail, Constants.CurrentPlaylist.panelContent);
 
-            MessageBox.Show(Constants.CURRENT_PLAYLIST.ToString());
+                foreach (Control item in Constants.CurrentPlaylist.Controls)
+                {
+                    if(item.Name!= "panelContent")
+                    {
+                        item.Visible = false;
+                    }
+                }
+
+                fSongDetail fSongDetail = new fSongDetail(this.Song);
+                UIHelper.ShowControl(fSongDetail, Constants.CurrentPlaylist.panelContent);
+
+            }
         }
     }
 }
