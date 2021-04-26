@@ -46,8 +46,13 @@ namespace App.Common
 
         public static fLayout MainForm;
         public static AxWindowsMediaPlayer MainMedia;
+
         public static PlaylistItemUC CurrentPlaylistItemUC;
+        public static PlaylistItemPUC CurrentPlaylistItemPUC;
+
         public static fPlaylist CurrentPlaylist;
+        public static fPersonal CurrentPersonal;
+
         public static CURRENT_PAGE CURRENT_PAGE;
         public static CURRENT_PLAYLIST CURRENT_PLAYLIST;
 

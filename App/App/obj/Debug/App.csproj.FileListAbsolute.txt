@@ -52,3 +52,4 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplica
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.csproj.CopyComplete
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.exe
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.pdb
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.UCs.PlaylistItemPUC.resources

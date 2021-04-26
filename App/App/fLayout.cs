@@ -45,6 +45,7 @@ namespace App
         {
             Constants.SongPersonals = _songPersonalService.GetAll();
             Constants.CurrentPlaylist = fPlaylist;
+            Constants.CurrentPersonal = fPersonal;
 
             imgLogo.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/logo-zing.png");
             imgLogo.BackgroundImageLayout = ImageLayout.Stretch;
@@ -69,12 +70,11 @@ namespace App
             timerSongName.Start();
         }
 
-        private void ActivateButton(object senderBtn, bool isPlaylist = false)
+        private void ActivateButton(object senderBtn)
         {
             if (senderBtn != null)
             {
-                fPlaylist.Visible = true;
-                panelContent.Visible = !isPlaylist;
+               // panelContent.Visible = true;
 
                 DisableButton();
 
@@ -114,10 +114,10 @@ namespace App
             leftBorderBtn.Visible = false;
 
             //Show user control tương ứng
-            var fPersonal = new fPersonal();
-            UIHelper.ShowControl(fPersonal, panelContent);
 
-            panelContent.Visible = true;
+            // UIHelper.ShowControl(fPersonal, panelContent);
+
+            fPersonal.Visible = true;
             fPlaylist.Visible = false;
         }
 
@@ -203,16 +203,20 @@ namespace App
 
             ActivateButton(sender);
 
-            // Show user control tương ứng
-            var fPersonal = new fPersonal();
-            UIHelper.ShowControl(fPersonal, panelContent);
+            fPersonal.Visible = true;
+            //panelContent.Controls.Clear();
+            fPlaylist.Visible = false;
         }
 
         private void btnSongs_Click(object sender, EventArgs e)
         {
             Constants.CURRENT_PAGE = CURRENT_PAGE.PLAYLIST;
 
-            ActivateButton(sender, true);
+            ActivateButton(sender);
+
+            fPlaylist.Visible = true;
+           // panelContent.Visible = false;
+            fPersonal.Visible = false;
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
@@ -222,7 +226,7 @@ namespace App
             ActivateButton(sender);
 
             var fHistory = new fHistory();
-            UIHelper.ShowControl(fHistory, panelContent);
+           // UIHelper.ShowControl(fHistory, panelContent);
         }
 
         private void btnOrderFirst_Click(object sender, EventArgs e)
@@ -230,7 +234,7 @@ namespace App
             ActivateButton(sender);
 
             var fOrder = new fOrder();
-            UIHelper.ShowControl(fOrder, panelContent);
+           // UIHelper.ShowControl(fOrder, panelContent);
         }
 
         private void btnOrderSecond_Click(object sender, EventArgs e)
@@ -238,7 +242,7 @@ namespace App
             ActivateButton(sender);
 
             var fOrder = new fOrder();
-            UIHelper.ShowControl(fOrder, panelContent);
+           // UIHelper.ShowControl(fOrder, panelContent);
         }
 
 
@@ -373,7 +377,7 @@ namespace App
             //{
             //    item.Visible = true;
             //}
-            //Constants.CurrentPlaylist.panelContent.SendToBack();
+            //Constants.CurrentPlaylist.panelContent.SendToBack(); 
         }
     }
 }

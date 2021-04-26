@@ -60,6 +60,8 @@ namespace App
             {
                 DisableButton();
 
+
+
                 //Button transition
                 currentBtn = (IconButton)senderBtn;
                 currentBtn.BackColor = Constants.ACTIVE_BUTTON_BG_COLOR;

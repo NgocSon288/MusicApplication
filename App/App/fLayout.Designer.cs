@@ -61,7 +61,7 @@ namespace App
             this.panel2 = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.timerSongName = new System.Windows.Forms.Timer(this.components);
-            this.panelContent = new System.Windows.Forms.Panel();
+            this.fPersonal = new App.fPersonal();
             this.fPlaylist = new App.fPlaylist();
             this.panelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
@@ -529,18 +529,20 @@ namespace App
             this.timerSongName.Interval = 10;
             this.timerSongName.Tick += new System.EventHandler(this.timerSongName_Tick);
             // 
-            // panelContent
+            // fPersonal
             // 
-            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.panelContent.Location = new System.Drawing.Point(238, 0);
-            this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1071, 609);
-            this.panelContent.TabIndex = 5;
+            this.fPersonal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.fPersonal.Location = new System.Drawing.Point(238, 0);
+            this.fPersonal.Margin = new System.Windows.Forms.Padding(0);
+            this.fPersonal.Name = "fPersonal";
+            this.fPersonal.Size = new System.Drawing.Size(1071, 609);
+            this.fPersonal.TabIndex = 5;
             // 
             // fPlaylist
             // 
             this.fPlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
             this.fPlaylist.Location = new System.Drawing.Point(238, 0);
+            this.fPlaylist.Margin = new System.Windows.Forms.Padding(0);
             this.fPlaylist.Name = "fPlaylist";
             this.fPlaylist.Size = new System.Drawing.Size(1071, 609);
             this.fPlaylist.TabIndex = 4;
@@ -550,7 +552,7 @@ namespace App
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1309, 710);
-            this.Controls.Add(this.panelContent);
+            this.Controls.Add(this.fPersonal);
             this.Controls.Add(this.fPlaylist);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panel3);
@@ -607,7 +609,7 @@ namespace App
         private System.Windows.Forms.Label lblVolume;
         private System.Windows.Forms.Timer timerSongName;
         private fPlaylist fPlaylist;
-        private System.Windows.Forms.Panel panelContent;
         public Bunifu.Framework.UI.BunifuSlider progressBarSongTime;
+        private fPersonal fPersonal;
     }
 }

@@ -120,6 +120,12 @@
     <Compile Include="UCs\PlaylistItemUC.Designer.cs">
       <DependentUpon>PlaylistItemUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCs\PlaylistItemPUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCs\PlaylistItemPUC.Designer.cs">
+      <DependentUpon>PlaylistItemPUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="fHistory.resx">
       <DependentUpon>fHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,6 +156,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UCs\PlaylistItemPUC.resx">
+      <DependentUpon>PlaylistItemPUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCs\PlaylistItemUC.resx">
       <DependentUpon>PlaylistItemUC.cs</DependentUpon>
     </EmbeddedResource>
