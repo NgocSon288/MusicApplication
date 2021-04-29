@@ -223,7 +223,18 @@ namespace App
                 Constants.CurrentPlaylist.panelContent.Controls.Clear();
                 Constants.CurrentPlaylistItemUC.Focus();
             }
+            else if (Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PERSONA_PLAYLISTL)
+            {
+                foreach (Control item in Constants.CurrentPersonal.Controls)
+                {
+                    item.Visible = true;
+                }
+                Constants.CurrentPersonal.panelContent.SendToBack();
+                Constants.CurrentPersonal.panelContent.Controls.Clear();
+                Constants.CurrentPlaylistItemPUC.Focus();
+            }
         }
+
 
         private void btnBack_MouseEnter(object sender, EventArgs e)
         {

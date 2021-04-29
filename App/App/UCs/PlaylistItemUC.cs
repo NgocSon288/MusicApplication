@@ -110,7 +110,7 @@ namespace App.UCs
 
         private void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (Constants.CurrentPlaylistItemUC == this)
+            if (Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible)
             {
                 Constants.MainForm.ClickButtonPauseOrPlay();
 
@@ -122,6 +122,7 @@ namespace App.UCs
 
         public void PlaylistItemDoubleClick()
         {
+            Constants.CurrentPlaylist.ResetPlaying();
             if (!visualiation.Visible)
             {
                 timerVisualiation.Start();
@@ -137,6 +138,7 @@ namespace App.UCs
             }
 
             Constants.MainForm.LoadDataSong(Song);
+            Constants.CurrentPersonal.SetPlaying(Song);
         }
 
         public void SetVisualiation()
@@ -221,10 +223,20 @@ namespace App.UCs
                 Constants.SongPersonals.Remove(s);
                 _songPersonalService.InsertRange(Constants.SongPersonals);
             }
+
+            // cập nhật lại filter bên personal
+            Constants.CurrentPersonal.UpdateFavoriteMusic();
+        }
+
+        public void UpdateHeartIcon()
+        {
+            btnHeart.IconColor = Color.White;
+            btnHeart.IconChar = IconChar.Heart;
         }
 
         private void btnArrowAll_Click(object sender, EventArgs e)
         {
+            var a = Constants.MainForm.isPlaying();
             if (!Constants.MainForm.isPlaying())
             {
                 if (Constants.CurrentPlaylistItemUC == this)
@@ -237,7 +249,7 @@ namespace App.UCs
             }
             else
             {
-                if (Constants.CurrentPlaylistItemUC != this)
+                if (Constants.CurrentPlaylistItemUC != this || !visualiation.Visible)
                 {
                     PlaylistItemDoubleClick();
 

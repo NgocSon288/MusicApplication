@@ -272,6 +272,42 @@ namespace App
             flpCategory.Enabled = status;
         }
 
+        public void UpdateFavoriteMusic(int songID)
+        {
+            foreach (PlaylistItemUC item in flpPlaylist.Controls)
+            {
+                var song = item.Tag as Song;
+                if(song.ID == songID)
+                {
+                    // gọi update uc
+                    item.UpdateHeartIcon();
+                    return;
+                }
+            }
+        }
+
+        public void SetPlaying(Song s)
+        {
+            PlaylistItemUC curItem = null;
+            foreach (PlaylistItemUC item in flpPlaylist.Controls)
+            {
+                item.visualiation.Visible = false;
+                if (item.Song.ID == s.ID)
+                {
+                    curItem = item;
+                }
+            }
+            curItem?.SetVisualiation();
+        }
+
+        public void ResetPlaying()
+        {
+            foreach (PlaylistItemUC item in flpPlaylist.Controls)
+            {
+                item.visualiation.Visible = false;
+            }
+        }
+
         #endregion Methods
 
         #region Header

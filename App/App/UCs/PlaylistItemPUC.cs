@@ -110,7 +110,7 @@ namespace App.UCs
 
         private void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (Constants.CurrentPlaylistItemPUC == this)
+            if (Constants.CurrentPlaylistItemPUC == this && Constants.CurrentPlaylistItemPUC.visualiation.Visible)
             {
                 Constants.MainForm.ClickButtonPauseOrPlay();
 
@@ -122,6 +122,7 @@ namespace App.UCs
 
         public void PlaylistItemDoubleClick()
         {
+            Constants.CurrentPersonal.ResetPlaying();
             if (!visualiation.Visible)
             {
                 timerVisualiation.Start();
@@ -137,6 +138,7 @@ namespace App.UCs
             }
 
             Constants.MainForm.LoadDataSong(Song);
+            Constants.CurrentPlaylist.SetPlaying(Song);
         }
 
         public void SetVisualiation()
@@ -181,7 +183,7 @@ namespace App.UCs
                 PlaylistItemPUC.btnHeart.BackColor = color;
                 PlaylistItemPUC.btnArrowAll.BackColor = color;
             }
-        } 
+        }
 
         #endregion
 
@@ -209,6 +211,10 @@ namespace App.UCs
                 Constants.SongPersonals.Remove(s);
                 _songPersonalService.InsertRange(Constants.SongPersonals);
             }
+
+            // 
+            Constants.CurrentPersonal.UpdateFavoriteMusic();
+            Constants.CurrentPlaylist.UpdateFavoriteMusic(Song.ID);
         }
 
         private void btnArrowAll_Click(object sender, EventArgs e)
@@ -225,7 +231,8 @@ namespace App.UCs
             }
             else
             {
-                if (Constants.CurrentPlaylistItemPUC != this)
+                //if (Constants.CurrentPlaylistItemPUC != this || (Constants.CurrentPlaylistItemUC != null && Constants.CurrentPlaylistItemUC.Song.ID == Song.ID))
+                if (Constants.CurrentPlaylistItemPUC != this || !visualiation.Visible)
                 {
                     PlaylistItemDoubleClick();
 
@@ -233,12 +240,12 @@ namespace App.UCs
             }
 
             // Show detail
-            if (Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PLAYLIST_PLAYLIST)
+            if (Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PERSONA_PLAYLISTL)
             {
                 //fSongDetail fSongDetail = new fSongDetail();
                 //UIHelper.ShowControl(fSongDetail, Constants.CurrentPlaylist.panelContent);
 
-                foreach (Control item in Constants.CurrentPlaylist.Controls)
+                foreach (Control item in Constants.CurrentPersonal.Controls)
                 {
                     if (item.Name != "panelContent")
                     {
@@ -247,7 +254,7 @@ namespace App.UCs
                 }
 
                 fSongDetail fSongDetail = new fSongDetail(this.Song);
-                UIHelper.ShowControl(fSongDetail, Constants.CurrentPlaylist.panelContent);
+                UIHelper.ShowControl(fSongDetail, Constants.CurrentPersonal.panelContent);
 
             }
         }

@@ -1,5 +1,4 @@
 ﻿using App.Common;
-using App.DatabaseLocal.Models;
 using App.DatabaseLocal.Services;
 using App.Models;
 using App.Services;
@@ -7,11 +6,9 @@ using App.UCs;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -42,12 +39,6 @@ namespace App
             Load();
         }
 
-        #region Events
-
-
-
-        #endregion
-
 
 
         #region Methods
@@ -66,12 +57,10 @@ namespace App
 
             LoadCategory();
 
-
             SetStatusFilter(false);
 
             LoadPlaylistItem(new Action<bool>(SetStatusFilter));
         }
-
 
         private void LoadCategory()
         {
@@ -120,15 +109,35 @@ namespace App
                 btn.BackColor = Color.FromArgb(40, 40, 40);
             }
 
-            stt = 1;
+            UpdateFavoriteMusic();
+        }
+
+        public async void UpdateFavoriteMusic()
+        {
+            SetStatusPlaylist();
+
+            stt = 0;
 
             await FilterPlaylistItem();
 
-            LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+            await LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+
+            if (flpPlaylist.Controls.Count <= 0)
+            {
+                lblCount.Text = "0";
+            }
+
+            SetStatusPlaylist();
         }
 
         private async Task LoadPlaylistItemUC(Action<bool> callback)
         {
+            PlaylistItemPUCResult.ForEach(item =>
+            {
+                item.btnHeart.IconColor = Color.FromArgb(144, 0, 161);
+                item.btnHeart.IconChar = IconChar.Heartbeat;
+            });
+
             await LoadPlaylistItemUC();
 
             callback(true);
@@ -147,8 +156,8 @@ namespace App
                         flpPlaylist.Controls.Add(item);
                     }));
 
-                    item.SetColorTop(stt);
-                    lblCount.Text = (stt++).ToString();
+                    item.SetColorTop(++stt);
+                    lblCount.Text = (stt).ToString();
                 }
             });
 
@@ -164,18 +173,21 @@ namespace App
                 PlaylistItemPUC.STT = 1;
                 var favoriteSongs = _songPersonalService.GetAll().Select(f => f.ID).ToList();
 
-                foreach (var item in Songs.Where(s => favoriteSongs.Contains(s.ID)))
+                foreach (var item in Songs)
                 {
                     var playlistItem = new PlaylistItemPUC(item);
                     playlistItem.Margin = new Padding(0, 0, 0, 0);
                     playlistItem.Tag = item;
                     playlistItem.Width = playlistItem.Width - 15;
 
-                    this.BeginInvoke((Action)(() =>
+                    if (favoriteSongs.Contains(item.ID))
                     {
-                        flpPlaylist.Controls.Add(playlistItem);
-                    }));
-                    lblCount.Text = (PlaylistItemPUC.STT - 1).ToString();
+                        this.BeginInvoke((Action)(() =>
+                        {
+                            flpPlaylist.Controls.Add(playlistItem);
+                        }));
+                        lblCount.Text = (PlaylistItemPUC.STT - 1).ToString();
+                    }
 
                     if (Constants.CurrentPlaylistItemUC != null && item.ID == Constants.CurrentPlaylistItemUC.Song.ID)
                     {
@@ -193,7 +205,11 @@ namespace App
 
             await task;
 
+            var a = flpPlaylist.Controls.Count;
+            SetStatusPlaylist();
+
             callback(true);
+            //UpdateFavoriteMusic();        // nào lỗi bật lên
         }
 
         private Task FilterPlaylistItem()
@@ -202,7 +218,7 @@ namespace App
             {
                 var keyword = txtSearch.Text.Trim().ToUpper();
 
-                if (keyword != "" && !CompareStringHelper.Contanins(keyword, "Nhập tên bài hát, nghệ sĩ"))
+                if (keyword != "" && !CompareStringHelper.Contanins(keyword, "Nhập tên bài hát, nghệ sĩ hoặc MV..."))
                 {
                     PlaylistItemPUCResult = PlaylistItemPUCMockData.Where(p =>
                     {
@@ -228,7 +244,6 @@ namespace App
                 // filter by localfile
                 var favoriteSongs = _songPersonalService.GetAll().Select(f => f.ID).ToList();
                 PlaylistItemPUCResult = PlaylistItemPUCResult.Where(p => favoriteSongs.Contains(p.Song.ID)).ToList();
-
             });
 
             task.Start();
@@ -245,8 +260,43 @@ namespace App
             flpCategory.Enabled = status;
         }
 
-        #endregion
+        private void SetStatusPlaylist()
+        {
+            if (flpPlaylist.Controls.Count <= 0)
+            {
+                flpPlaylist.Visible = false;
+            }
+            else
+            {
+                flpPlaylist.Visible = true;
+            }
+        }
 
+        public void SetPlaying(Song s)
+        {
+            PlaylistItemPUC curItem = null;
+            foreach (PlaylistItemPUC item in flpPlaylist.Controls)
+            {
+                item.visualiation.Visible = false;
+                if (item.Song.ID == s.ID)
+                {
+                    curItem = item;
+                }
+            }
+
+            curItem?.SetVisualiation();
+
+        }
+
+        public void ResetPlaying()
+        {
+            foreach (PlaylistItemPUC item in flpPlaylist.Controls)
+            {
+                item.visualiation.Visible = false;
+            }
+        }
+
+        #endregion Methods
 
         #region Header
 
@@ -281,7 +331,7 @@ namespace App
             }
         }
 
-        #endregion
+        #endregion Header
 
         #region UI
 
@@ -301,6 +351,12 @@ namespace App
             btn.ForeColor = Color.FromArgb(68, 226, 255);
         }
 
-        #endregion
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            flpPlaylist.Visible = !flpPlaylist.Visible;
+        }
+
+
+        #endregion UI
     }
 }

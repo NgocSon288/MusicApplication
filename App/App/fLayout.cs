@@ -93,6 +93,33 @@ namespace App
                 leftBorderBtn.Visible = true;
                 leftBorderBtn.BringToFront();
             }
+
+            ResetRoot();
+        }
+
+        private void ResetRoot()
+        {
+            // trở về playlist
+            if (Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PLAYLIST_PLAYLIST)
+            {
+                foreach (Control item in Constants.CurrentPlaylist.Controls)
+                {
+                    item.Visible = true;
+                }
+                Constants.CurrentPlaylist.panelContent.SendToBack();
+                Constants.CurrentPlaylist.panelContent.Controls.Clear();
+                Constants.CurrentPlaylistItemUC?.Focus();
+            }
+            else if (Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PERSONA_PLAYLISTL)
+            {
+                foreach (Control item in Constants.CurrentPersonal.Controls)
+                {
+                    item.Visible = true;
+                }
+                Constants.CurrentPersonal.panelContent.SendToBack();
+                Constants.CurrentPersonal.panelContent.Controls.Clear();
+                Constants.CurrentPlaylistItemPUC?.Focus();
+            }
         }
 
         private void DisableButton()

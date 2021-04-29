@@ -52,18 +52,18 @@ namespace App
             this.panel4.Controls.Add(this.txtSearch);
             this.panel4.Controls.Add(this.iconButton1);
             this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(6);
+            this.panel4.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(420, 59);
+            this.panel4.Size = new System.Drawing.Size(840, 113);
             this.panel4.TabIndex = 10;
             // 
             // pnlSearchUnderline
             // 
             this.pnlSearchUnderline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.pnlSearchUnderline.Location = new System.Drawing.Point(18, 47);
-            this.pnlSearchUnderline.Margin = new System.Windows.Forms.Padding(6);
+            this.pnlSearchUnderline.Location = new System.Drawing.Point(36, 90);
+            this.pnlSearchUnderline.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.pnlSearchUnderline.Name = "pnlSearchUnderline";
-            this.pnlSearchUnderline.Size = new System.Drawing.Size(400, 2);
+            this.pnlSearchUnderline.Size = new System.Drawing.Size(800, 4);
             this.pnlSearchUnderline.TabIndex = 3;
             // 
             // txtSearch
@@ -72,10 +72,10 @@ namespace App
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.txtSearch.Location = new System.Drawing.Point(77, 17);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.txtSearch.Location = new System.Drawing.Point(154, 33);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(331, 40);
+            this.txtSearch.Size = new System.Drawing.Size(662, 79);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.Text = "Nhập tên bài hát, nghệ sĩ hoặc MV...";
             this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
@@ -93,10 +93,10 @@ namespace App
             this.iconButton1.IconColor = System.Drawing.Color.White;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 64;
-            this.iconButton1.Location = new System.Drawing.Point(17, 6);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(6);
+            this.iconButton1.Location = new System.Drawing.Point(34, 12);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(50, 50);
+            this.iconButton1.Size = new System.Drawing.Size(100, 96);
             this.iconButton1.TabIndex = 4;
             this.iconButton1.TabStop = false;
             this.iconButton1.UseVisualStyleBackColor = true;
@@ -112,10 +112,10 @@ namespace App
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(5, 6);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(6);
+            this.btnMinimize.Location = new System.Drawing.Point(10, 12);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(30, 30);
+            this.btnMinimize.Size = new System.Drawing.Size(60, 58);
             this.btnMinimize.TabIndex = 12;
             this.btnMinimize.TabStop = false;
             this.btnMinimize.Text = "--";
@@ -133,10 +133,10 @@ namespace App
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(47, 6);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(6);
+            this.btnClose.Location = new System.Drawing.Point(94, 12);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(30, 30);
+            this.btnClose.Size = new System.Drawing.Size(60, 58);
             this.btnClose.TabIndex = 11;
             this.btnClose.TabStop = false;
             this.btnClose.Text = "X";
@@ -147,19 +147,20 @@ namespace App
             // 
             this.flpPlaylist.AutoScroll = true;
             this.flpPlaylist.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flpPlaylist.Location = new System.Drawing.Point(0, 137);
+            this.flpPlaylist.Location = new System.Drawing.Point(0, 263);
             this.flpPlaylist.Margin = new System.Windows.Forms.Padding(0);
             this.flpPlaylist.Name = "flpPlaylist";
-            this.flpPlaylist.Size = new System.Drawing.Size(1071, 472);
+            this.flpPlaylist.Size = new System.Drawing.Size(2142, 908);
             this.flpPlaylist.TabIndex = 13;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 136);
+            this.panel1.Location = new System.Drawing.Point(0, 261);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1071, 1);
+            this.panel1.Size = new System.Drawing.Size(2142, 2);
             this.panel1.TabIndex = 14;
             // 
             // panel2
@@ -167,17 +168,19 @@ namespace App
             this.panel2.Controls.Add(this.btnClose);
             this.panel2.Controls.Add(this.btnMinimize);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(988, 0);
+            this.panel2.Location = new System.Drawing.Point(1976, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(83, 136);
+            this.panel2.Size = new System.Drawing.Size(166, 261);
             this.panel2.TabIndex = 15;
             // 
             // flpCategory
             // 
             this.flpCategory.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flpCategory.Location = new System.Drawing.Point(0, 71);
+            this.flpCategory.Location = new System.Drawing.Point(0, 136);
+            this.flpCategory.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.flpCategory.Name = "flpCategory";
-            this.flpCategory.Size = new System.Drawing.Size(988, 65);
+            this.flpCategory.Size = new System.Drawing.Size(1976, 125);
             this.flpCategory.TabIndex = 16;
             // 
             // lblName
@@ -185,9 +188,10 @@ namespace App
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Consolas", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(226)))), ((int)(((byte)(255)))));
-            this.lblName.Location = new System.Drawing.Point(761, 15);
+            this.lblName.Location = new System.Drawing.Point(1522, 29);
+            this.lblName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(120, 26);
+            this.lblName.Size = new System.Drawing.Size(238, 51);
             this.lblName.TabIndex = 17;
             this.lblName.Text = "Số lượng:";
             // 
@@ -196,9 +200,10 @@ namespace App
             this.lblCount.AutoSize = true;
             this.lblCount.Font = new System.Drawing.Font("Consolas", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(226)))), ((int)(((byte)(255)))));
-            this.lblCount.Location = new System.Drawing.Point(887, 15);
+            this.lblCount.Location = new System.Drawing.Point(1774, 29);
+            this.lblCount.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(48, 26);
+            this.lblCount.Size = new System.Drawing.Size(94, 51);
             this.lblCount.TabIndex = 18;
             this.lblCount.Text = "100";
             // 
@@ -206,13 +211,14 @@ namespace App
             // 
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 0);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1071, 609);
+            this.panelContent.Size = new System.Drawing.Size(2142, 1171);
             this.panelContent.TabIndex = 0;
             // 
             // fPlaylist
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
             this.Controls.Add(this.lblCount);
@@ -223,8 +229,9 @@ namespace App
             this.Controls.Add(this.flpPlaylist);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panelContent);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "fPlaylist";
-            this.Size = new System.Drawing.Size(1071, 609);
+            this.Size = new System.Drawing.Size(2142, 1171);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
