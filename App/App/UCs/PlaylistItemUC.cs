@@ -110,7 +110,7 @@ namespace App.UCs
 
         private void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible)
+            if ((Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL)
             {
                 Constants.MainForm.ClickButtonPauseOrPlay();
 
@@ -239,32 +239,33 @@ namespace App.UCs
             var a = Constants.MainForm.isPlaying();
             if (!Constants.MainForm.isPlaying())
             {
-                if (Constants.CurrentPlaylistItemUC == this)
+                //if (Constants.CurrentPlaylistItemUC == this)
+                if ((Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL)
                 {
                     Constants.MainForm.ClickButtonPauseOrPlay();
 
-                    return;
+                    PlaylistItemDoubleClick();
                 }
-                PlaylistItemDoubleClick();
             }
             else
             {
-                if (Constants.CurrentPlaylistItemUC != this || !visualiation.Visible)
+                if (Constants.CurrentPlaylistItemUC != this || (Constants.CurrentPlaylistItemPUC != null && Constants.CurrentPlaylistItemPUC.Song.ID == Song.ID))
                 {
                     PlaylistItemDoubleClick();
 
                 }
             }
 
+            Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.PLAYLIST_PLAYLIST;
             // Show detail
-            if(Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PLAYLIST_PLAYLIST)
+            if (Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PLAYLIST_PLAYLIST)
             {
                 //fSongDetail fSongDetail = new fSongDetail();
                 //UIHelper.ShowControl(fSongDetail, Constants.CurrentPlaylist.panelContent);
 
                 foreach (Control item in Constants.CurrentPlaylist.Controls)
                 {
-                    if(item.Name!= "panelContent")
+                    if (item.Name != "panelContent")
                     {
                         item.Visible = false;
                     }

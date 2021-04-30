@@ -164,6 +164,11 @@ namespace App
 
         public void LoadDataSong(Song song)
         {
+            if(song.URL == media.URL)
+            {
+                return;
+            }
+
             rotateThumbnail = 0;
             lblSongName.Left = 0;
             media.URL = song.URL;

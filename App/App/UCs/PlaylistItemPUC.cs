@@ -110,7 +110,7 @@ namespace App.UCs
 
         private void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (Constants.CurrentPlaylistItemPUC == this && Constants.CurrentPlaylistItemPUC.visualiation.Visible)
+            if ((Constants.CurrentPlaylistItemPUC == this && Constants.CurrentPlaylistItemPUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL)
             {
                 Constants.MainForm.ClickButtonPauseOrPlay();
 
@@ -221,24 +221,25 @@ namespace App.UCs
         {
             if (!Constants.MainForm.isPlaying())
             {
-                if (Constants.CurrentPlaylistItemPUC == this)
+                //if (Constants.CurrentPlaylistItemPUC == this)
+                if ((Constants.CurrentPlaylistItemPUC == this && Constants.CurrentPlaylistItemPUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL)
                 {
                     Constants.MainForm.ClickButtonPauseOrPlay();
 
-                    return;
+                    PlaylistItemDoubleClick();
                 }
-                PlaylistItemDoubleClick();
             }
             else
             {
                 //if (Constants.CurrentPlaylistItemPUC != this || (Constants.CurrentPlaylistItemUC != null && Constants.CurrentPlaylistItemUC.Song.ID == Song.ID))
-                if (Constants.CurrentPlaylistItemPUC != this || !visualiation.Visible)
+                if (Constants.CurrentPlaylistItemPUC != this || (Constants.CurrentPlaylistItemUC != null && Constants.CurrentPlaylistItemUC.Song.ID == Song.ID))
                 {
                     PlaylistItemDoubleClick();
 
                 }
             }
 
+            Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.PERSONA_PLAYLISTL;
             // Show detail
             if (Constants.CURRENT_PLAYLIST == CURRENT_PLAYLIST.PERSONA_PLAYLISTL)
             {
