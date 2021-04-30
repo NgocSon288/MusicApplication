@@ -108,10 +108,12 @@ namespace App.UCs
             }
         }
 
-        private void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
+        public void PlayListItemMouseDoubleClick(object sender, MouseEventArgs e)
         {
+            Constants.CURRENT_SONG_PLAYING = CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING;
             if ((Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL)
             {
+                Constants.CurrentPlaylistItemUC = this;
                 Constants.MainForm.ClickButtonPauseOrPlay();
 
                 return;
@@ -122,6 +124,7 @@ namespace App.UCs
 
         public void PlaylistItemDoubleClick()
         {
+            //Constants.CURRENT_SONG_PLAYING = CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING;
             Constants.CurrentPlaylist.ResetPlaying();
             if (!visualiation.Visible)
             {
@@ -236,11 +239,12 @@ namespace App.UCs
 
         private void btnArrowAll_Click(object sender, EventArgs e)
         {
+            Constants.CURRENT_SONG_PLAYING = CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING;
             var a = Constants.MainForm.isPlaying();
             if (!Constants.MainForm.isPlaying())
             {
                 //if (Constants.CurrentPlaylistItemUC == this)
-                if ((Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL)
+                if ((Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL || Constants.MainMedia.URL ==  "")
                 {
                     Constants.MainForm.ClickButtonPauseOrPlay();
 

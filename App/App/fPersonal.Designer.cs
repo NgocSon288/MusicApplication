@@ -62,7 +62,7 @@ namespace App
             this.panel4.Controls.Add(this.txtSearch);
             this.panel4.Controls.Add(this.iconButton1);
             this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel4.Margin = new System.Windows.Forms.Padding(6);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(420, 59);
             this.panel4.TabIndex = 11;
@@ -71,7 +71,7 @@ namespace App
             // 
             this.pnlSearchUnderline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.pnlSearchUnderline.Location = new System.Drawing.Point(18, 47);
-            this.pnlSearchUnderline.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlSearchUnderline.Margin = new System.Windows.Forms.Padding(6);
             this.pnlSearchUnderline.Name = "pnlSearchUnderline";
             this.pnlSearchUnderline.Size = new System.Drawing.Size(400, 2);
             this.pnlSearchUnderline.TabIndex = 3;
@@ -83,7 +83,7 @@ namespace App
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.txtSearch.Location = new System.Drawing.Point(77, 17);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(6);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(331, 40);
             this.txtSearch.TabIndex = 2;
@@ -104,7 +104,7 @@ namespace App
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 64;
             this.iconButton1.Location = new System.Drawing.Point(17, 6);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(6);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(50, 50);
             this.iconButton1.TabIndex = 4;
@@ -122,7 +122,7 @@ namespace App
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(47, 6);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(30, 30);
             this.btnClose.TabIndex = 13;
@@ -142,7 +142,7 @@ namespace App
             this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
             this.btnMinimize.Location = new System.Drawing.Point(5, 6);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(6);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(30, 30);
             this.btnMinimize.TabIndex = 14;
@@ -311,7 +311,7 @@ namespace App
             // 
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 0);
-            this.panelContent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(2);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(1071, 609);
             this.panelContent.TabIndex = 21;
@@ -359,11 +359,11 @@ namespace App
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Panel panel3;
         private FontAwesome.Sharp.IconButton btnBack;
-        private System.Windows.Forms.FlowLayoutPanel flpPlaylist;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.FlowLayoutPanel flpFavoriteList;
         public System.Windows.Forms.Panel panelContent;
+        public System.Windows.Forms.FlowLayoutPanel flpPlaylist;
     }
 }

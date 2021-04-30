@@ -21,7 +21,7 @@ namespace App
         private readonly ISongCategoryService _songCategoryService;
 
         private List<PlaylistItemPUC> PlaylistItemPUCMockData;
-        private List<PlaylistItemPUC> PlaylistItemPUCResult;
+        public List<PlaylistItemPUC> PlaylistItemPUCResult;
         private List<Song> Songs;
         private List<SongCategory> SongCategories;
 
@@ -204,6 +204,8 @@ namespace App
             task.Start();
 
             await task;
+            PlaylistItemPUCResult = PlaylistItemPUCMockData.ToList();
+            Constants.IsPersonalReady = true;
 
             var a = flpPlaylist.Controls.Count;
             SetStatusPlaylist();

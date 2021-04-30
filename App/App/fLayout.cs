@@ -39,6 +39,20 @@ namespace App
             Load();
         }
 
+        #region Events
+
+        private void BtnPrevious_Click(object sender, EventArgs e)
+        {
+            NextOrPrevious(false);
+        }
+
+        private void BtnNext_Click(object sender, EventArgs e)
+        {
+            NextOrPrevious();
+        }
+
+        #endregion
+
         #region Methods
 
         new private async void Load()
@@ -46,6 +60,10 @@ namespace App
             Constants.SongPersonals = _songPersonalService.GetAll();
             Constants.CurrentPlaylist = fPlaylist;
             Constants.CurrentPersonal = fPersonal;
+            btnNext.Click += BtnNext_Click;
+            btnPrevious.Click += BtnPrevious_Click;
+            btnRandom.Click += BtnRandom_Click;
+            
 
             imgLogo.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/logo-zing.png");
             imgLogo.BackgroundImageLayout = ImageLayout.Stretch;
@@ -70,11 +88,113 @@ namespace App
             timerSongName.Start();
         }
 
+        public void NextOrPrevious(bool isNext = true, bool isRandom = false)
+        {
+            // find next PlayListItemUC in this;
+            if (Constants.CURRENT_SONG_PLAYING == CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING)
+            {
+                if (Constants.CurrentPlaylistItemUC != null && Constants.IsPlaulistReady)
+                {
+                    var index = 0;
+                    foreach (PlaylistItemUC item in fPlaylist.flpPlaylist.Controls)
+                    {
+                        if (Constants.CurrentPlaylistItemUC == item)
+                        {
+                            break;
+                        }
+                        index++;
+                    }
+                    // find next index
+                    if (!isRandom)
+                    {
+                        if (isNext)
+                        {
+                            index = index == fPlaylist.flpPlaylist.Controls.Count - 1 ? 0 : index + 1;
+                        }
+                        else
+                        {
+                            index = index == 0 ? fPlaylist.flpPlaylist.Controls.Count - 1 : index - 1;
+                        }
+                    }
+                    else
+                    {
+                        var i = index;
+                        while (i == index)
+                        {
+                            i = new Random().Next(0, fPlaylist.flpPlaylist.Controls.Count);
+                        }
+
+                        index = i;
+                    }
+
+
+                    // find next PlayListItemPUC
+                    var itemUC = fPlaylist.flpPlaylist.Controls[index] as PlaylistItemUC;
+                    itemUC.PlayListItemMouseDoubleClick(itemUC, null);
+
+                    // Load SongDetail
+                    if (Constants.CurrentPlaylist.panelContent.Controls.Count > 0)
+                    {
+                        fSongDetail fSongDetail = new fSongDetail(itemUC.Song);
+                        UIHelper.ShowControl(fSongDetail, Constants.CurrentPlaylist.panelContent);
+                    }
+                }
+            }
+            else if (Constants.CURRENT_SONG_PLAYING == CURRENT_SONG_PLAYING.PERSONA_SONG_PLAYING)
+            {
+                if (Constants.CurrentPlaylistItemPUC != null && Constants.IsPersonalReady)
+                {
+                    var index = 0;
+                    foreach (PlaylistItemPUC item in fPersonal.flpPlaylist.Controls)
+                    {
+                        if (Constants.CurrentPlaylistItemPUC == item)
+                        {
+                            break;
+                        }
+                        index++;
+                    }
+
+                    // find next index 
+                    if (!isRandom)
+                    {
+                        if (isNext)
+                        {
+                            index = index == fPersonal.flpPlaylist.Controls.Count - 1 ? 0 : index + 1;
+                        }
+                        else
+                        {
+                            index = index == 0 ? fPersonal.flpPlaylist.Controls.Count - 1 : index - 1;
+                        }
+                    }
+                    else
+                    {
+                        var i = index;
+                        while (i == index)
+                        {
+                            i = new Random().Next(0, fPersonal.flpPlaylist.Controls.Count);
+                        }
+
+                        index = i;
+                    }
+                    // find next PlayListItemPUC
+                    var itemPUC = fPersonal.flpPlaylist.Controls[index] as PlaylistItemPUC;
+                    itemPUC.PlayListItemMouseDoubleClick(itemPUC, null);
+
+                    // Load SongDetail
+                    if (Constants.CurrentPersonal.panelContent.Controls.Count > 0)
+                    {
+                        fSongDetail fSongDetail = new fSongDetail(itemPUC.Song);
+                        UIHelper.ShowControl(fSongDetail, Constants.CurrentPersonal.panelContent);
+                    }
+                }
+            }
+        }
+
         private void ActivateButton(object senderBtn)
         {
             if (senderBtn != null)
             {
-               // panelContent.Visible = true;
+                // panelContent.Visible = true;
 
                 DisableButton();
 
@@ -164,7 +284,7 @@ namespace App
 
         public void LoadDataSong(Song song)
         {
-            if(song.URL == media.URL)
+            if (song.URL == media.URL)
             {
                 return;
             }
@@ -221,7 +341,6 @@ namespace App
 
         #endregion
 
-
         #region Menu animation
 
         private void imgLogo_Click(object sender, EventArgs e)
@@ -247,7 +366,7 @@ namespace App
             ActivateButton(sender);
 
             fPlaylist.Visible = true;
-           // panelContent.Visible = false;
+            // panelContent.Visible = false;
             fPersonal.Visible = false;
         }
 
@@ -258,7 +377,7 @@ namespace App
             ActivateButton(sender);
 
             var fHistory = new fHistory();
-           // UIHelper.ShowControl(fHistory, panelContent);
+            // UIHelper.ShowControl(fHistory, panelContent);
         }
 
         private void btnOrderFirst_Click(object sender, EventArgs e)
@@ -266,7 +385,7 @@ namespace App
             ActivateButton(sender);
 
             var fOrder = new fOrder();
-           // UIHelper.ShowControl(fOrder, panelContent);
+            // UIHelper.ShowControl(fOrder, panelContent);
         }
 
         private void btnOrderSecond_Click(object sender, EventArgs e)
@@ -274,10 +393,22 @@ namespace App
             ActivateButton(sender);
 
             var fOrder = new fOrder();
-           // UIHelper.ShowControl(fOrder, panelContent);
+            // UIHelper.ShowControl(fOrder, panelContent);
         }
 
+        private void BtnRandom_Click(object sender, EventArgs e)
+        {
+            NextOrPrevious(true, true);
+        }
 
+        private void btnRepeat_Click(object sender, EventArgs e)
+        {
+            //foreach (Control item in Constants.CurrentPlaylist.Controls)
+            //{
+            //    item.Visible = true;
+            //}
+            //Constants.CurrentPlaylist.panelContent.SendToBack(); 
+        }
 
         #endregion
 
@@ -301,6 +432,15 @@ namespace App
                 var second = (int)media.Ctlcontrols.currentPosition;
                 lblMinTime.Text = $"{(second / 60).ToString().PadLeft(2, '0')}:{(second % 60).ToString().PadLeft(2, '0')}";
                 progressBarSongTime.Value = second;
+            }
+
+            
+            var duration = media?.Ctlcontrols?.currentPosition;
+            var duration1 = Constants.CurrentPlaylistItemPUC?.Song.Duration;
+            var duration2 = Constants.CurrentPlaylistItemUC?.Song.Duration;
+            if ((Constants.CurrentPlaylistItemPUC !=null && (int)duration == duration1) || (Constants.CurrentPlaylistItemUC != null && (int)duration == duration2))
+            {
+                MessageBox.Show("finished");
             }
         }
 
@@ -402,14 +542,5 @@ namespace App
         }
 
         #endregion
-
-        private void btnRepeat_Click(object sender, EventArgs e)
-        {
-            //foreach (Control item in Constants.CurrentPlaylist.Controls)
-            //{
-            //    item.Visible = true;
-            //}
-            //Constants.CurrentPlaylist.panelContent.SendToBack(); 
-        }
     }
 }

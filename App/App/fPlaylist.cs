@@ -18,7 +18,7 @@ namespace App
         private readonly ISongCategoryService _songCategoryService;
 
         private List<PlaylistItemUC> PlaylistItemUCMockData;
-        private List<PlaylistItemUC> PlaylistItemUCResult;
+        public List<PlaylistItemUC> PlaylistItemUCResult;
         private List<Song> Songs;
         private List<SongCategory> SongCategories;
 
@@ -230,6 +230,8 @@ namespace App
             task.Start();
 
             await task;
+            PlaylistItemUCResult = PlaylistItemUCMockData.ToList();
+            Constants.IsPlaulistReady = true;
 
             callback(true);
         }

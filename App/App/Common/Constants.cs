@@ -42,7 +42,8 @@ namespace App.Common
 
 
         public static int CURRENT_ROTATION = 0;
-
+        public static bool IsPlaulistReady = false;
+        public static bool IsPersonalReady = false;
 
         public static fLayout MainForm;
         public static AxWindowsMediaPlayer MainMedia;
@@ -55,6 +56,7 @@ namespace App.Common
 
         public static CURRENT_PAGE CURRENT_PAGE;
         public static CURRENT_PLAYLIST CURRENT_PLAYLIST;
+        public static CURRENT_SONG_PLAYING CURRENT_SONG_PLAYING;
 
 
         public static List<SongPersonal> SongPersonals;
@@ -76,5 +78,12 @@ namespace App.Common
         PERSONA_PLAYLISTL,
         PLAYLIST_PLAYLIST,
         HISTORY_PLAYLIST
+    }
+
+    public enum CURRENT_SONG_PLAYING
+    {
+        PERSONA_SONG_PLAYING,
+        PLAYLIST_SONG_PLAYING,
+        HISTORY_SONG_PLAYING
     }
 }
