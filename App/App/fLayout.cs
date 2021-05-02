@@ -1,4 +1,5 @@
 ﻿using App.Common;
+using App.DatabaseLocal.Models;
 using App.DatabaseLocal.Services;
 using App.Models;
 using App.Services;
@@ -20,6 +21,7 @@ namespace App
     public partial class fLayout : Form
     {
         private readonly ISongPersonalService _songPersonalService;
+        private readonly ISongSeenService _songSeenService;
 
         private IconButton currentBtn;
         private Panel leftBorderBtn;
@@ -27,11 +29,15 @@ namespace App
         private Image thumbnailMain;
         private int rotateThumbnail;
 
+        public static List<SongSeen> SongSeens;
+
         public fLayout()
         {
             InitializeComponent();
 
             this._songPersonalService = new SongPersonalService();
+            this._songSeenService = new SongSeenService();
+            SongSeens = _songSeenService.GetAll();
 
             Constants.MainForm = this;
             Constants.MainMedia = media;
@@ -63,7 +69,8 @@ namespace App
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
             btnRandom.Click += BtnRandom_Click;
-            
+            media.PlayStateChange += Media_PlayStateChange;
+
 
             imgLogo.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/logo-zing.png");
             imgLogo.BackgroundImageLayout = ImageLayout.Stretch;
@@ -88,7 +95,7 @@ namespace App
             timerSongName.Start();
         }
 
-        public void NextOrPrevious(bool isNext = true, bool isRandom = false)
+        public void NextOrPrevious(bool isNext = true, bool isRandom = false, bool isRepeat = false)
         {
             // find next PlayListItemUC in this;
             if (Constants.CURRENT_SONG_PLAYING == CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING)
@@ -104,8 +111,13 @@ namespace App
                         }
                         index++;
                     }
+
+                    if (isRepeat)
+                    {
+
+                    }
                     // find next index
-                    if (!isRandom)
+                    else if (!isRandom)
                     {
                         if (isNext)
                         {
@@ -118,13 +130,20 @@ namespace App
                     }
                     else
                     {
-                        var i = index;
-                        while (i == index)
+                        if (fPlaylist.flpPlaylist.Controls.Count > 1)
                         {
-                            i = new Random().Next(0, fPlaylist.flpPlaylist.Controls.Count);
-                        }
+                            var i = index;
+                            while (i == index)
+                            {
+                                i = new Random().Next(0, fPlaylist.flpPlaylist.Controls.Count);
+                            }
 
-                        index = i;
+                            index = i;
+                        }
+                        else
+                        {
+                            index = 0;
+                        }
                     }
 
 
@@ -154,8 +173,12 @@ namespace App
                         index++;
                     }
 
-                    // find next index 
-                    if (!isRandom)
+                    if (isRepeat)
+                    {
+
+                    }
+                    // find next index
+                    else if (!isRandom)
                     {
                         if (isNext)
                         {
@@ -168,13 +191,20 @@ namespace App
                     }
                     else
                     {
-                        var i = index;
-                        while (i == index)
+                        if (fPersonal.flpPlaylist.Controls.Count > 1)
                         {
-                            i = new Random().Next(0, fPersonal.flpPlaylist.Controls.Count);
-                        }
+                            var i = index;
+                            while (i == index)
+                            {
+                                i = new Random().Next(0, fPersonal.flpPlaylist.Controls.Count);
+                            }
 
-                        index = i;
+                            index = i;
+                        }
+                        else
+                        {
+                            index = 0;
+                        }
                     }
                     // find next PlayListItemPUC
                     var itemPUC = fPersonal.flpPlaylist.Controls[index] as PlaylistItemPUC;
@@ -188,6 +218,8 @@ namespace App
                     }
                 }
             }
+
+            media.Ctlcontrols.play();
         }
 
         private void ActivateButton(object senderBtn)
@@ -323,6 +355,12 @@ namespace App
                     Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.HISTORY_PLAYLIST;
                     break;
             }
+
+            if(!SongSeens.Any(s=>s.ID == song.ID))
+            {
+                SongSeens.Add(new SongSeen() { ID = song.ID });
+                _songSeenService.InsertRange(SongSeens);
+            }
         }
 
         public void ClickButtonPauseOrPlay()
@@ -403,11 +441,16 @@ namespace App
 
         private void btnRepeat_Click(object sender, EventArgs e)
         {
-            //foreach (Control item in Constants.CurrentPlaylist.Controls)
-            //{
-            //    item.Visible = true;
-            //}
-            //Constants.CurrentPlaylist.panelContent.SendToBack(); 
+            Constants.IsReapeat = !Constants.IsReapeat;
+
+            if (Constants.IsReapeat)
+            {
+                btnRepeat.IconColor = Color.FromArgb(120, 6, 130);
+            }
+            else
+            {
+                btnRepeat.IconColor = Color.White;
+            }
         }
 
         #endregion
@@ -433,14 +476,28 @@ namespace App
                 lblMinTime.Text = $"{(second / 60).ToString().PadLeft(2, '0')}:{(second % 60).ToString().PadLeft(2, '0')}";
                 progressBarSongTime.Value = second;
             }
+        }
 
-            
-            var duration = media?.Ctlcontrols?.currentPosition;
-            var duration1 = Constants.CurrentPlaylistItemPUC?.Song.Duration;
-            var duration2 = Constants.CurrentPlaylistItemUC?.Song.Duration;
-            if ((Constants.CurrentPlaylistItemPUC !=null && (int)duration == duration1) || (Constants.CurrentPlaylistItemUC != null && (int)duration == duration2))
+        private void Media_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (media.playState == WMPLib.WMPPlayState.wmppsMediaEnded)
             {
-                MessageBox.Show("finished");
+                // Lặp lại bài
+                if (Constants.IsReapeat)
+                {
+                    NextOrPrevious(true, false, true);
+                }
+
+                // Next bài
+                else
+                {
+                    NextOrPrevious(true, false);
+                }
+            }
+
+            if (media.playState == WMPLib.WMPPlayState.wmppsStopped)
+            {
+                media.Ctlcontrols.play();
             }
         }
 
@@ -485,6 +542,11 @@ namespace App
 
             btn.IconColor = Color.White;
             btn.BackColor = Color.FromArgb(18, 12, 28);
+
+            if (btn.Name == "btnRepeat" && Constants.IsReapeat)
+            {
+                btn.IconColor = Color.FromArgb(120, 6, 130);
+            }
         }
 
         private void btnRandom_MouseUp(object sender, MouseEventArgs e)

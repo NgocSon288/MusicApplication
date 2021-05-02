@@ -112,7 +112,7 @@ namespace App
             UpdateFavoriteMusic();
         }
 
-        public async void UpdateFavoriteMusic()
+        public async void UpdateFavoriteMusic(Song s = null)
         {
             SetStatusPlaylist();
 
@@ -124,10 +124,15 @@ namespace App
 
             if (flpPlaylist.Controls.Count <= 0)
             {
-                lblCount.Text = "0";
+                lblCount.Text = "0"; 
             }
 
             SetStatusPlaylist();
+
+            if(s != null)
+            {
+                SetPlaying(s);
+            }
         }
 
         private async Task LoadPlaylistItemUC(Action<bool> callback)
@@ -167,6 +172,8 @@ namespace App
 
         private async Task LoadPlaylistItem(Action<bool> callback)
         {
+            flpPlaylist.Visible = false;
+            lblCount.Visible = false;
             Task task = new Task(() =>
             {
                 flpPlaylist.Controls.Clear();
@@ -211,10 +218,12 @@ namespace App
             SetStatusPlaylist();
 
             callback(true);
-            //UpdateFavoriteMusic();        // nào lỗi bật lên
+            UpdateFavoriteMusic();        // nào lỗi bật lên
+            lblCount.Visible = true;
+            flpPlaylist.Visible = true;
         }
 
-        private Task FilterPlaylistItem()
+        private async Task FilterPlaylistItem()
         {
             Task task = new Task(() =>
             {
@@ -249,8 +258,8 @@ namespace App
             });
 
             task.Start();
-
-            return task;
+            await task;
+            PlaylistItemPUCResult = PlaylistItemPUCResult.OrderBy(p => p.order).ToList();
         }
 
         private void SetStatusFilter(bool status)
@@ -355,7 +364,8 @@ namespace App
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            flpPlaylist.Visible = !flpPlaylist.Visible;
+            if (Constants.IsPersonalReady)
+                flpPlaylist.Visible = !flpPlaylist.Visible;
         }
 
 

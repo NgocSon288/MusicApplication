@@ -21,6 +21,7 @@ namespace App.UCs
         private readonly ISongPersonalService _songPersonalService;
 
         public static int STT = 1;
+        public int order = 0;
 
         public Song Song;
 
@@ -80,6 +81,7 @@ namespace App.UCs
                 btnHeart.IconColor = Color.FromArgb(144, 0, 161);
                 btnHeart.IconChar = IconChar.Heartbeat;
             }
+
         }
 
         private bool IsFavorite()
@@ -90,6 +92,7 @@ namespace App.UCs
         public void SetColorTop(int stt)
         {
             lblSTT.Text = stt.ToString();
+            order = stt;
 
             switch (stt)
             {

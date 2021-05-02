@@ -58,6 +58,8 @@ namespace App.Common
         public static CURRENT_PLAYLIST CURRENT_PLAYLIST;
         public static CURRENT_SONG_PLAYING CURRENT_SONG_PLAYING;
 
+        public static bool IsReapeat = false;
+
 
         public static List<SongPersonal> SongPersonals;
 

@@ -80,6 +80,21 @@ namespace App.UCs
                 btnHeart.IconColor = Color.FromArgb(144, 0, 161);
                 btnHeart.IconChar = IconChar.Heartbeat;
             }
+
+            if (fLayout.SongSeens.Any(s => s.ID == Song.ID))
+            {
+                if (!btnEye.Visible)
+                {
+                    btnEye.Visible = true;
+                }
+            }
+            else
+            {
+                if (btnEye.Visible)
+                {
+                    btnEye.Visible = false;
+                }
+            }
         }
 
         private bool IsFavorite()
@@ -142,6 +157,10 @@ namespace App.UCs
 
             Constants.MainForm.LoadDataSong(Song);
             Constants.CurrentPersonal.SetPlaying(Song);
+            if (!btnEye.Visible)
+            {
+                btnEye.Visible = true;
+            }
         }
 
         public void SetVisualiation()
@@ -177,12 +196,14 @@ namespace App.UCs
             if (PlaylistItemUC == null)
             {
                 this.BackColor = color;
+                btnEye.BackColor = color;
                 btnHeart.BackColor = color;
                 btnArrowAll.BackColor = color;
             }
             else
             {
                 PlaylistItemUC.BackColor = color;
+                PlaylistItemUC.btnEye.BackColor = color;
                 PlaylistItemUC.btnHeart.BackColor = color;
                 PlaylistItemUC.btnArrowAll.BackColor = color;
             }
@@ -228,7 +249,7 @@ namespace App.UCs
             }
 
             // cập nhật lại filter bên personal
-            Constants.CurrentPersonal.UpdateFavoriteMusic();
+            Constants.CurrentPersonal.UpdateFavoriteMusic(Song);
         }
 
         public void UpdateHeartIcon()
@@ -244,7 +265,7 @@ namespace App.UCs
             if (!Constants.MainForm.isPlaying())
             {
                 //if (Constants.CurrentPlaylistItemUC == this)
-                if ((Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL || Constants.MainMedia.URL ==  "")
+                if ((Constants.CurrentPlaylistItemUC == this && Constants.CurrentPlaylistItemUC.visualiation.Visible) || Song.URL == Constants.MainMedia.URL || Constants.MainMedia.URL == "")
                 {
                     Constants.MainForm.ClickButtonPauseOrPlay();
 

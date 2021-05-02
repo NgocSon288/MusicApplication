@@ -61,11 +61,15 @@
     <Compile Include="Common\UIHelper.cs" />
     <Compile Include="DatabaseLocal\Data\FileHelper.cs" />
     <Compile Include="DatabaseLocal\Models\SongPersonal.cs" />
+    <Compile Include="DatabaseLocal\Models\SongSeen.cs" />
     <Compile Include="DatabaseLocal\Repository\Interface\IRepository.cs" />
     <Compile Include="DatabaseLocal\Repository\Interface\ISongPersonalRepository.cs" />
+    <Compile Include="DatabaseLocal\Repository\Interface\ISongSeenRepository.cs" />
     <Compile Include="DatabaseLocal\Repository\RepositoryBase.cs" />
     <Compile Include="DatabaseLocal\Repository\SongPersonalRepository.cs" />
+    <Compile Include="DatabaseLocal\Repository\SongSeenRepository.cs" />
     <Compile Include="DatabaseLocal\Services\SongPersonalService.cs" />
+    <Compile Include="DatabaseLocal\Services\SongSeenService.cs" />
     <Compile Include="fHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -205,6 +209,7 @@
     <Content Include="Assets\Images\visualiation-4.png" />
     <Content Include="Assets\Images\visualiation-5.png" />
     <Content Include="DatabaseLocal\DB\SongPersonal.txt" />
+    <Content Include="DatabaseLocal\DB\SongSeen.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

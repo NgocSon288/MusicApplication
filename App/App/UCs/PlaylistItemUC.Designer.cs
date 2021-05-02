@@ -41,6 +41,7 @@ namespace App.UCs
             this.timerVisualiation = new System.Windows.Forms.Timer(this.components);
             this.btnArrowAll = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnEye = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualiation)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +71,7 @@ namespace App.UCs
             this.btnHeart.IconChar = FontAwesome.Sharp.IconChar.Heart;
             this.btnHeart.IconColor = System.Drawing.Color.White;
             this.btnHeart.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnHeart.Location = new System.Drawing.Point(900, 12);
+            this.btnHeart.Location = new System.Drawing.Point(927, 12);
             this.btnHeart.Margin = new System.Windows.Forms.Padding(1);
             this.btnHeart.Name = "btnHeart";
             this.btnHeart.Size = new System.Drawing.Size(48, 48);
@@ -108,7 +109,7 @@ namespace App.UCs
             this.lblDuration.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblDuration.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDuration.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblDuration.Location = new System.Drawing.Point(798, 25);
+            this.lblDuration.Location = new System.Drawing.Point(790, 25);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(54, 19);
             this.lblDuration.TabIndex = 17;
@@ -162,7 +163,7 @@ namespace App.UCs
             this.btnArrowAll.IconChar = FontAwesome.Sharp.IconChar.ArrowsAlt;
             this.btnArrowAll.IconColor = System.Drawing.Color.White;
             this.btnArrowAll.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnArrowAll.Location = new System.Drawing.Point(961, 12);
+            this.btnArrowAll.Location = new System.Drawing.Point(980, 12);
             this.btnArrowAll.Margin = new System.Windows.Forms.Padding(1);
             this.btnArrowAll.Name = "btnArrowAll";
             this.btnArrowAll.Size = new System.Drawing.Size(48, 48);
@@ -179,11 +180,32 @@ namespace App.UCs
             this.panel1.Size = new System.Drawing.Size(1047, 1);
             this.panel1.TabIndex = 24;
             // 
+            // btnEye
+            // 
+            this.btnEye.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.btnEye.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEye.FlatAppearance.BorderSize = 0;
+            this.btnEye.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(37)))), ((int)(((byte)(55)))));
+            this.btnEye.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(37)))), ((int)(((byte)(55)))));
+            this.btnEye.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEye.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEye.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnEye.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.btnEye.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnEye.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEye.Location = new System.Drawing.Point(875, 13);
+            this.btnEye.Margin = new System.Windows.Forms.Padding(1);
+            this.btnEye.Name = "btnEye";
+            this.btnEye.Size = new System.Drawing.Size(48, 48);
+            this.btnEye.TabIndex = 25;
+            this.btnEye.UseVisualStyleBackColor = false;
+            // 
             // PlaylistItemUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.Controls.Add(this.btnEye);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnArrowAll);
             this.Controls.Add(this.btnHeart);
@@ -218,5 +240,6 @@ namespace App.UCs
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Timer timerVisualiation;
         public System.Windows.Forms.PictureBox visualiation;
+        public FontAwesome.Sharp.IconButton btnEye;
     }
 }
