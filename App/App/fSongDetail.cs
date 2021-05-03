@@ -235,7 +235,6 @@ namespace App
             }
         }
 
-
         private void btnBack_MouseEnter(object sender, EventArgs e)
         {
             btnBack.BackColor = Color.FromArgb(23, 15, 35);

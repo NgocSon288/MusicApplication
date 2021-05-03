@@ -3,13 +3,17 @@ using App.DatabaseLocal.Models;
 using App.DatabaseLocal.Services;
 using App.Models;
 using FontAwesome.Sharp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -139,6 +143,7 @@ namespace App.UCs
 
         public void PlaylistItemDoubleClick()
         {
+            Constants.CurrentPlaylistItemPUC = null;
             //Constants.CURRENT_SONG_PLAYING = CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING;
             Constants.CurrentPlaylist.ResetPlaying();
             if (!visualiation.Visible)
@@ -156,7 +161,7 @@ namespace App.UCs
             }
 
             Constants.MainForm.LoadDataSong(Song);
-            Constants.CurrentPersonal.SetPlaying(Song);
+            Constants.CurrentPersonal.SetPlaying(); //asdsadadasdasd
             if (!btnEye.Visible)
             {
                 btnEye.Visible = true;
@@ -249,7 +254,7 @@ namespace App.UCs
             }
 
             // cập nhật lại filter bên personal
-            Constants.CurrentPersonal.UpdateFavoriteMusic(Song);
+            Constants.CurrentPersonal.UpdateFavoriteMusic(Song);  
         }
 
         public void UpdateHeartIcon()
@@ -300,6 +305,125 @@ namespace App.UCs
                 UIHelper.ShowControl(fSongDetail, Constants.CurrentPlaylist.panelContent);
 
             }
+        }
+
+        #region Context
+
+        #endregion
+
+        //https://www.youtube.com/watch?v=MzDQALXH-SI
+        private async void menuDeleteSong_Click(object sender, EventArgs e)
+        {
+            if (Constants.IsPlaulistReady && Constants.IsPersonalReady)
+            {
+                var url = $"https://localhost:44309/Api/MusicAPIController/Delete/{Song.ID}";
+
+                HttpClient client = new HttpClient();
+
+                var text = await client.GetStringAsync(url);
+
+                if (text == "1")
+                {
+                    Constants.CurrentPlaylist.DeleteByIDAndReload(Song.ID);
+                    Constants.CurrentPersonal.DeleteByIDAndReload(Song.ID);
+                }
+
+                MessageBox.Show(text == "1" ? "Xóa thành công!" : "Xóa không thành công");
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng đợi");
+            } 
+            //var url = "http://localhost/MusicApplicationAPI/Api/MusicAPIController/Create";
+
+            //var myObject = new Song
+            //{
+            //    IDZing = "IDZing",
+            //    CategorySongID = 1,
+            //    DisplayName = "Nhạc test",
+            //    Title = "Title",
+            //    Code = "Code",
+            //    ArtistsNames = "ArtistsName",
+            //    Performer = "Performer",
+            //    Lyric = "Lyric",
+            //    Thumbnail = "https://tse4.mm.bing.net/th?id=OIP.fS75LzIH__ROiq-2lueL4QHaE6&pid=Api&P=0&w=270&h=180",
+            //    Duration = 200,
+            //    ViewCount = 0,
+            //    URL = "http://localhost"
+            //};
+
+            //var objAsJson = JsonConvert.SerializeObject(myObject);
+            //var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+            //var _httpClient = new HttpClient();
+            //var result = await _httpClient.PostAsync(url, content); //or PostAsync for POST
+            //MessageBox.Show((await result.Content.ReadAsStringAsync()));
+
+
+
+
+
+
+
+
+
+
+
+            //var url = "http://localhost/MusicApplicationAPI/Api/MusicAPIController/UploadImage";
+            //var url = "https://localhost:44309/Api/MusicAPIController/UploadFile";
+
+
+            ////variable 
+            //var imgFile = "../../Assets/Images/logo-zing.jpg";
+            //var txtFile = "../../Assets/Images/file-text.txt";
+            //var audFile = "";
+
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    imgFile = openFileDialog.FileName;
+            //}
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    txtFile = openFileDialog.FileName;
+            //}
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    audFile = openFileDialog.FileName;
+            //}
+
+            //try
+            //{
+
+            //    var upImgFilebytes = File.ReadAllBytes(imgFile);
+            //    var upTxtFilebytes = File.ReadAllBytes(txtFile);
+            //    var upAudFilebytes = File.ReadAllBytes(audFile);
+                 
+            //    HttpClient client = new HttpClient();
+            //    MultipartFormDataContent content = new MultipartFormDataContent();
+
+            //    ByteArrayContent baImgContent = new ByteArrayContent(upImgFilebytes);
+            //    ByteArrayContent baTxtContent = new ByteArrayContent(upTxtFilebytes);
+            //    ByteArrayContent baAudContent = new ByteArrayContent(upAudFilebytes);
+
+
+            //    content.Add(baImgContent, "File", "logo-zing-img.png");     // xử lý ngẩu nhiên tên file tại đây
+            //    content.Add(baTxtContent, "File", "file-text.txt");         // xử  lý ngẩu nhiên tên file tại đây
+            //    content.Add(baAudContent, "File", "file-aud.mp3");         // xử  lý ngẩu nhiên tên file tại đây
+
+
+
+            //    var response = await client.PostAsync(url, content);
+
+            //    var responsestr = response.Content.ReadAsStringAsync().Result;
+
+            //    MessageBox.Show(responsestr);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("error: " + ex.Message);
+            //}
+
+            //var a = "Api/MusicAPIController/Create";
         }
     }
 }

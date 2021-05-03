@@ -63,6 +63,7 @@ namespace App
             this.timerSongName = new System.Windows.Forms.Timer(this.components);
             this.fPersonal = new App.fPersonal();
             this.fPlaylist = new App.fPlaylist();
+            this.fManager = new App.fManager();
             this.panelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
             this.panel4.SuspendLayout();
@@ -95,10 +96,9 @@ namespace App
             this.panelFooter.Controls.Add(this.panelSongInfo);
             this.panelFooter.Controls.Add(this.imgThumbnail);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(0, 1173);
-            this.panelFooter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelFooter.Location = new System.Drawing.Point(0, 610);
             this.panelFooter.Name = "panelFooter";
-            this.panelFooter.Size = new System.Drawing.Size(2618, 192);
+            this.panelFooter.Size = new System.Drawing.Size(1308, 100);
             this.panelFooter.TabIndex = 0;
             // 
             // lblVolume
@@ -106,21 +106,19 @@ namespace App
             this.lblVolume.AutoSize = true;
             this.lblVolume.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVolume.ForeColor = System.Drawing.Color.White;
-            this.lblVolume.Location = new System.Drawing.Point(2516, 67);
-            this.lblVolume.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblVolume.Location = new System.Drawing.Point(1258, 35);
             this.lblVolume.Name = "lblVolume";
-            this.lblVolume.Size = new System.Drawing.Size(83, 45);
+            this.lblVolume.Size = new System.Drawing.Size(40, 22);
             this.lblVolume.TabIndex = 26;
             this.lblVolume.Text = "50%";
             // 
             // trackBarVolume
             // 
             this.trackBarVolume.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(12)))), ((int)(((byte)(28)))));
-            this.trackBarVolume.Location = new System.Drawing.Point(2164, 69);
-            this.trackBarVolume.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.trackBarVolume.Location = new System.Drawing.Point(1082, 36);
             this.trackBarVolume.Maximum = 100;
             this.trackBarVolume.Name = "trackBarVolume";
-            this.trackBarVolume.Size = new System.Drawing.Size(354, 90);
+            this.trackBarVolume.Size = new System.Drawing.Size(177, 45);
             this.trackBarVolume.SmallChange = 5;
             this.trackBarVolume.TabIndex = 25;
             this.trackBarVolume.TickFrequency = 10;
@@ -137,10 +135,9 @@ namespace App
             this.btnVolume.IconColor = System.Drawing.Color.White;
             this.btnVolume.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVolume.IconSize = 64;
-            this.btnVolume.Location = new System.Drawing.Point(2088, 69);
-            this.btnVolume.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnVolume.Location = new System.Drawing.Point(1044, 36);
             this.btnVolume.Name = "btnVolume";
-            this.btnVolume.Size = new System.Drawing.Size(50, 58);
+            this.btnVolume.Size = new System.Drawing.Size(25, 30);
             this.btnVolume.TabIndex = 24;
             this.btnVolume.UseVisualStyleBackColor = true;
             // 
@@ -154,10 +151,9 @@ namespace App
             this.panel4.Controls.Add(this.btnPlay);
             this.panel4.Controls.Add(this.btnPrevious);
             this.panel4.Controls.Add(this.btnRandom);
-            this.panel4.Location = new System.Drawing.Point(946, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel4.Location = new System.Drawing.Point(473, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1030, 179);
+            this.panel4.Size = new System.Drawing.Size(515, 93);
             this.panel4.TabIndex = 23;
             // 
             // progressBarSongTime
@@ -167,11 +163,11 @@ namespace App
             this.progressBarSongTime.BorderRadius = 0;
             this.progressBarSongTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.progressBarSongTime.IndicatorColor = System.Drawing.Color.White;
-            this.progressBarSongTime.Location = new System.Drawing.Point(108, 123);
-            this.progressBarSongTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.progressBarSongTime.Location = new System.Drawing.Point(54, 64);
+            this.progressBarSongTime.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.progressBarSongTime.MaximumValue = 0;
             this.progressBarSongTime.Name = "progressBarSongTime";
-            this.progressBarSongTime.Size = new System.Drawing.Size(800, 50);
+            this.progressBarSongTime.Size = new System.Drawing.Size(400, 30);
             this.progressBarSongTime.TabIndex = 8;
             this.progressBarSongTime.Value = 0;
             this.progressBarSongTime.ValueChanged += new System.EventHandler(this.progressBarSongTime_ValueChanged);
@@ -181,10 +177,9 @@ namespace App
             this.lblMaxTime.AutoSize = true;
             this.lblMaxTime.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaxTime.ForeColor = System.Drawing.Color.White;
-            this.lblMaxTime.Location = new System.Drawing.Point(926, 123);
-            this.lblMaxTime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblMaxTime.Location = new System.Drawing.Point(463, 64);
             this.lblMaxTime.Name = "lblMaxTime";
-            this.lblMaxTime.Size = new System.Drawing.Size(84, 31);
+            this.lblMaxTime.Size = new System.Drawing.Size(42, 15);
             this.lblMaxTime.TabIndex = 7;
             this.lblMaxTime.Text = "00:00";
             // 
@@ -193,10 +188,9 @@ namespace App
             this.lblMinTime.AutoSize = true;
             this.lblMinTime.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMinTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(133)))), ((int)(((byte)(141)))));
-            this.lblMinTime.Location = new System.Drawing.Point(16, 123);
-            this.lblMinTime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblMinTime.Location = new System.Drawing.Point(8, 64);
             this.lblMinTime.Name = "lblMinTime";
-            this.lblMinTime.Size = new System.Drawing.Size(84, 31);
+            this.lblMinTime.Size = new System.Drawing.Size(42, 15);
             this.lblMinTime.TabIndex = 5;
             this.lblMinTime.Text = "00:00";
             // 
@@ -211,10 +205,9 @@ namespace App
             this.btnRepeat.IconColor = System.Drawing.Color.White;
             this.btnRepeat.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRepeat.IconSize = 64;
-            this.btnRepeat.Location = new System.Drawing.Point(776, 44);
-            this.btnRepeat.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnRepeat.Location = new System.Drawing.Point(388, 23);
             this.btnRepeat.Name = "btnRepeat";
-            this.btnRepeat.Size = new System.Drawing.Size(50, 58);
+            this.btnRepeat.Size = new System.Drawing.Size(25, 30);
             this.btnRepeat.TabIndex = 4;
             this.btnRepeat.UseVisualStyleBackColor = true;
             this.btnRepeat.Click += new System.EventHandler(this.btnRepeat_Click);
@@ -234,10 +227,9 @@ namespace App
             this.btnNext.IconColor = System.Drawing.Color.White;
             this.btnNext.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnNext.IconSize = 64;
-            this.btnNext.Location = new System.Drawing.Point(630, 44);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnNext.Location = new System.Drawing.Point(315, 23);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(50, 58);
+            this.btnNext.Size = new System.Drawing.Size(25, 30);
             this.btnNext.TabIndex = 3;
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRandom_MouseDown);
@@ -256,10 +248,9 @@ namespace App
             this.btnPlay.IconColor = System.Drawing.Color.White;
             this.btnPlay.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPlay.IconSize = 64;
-            this.btnPlay.Location = new System.Drawing.Point(484, 44);
-            this.btnPlay.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnPlay.Location = new System.Drawing.Point(242, 23);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(50, 58);
+            this.btnPlay.Size = new System.Drawing.Size(25, 30);
             this.btnPlay.TabIndex = 2;
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
@@ -279,10 +270,9 @@ namespace App
             this.btnPrevious.IconColor = System.Drawing.Color.White;
             this.btnPrevious.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPrevious.IconSize = 64;
-            this.btnPrevious.Location = new System.Drawing.Point(338, 44);
-            this.btnPrevious.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnPrevious.Location = new System.Drawing.Point(169, 23);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(50, 58);
+            this.btnPrevious.Size = new System.Drawing.Size(25, 30);
             this.btnPrevious.TabIndex = 1;
             this.btnPrevious.UseVisualStyleBackColor = true;
             this.btnPrevious.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRandom_MouseDown);
@@ -301,10 +291,9 @@ namespace App
             this.btnRandom.IconColor = System.Drawing.Color.White;
             this.btnRandom.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRandom.IconSize = 64;
-            this.btnRandom.Location = new System.Drawing.Point(192, 44);
-            this.btnRandom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnRandom.Location = new System.Drawing.Point(96, 23);
             this.btnRandom.Name = "btnRandom";
-            this.btnRandom.Size = new System.Drawing.Size(50, 58);
+            this.btnRandom.Size = new System.Drawing.Size(25, 30);
             this.btnRandom.TabIndex = 0;
             this.btnRandom.UseVisualStyleBackColor = true;
             this.btnRandom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRandom_MouseDown);
@@ -316,7 +305,6 @@ namespace App
             // 
             this.media.Enabled = true;
             this.media.Location = new System.Drawing.Point(0, 0);
-            this.media.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.media.Name = "media";
             this.media.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("media.OcxState")));
             this.media.Size = new System.Drawing.Size(10, 10);
@@ -326,10 +314,9 @@ namespace App
             // 
             this.panelSongInfo.Controls.Add(this.lblArtistName);
             this.panelSongInfo.Controls.Add(this.lblSongName);
-            this.panelSongInfo.Location = new System.Drawing.Point(236, 10);
-            this.panelSongInfo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelSongInfo.Location = new System.Drawing.Point(118, 5);
             this.panelSongInfo.Name = "panelSongInfo";
-            this.panelSongInfo.Size = new System.Drawing.Size(578, 173);
+            this.panelSongInfo.Size = new System.Drawing.Size(289, 90);
             this.panelSongInfo.TabIndex = 1;
             // 
             // lblArtistName
@@ -337,10 +324,9 @@ namespace App
             this.lblArtistName.AutoSize = true;
             this.lblArtistName.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArtistName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblArtistName.Location = new System.Drawing.Point(-4, 102);
-            this.lblArtistName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblArtistName.Location = new System.Drawing.Point(-2, 53);
             this.lblArtistName.Name = "lblArtistName";
-            this.lblArtistName.Size = new System.Drawing.Size(140, 31);
+            this.lblArtistName.Size = new System.Drawing.Size(70, 15);
             this.lblArtistName.TabIndex = 1;
             this.lblArtistName.Text = "Trình bày";
             // 
@@ -349,19 +335,17 @@ namespace App
             this.lblSongName.AutoSize = true;
             this.lblSongName.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSongName.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblSongName.Location = new System.Drawing.Point(6, 23);
-            this.lblSongName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSongName.Location = new System.Drawing.Point(3, 12);
             this.lblSongName.Name = "lblSongName";
-            this.lblSongName.Size = new System.Drawing.Size(251, 45);
+            this.lblSongName.Size = new System.Drawing.Size(120, 22);
             this.lblSongName.TabIndex = 0;
             this.lblSongName.Text = "Tên bài hát";
             // 
             // imgThumbnail
             // 
-            this.imgThumbnail.Location = new System.Drawing.Point(18, 10);
-            this.imgThumbnail.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.imgThumbnail.Location = new System.Drawing.Point(9, 5);
             this.imgThumbnail.Name = "imgThumbnail";
-            this.imgThumbnail.Size = new System.Drawing.Size(180, 173);
+            this.imgThumbnail.Size = new System.Drawing.Size(90, 90);
             this.imgThumbnail.TabIndex = 0;
             this.imgThumbnail.TabStop = false;
             // 
@@ -369,10 +353,9 @@ namespace App
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 1171);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Location = new System.Drawing.Point(0, 609);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(2618, 2);
+            this.panel3.Size = new System.Drawing.Size(1308, 1);
             this.panel3.TabIndex = 2;
             // 
             // panelMenu
@@ -386,9 +369,8 @@ namespace App
             this.panelMenu.Controls.Add(this.panel2);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(476, 1171);
+            this.panelMenu.Size = new System.Drawing.Size(238, 609);
             this.panelMenu.TabIndex = 3;
             // 
             // btnOrderSecond
@@ -405,11 +387,10 @@ namespace App
             this.btnOrderSecond.IconColor = System.Drawing.Color.White;
             this.btnOrderSecond.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnOrderSecond.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderSecond.Location = new System.Drawing.Point(0, 600);
-            this.btnOrderSecond.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnOrderSecond.Location = new System.Drawing.Point(0, 312);
             this.btnOrderSecond.Name = "btnOrderSecond";
-            this.btnOrderSecond.Padding = new System.Windows.Forms.Padding(20, 0, 40, 0);
-            this.btnOrderSecond.Size = new System.Drawing.Size(476, 102);
+            this.btnOrderSecond.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnOrderSecond.Size = new System.Drawing.Size(238, 53);
             this.btnOrderSecond.TabIndex = 15;
             this.btnOrderSecond.TabStop = false;
             this.btnOrderSecond.Text = "...";
@@ -432,11 +413,10 @@ namespace App
             this.btnOrderFirst.IconColor = System.Drawing.Color.White;
             this.btnOrderFirst.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnOrderFirst.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderFirst.Location = new System.Drawing.Point(0, 498);
-            this.btnOrderFirst.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnOrderFirst.Location = new System.Drawing.Point(0, 259);
             this.btnOrderFirst.Name = "btnOrderFirst";
-            this.btnOrderFirst.Padding = new System.Windows.Forms.Padding(20, 0, 40, 0);
-            this.btnOrderFirst.Size = new System.Drawing.Size(476, 102);
+            this.btnOrderFirst.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnOrderFirst.Size = new System.Drawing.Size(238, 53);
             this.btnOrderFirst.TabIndex = 14;
             this.btnOrderFirst.TabStop = false;
             this.btnOrderFirst.Text = "...";
@@ -459,14 +439,13 @@ namespace App
             this.btnHistory.IconColor = System.Drawing.Color.White;
             this.btnHistory.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistory.Location = new System.Drawing.Point(0, 396);
-            this.btnHistory.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnHistory.Location = new System.Drawing.Point(0, 206);
             this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Padding = new System.Windows.Forms.Padding(20, 0, 40, 0);
-            this.btnHistory.Size = new System.Drawing.Size(476, 102);
+            this.btnHistory.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnHistory.Size = new System.Drawing.Size(238, 53);
             this.btnHistory.TabIndex = 13;
             this.btnHistory.TabStop = false;
-            this.btnHistory.Text = "Lịch sử";
+            this.btnHistory.Text = "Quản lý";
             this.btnHistory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHistory.UseVisualStyleBackColor = false;
@@ -486,11 +465,10 @@ namespace App
             this.btnSongs.IconColor = System.Drawing.Color.White;
             this.btnSongs.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSongs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSongs.Location = new System.Drawing.Point(0, 294);
-            this.btnSongs.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSongs.Location = new System.Drawing.Point(0, 153);
             this.btnSongs.Name = "btnSongs";
-            this.btnSongs.Padding = new System.Windows.Forms.Padding(20, 0, 40, 0);
-            this.btnSongs.Size = new System.Drawing.Size(476, 102);
+            this.btnSongs.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnSongs.Size = new System.Drawing.Size(238, 53);
             this.btnSongs.TabIndex = 12;
             this.btnSongs.TabStop = false;
             this.btnSongs.Text = "Khám phá";
@@ -513,11 +491,10 @@ namespace App
             this.btnPersonal.IconColor = System.Drawing.Color.White;
             this.btnPersonal.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPersonal.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPersonal.Location = new System.Drawing.Point(0, 192);
-            this.btnPersonal.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnPersonal.Location = new System.Drawing.Point(0, 100);
             this.btnPersonal.Name = "btnPersonal";
-            this.btnPersonal.Padding = new System.Windows.Forms.Padding(20, 0, 40, 0);
-            this.btnPersonal.Size = new System.Drawing.Size(476, 102);
+            this.btnPersonal.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnPersonal.Size = new System.Drawing.Size(238, 53);
             this.btnPersonal.TabIndex = 11;
             this.btnPersonal.TabStop = false;
             this.btnPersonal.Text = "Cá  nhân";
@@ -531,9 +508,8 @@ namespace App
             this.panel2.Controls.Add(this.imgLogo);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(476, 192);
+            this.panel2.Size = new System.Drawing.Size(238, 100);
             this.panel2.TabIndex = 10;
             // 
             // imgLogo
@@ -542,9 +518,8 @@ namespace App
             this.imgLogo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imgLogo.Location = new System.Drawing.Point(0, 0);
-            this.imgLogo.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.imgLogo.Name = "imgLogo";
-            this.imgLogo.Size = new System.Drawing.Size(476, 192);
+            this.imgLogo.Size = new System.Drawing.Size(238, 100);
             this.imgLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgLogo.TabIndex = 1;
             this.imgLogo.TabStop = false;
@@ -558,33 +533,41 @@ namespace App
             // fPersonal
             // 
             this.fPersonal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.fPersonal.Location = new System.Drawing.Point(476, 0);
+            this.fPersonal.Location = new System.Drawing.Point(238, 0);
             this.fPersonal.Margin = new System.Windows.Forms.Padding(0);
             this.fPersonal.Name = "fPersonal";
-            this.fPersonal.Size = new System.Drawing.Size(2142, 1171);
+            this.fPersonal.Size = new System.Drawing.Size(1071, 609);
             this.fPersonal.TabIndex = 5;
             // 
             // fPlaylist
             // 
             this.fPlaylist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.fPlaylist.Location = new System.Drawing.Point(476, 0);
+            this.fPlaylist.Location = new System.Drawing.Point(238, 0);
             this.fPlaylist.Margin = new System.Windows.Forms.Padding(0);
             this.fPlaylist.Name = "fPlaylist";
-            this.fPlaylist.Size = new System.Drawing.Size(2142, 1171);
+            this.fPlaylist.Size = new System.Drawing.Size(1071, 609);
             this.fPlaylist.TabIndex = 4;
+            // 
+            // fManager
+            // 
+            this.fManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.fManager.Location = new System.Drawing.Point(238, 0);
+            this.fManager.Name = "fManager";
+            this.fManager.Size = new System.Drawing.Size(1071, 609);
+            this.fManager.TabIndex = 6;
             // 
             // fLayout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2618, 1365);
+            this.ClientSize = new System.Drawing.Size(1308, 710);
+            this.Controls.Add(this.fManager);
             this.Controls.Add(this.fPersonal);
             this.Controls.Add(this.fPlaylist);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelFooter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "fLayout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fLayout";
@@ -627,16 +610,17 @@ namespace App
         private System.Windows.Forms.Label lblMaxTime;
         private System.Windows.Forms.Label lblMinTime;
         private FontAwesome.Sharp.IconButton btnRepeat;
-        private FontAwesome.Sharp.IconButton btnNext;
-        private FontAwesome.Sharp.IconButton btnPlay;
         private FontAwesome.Sharp.IconButton btnPrevious;
         private FontAwesome.Sharp.IconButton btnRandom;
         private FontAwesome.Sharp.IconButton btnVolume;
         private System.Windows.Forms.TrackBar trackBarVolume;
         private System.Windows.Forms.Label lblVolume;
         private System.Windows.Forms.Timer timerSongName;
-        private fPlaylist fPlaylist;
         public Bunifu.Framework.UI.BunifuSlider progressBarSongTime;
         private fPersonal fPersonal;
+        private fPlaylist fPlaylist;
+        private fManager fManager;
+        public FontAwesome.Sharp.IconButton btnNext;
+        public FontAwesome.Sharp.IconButton btnPlay;
     }
 }

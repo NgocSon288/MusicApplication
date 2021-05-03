@@ -59,7 +59,7 @@ namespace App.UCs
             this.btnHeart.IconColor = System.Drawing.Color.White;
             this.btnHeart.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnHeart.Location = new System.Drawing.Point(927, 12);
-            this.btnHeart.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnHeart.Margin = new System.Windows.Forms.Padding(1);
             this.btnHeart.Name = "btnHeart";
             this.btnHeart.Size = new System.Drawing.Size(48, 48);
             this.btnHeart.TabIndex = 31;
@@ -116,6 +116,7 @@ namespace App.UCs
             // 
             // imgThumbnail
             // 
+            this.imgThumbnail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgThumbnail.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgThumbnail.Location = new System.Drawing.Point(241, 1);
             this.imgThumbnail.Name = "imgThumbnail";
@@ -172,7 +173,7 @@ namespace App.UCs
             this.btnArrowAll.IconColor = System.Drawing.Color.White;
             this.btnArrowAll.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnArrowAll.Location = new System.Drawing.Point(980, 12);
-            this.btnArrowAll.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnArrowAll.Margin = new System.Windows.Forms.Padding(1);
             this.btnArrowAll.Name = "btnArrowAll";
             this.btnArrowAll.Size = new System.Drawing.Size(48, 48);
             this.btnArrowAll.TabIndex = 33;

@@ -42,8 +42,11 @@ namespace App.UCs
             this.btnArrowAll = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEye = new FontAwesome.Sharp.IconButton();
+            this.contextMenuStripCtrols = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuDeleteSong = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualiation)).BeginInit();
+            this.contextMenuStripCtrols.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSTT
@@ -129,6 +132,7 @@ namespace App.UCs
             // 
             // imgThumbnail
             // 
+            this.imgThumbnail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.imgThumbnail.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgThumbnail.Location = new System.Drawing.Point(241, 1);
             this.imgThumbnail.Name = "imgThumbnail";
@@ -200,11 +204,28 @@ namespace App.UCs
             this.btnEye.TabIndex = 25;
             this.btnEye.UseVisualStyleBackColor = false;
             // 
+            // contextMenuStripCtrols
+            // 
+            this.contextMenuStripCtrols.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStripCtrols.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuDeleteSong});
+            this.contextMenuStripCtrols.Name = "contextMenuStripCtrols";
+            this.contextMenuStripCtrols.Size = new System.Drawing.Size(181, 48);
+            // 
+            // menuDeleteSong
+            // 
+            this.menuDeleteSong.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuDeleteSong.Name = "menuDeleteSong";
+            this.menuDeleteSong.Size = new System.Drawing.Size(180, 22);
+            this.menuDeleteSong.Text = "Xóa bài hát";
+            this.menuDeleteSong.Click += new System.EventHandler(this.menuDeleteSong_Click);
+            // 
             // PlaylistItemUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.ContextMenuStrip = this.contextMenuStripCtrols;
             this.Controls.Add(this.btnEye);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnArrowAll);
@@ -222,6 +243,7 @@ namespace App.UCs
             this.Size = new System.Drawing.Size(1047, 70);
             ((System.ComponentModel.ISupportInitialize)(this.imgThumbnail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualiation)).EndInit();
+            this.contextMenuStripCtrols.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,5 +263,7 @@ namespace App.UCs
         public System.Windows.Forms.Timer timerVisualiation;
         public System.Windows.Forms.PictureBox visualiation;
         public FontAwesome.Sharp.IconButton btnEye;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripCtrols;
+        private System.Windows.Forms.ToolStripMenuItem menuDeleteSong;
     }
 }

@@ -54,6 +54,20 @@ namespace App
             }
         }
 
+        public async void DeleteByIDAndReload(int songId)
+        {  
+
+            var item = PlaylistItemUCMockData.FirstOrDefault(s => s.Song.ID == songId);
+            PlaylistItemUCMockData.Remove(item);
+
+            SetStatusFilter(false);
+
+            stt = 1;
+            await FilterPlaylistItem();
+
+            LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+        }
+
         private async void iconButton1_Click(object sender, EventArgs e)
         {
             SetStatusFilter(false);
@@ -94,7 +108,7 @@ namespace App
 
         #region Methods
 
-        new private async Task Load()
+        public async Task Load()
         {
             Songs = await _songService.GetAll();
             SongCategories = await _songCategoryService.GetAll();
@@ -236,6 +250,25 @@ namespace App
             callback(true);
         }
 
+        public void AddMockData(Song song)
+        {
+            SetStatusFilter(false);
+            var playlistItem = new PlaylistItemUC(song);
+            playlistItem.Margin = new Padding(0, 0, 0, 0);
+            playlistItem.Tag = song;
+
+            this.BeginInvoke((Action)(() =>
+            {
+                flpPlaylist.Controls.Add(playlistItem);
+            }));
+            lblCount.Text = (PlaylistItemUC.STT - 1).ToString();
+
+
+            PlaylistItemUCMockData.Insert(PlaylistItemUCMockData.Count - 1, playlistItem);
+
+            LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+        }
+
         private Task LoadPlaylistItemUC()
         {
             flpPlaylist.Controls.Clear();
@@ -279,7 +312,7 @@ namespace App
             foreach (PlaylistItemUC item in flpPlaylist.Controls)
             {
                 var song = item.Tag as Song;
-                if(song.ID == songID)
+                if (song.ID == songID)
                 {
                     // gọi update uc
                     item.UpdateHeartIcon();

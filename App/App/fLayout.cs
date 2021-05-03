@@ -4,7 +4,11 @@ using App.DatabaseLocal.Services;
 using App.Models;
 using App.Services;
 using App.UCs;
+using AxWMPLib;
 using FontAwesome.Sharp;
+using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +16,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WMPLib;
 
 namespace App
 {
@@ -30,6 +36,8 @@ namespace App
         private int rotateThumbnail;
 
         public static List<SongSeen> SongSeens;
+
+        private Song currentSong;
 
         public fLayout()
         {
@@ -52,7 +60,7 @@ namespace App
             NextOrPrevious(false);
         }
 
-        private void BtnNext_Click(object sender, EventArgs e)
+        public void BtnNext_Click(object sender, EventArgs e)
         {
             NextOrPrevious();
         }
@@ -66,6 +74,7 @@ namespace App
             Constants.SongPersonals = _songPersonalService.GetAll();
             Constants.CurrentPlaylist = fPlaylist;
             Constants.CurrentPersonal = fPersonal;
+            Constants.CurrentManager = fManager;
             btnNext.Click += BtnNext_Click;
             btnPrevious.Click += BtnPrevious_Click;
             btnRandom.Click += BtnRandom_Click;
@@ -98,18 +107,21 @@ namespace App
         public void NextOrPrevious(bool isNext = true, bool isRandom = false, bool isRepeat = false)
         {
             // find next PlayListItemUC in this;
-            if (Constants.CURRENT_SONG_PLAYING == CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING)
+            if (Constants.CURRENT_SONG_PLAYING == CURRENT_SONG_PLAYING.PLAYLIST_SONG_PLAYING || Constants.isPriority)
             {
-                if (Constants.CurrentPlaylistItemUC != null && Constants.IsPlaulistReady)
+                if ((Constants.CurrentPlaylistItemUC != null && Constants.IsPlaulistReady) || Constants.isPriority)
                 {
                     var index = 0;
-                    foreach (PlaylistItemUC item in fPlaylist.flpPlaylist.Controls)
+                    if (!Constants.isPriority)
                     {
-                        if (Constants.CurrentPlaylistItemUC == item)
+                        foreach (PlaylistItemUC item in fPlaylist.flpPlaylist.Controls)
                         {
-                            break;
+                            if (Constants.CurrentPlaylistItemUC == item)
+                            {
+                                break;
+                            }
+                            index++;
                         }
-                        index++;
                     }
 
                     if (isRepeat)
@@ -146,10 +158,17 @@ namespace App
                         }
                     }
 
-
                     // find next PlayListItemPUC
                     var itemUC = fPlaylist.flpPlaylist.Controls[index] as PlaylistItemUC;
                     itemUC.PlayListItemMouseDoubleClick(itemUC, null);
+
+                    var s = itemUC.Song;
+                    if (Constants.isPriority)
+                    {
+                        Constants.CurrentPersonal.SetPlaying();
+                        Constants.CurrentPlaylist.SetPlaying(itemUC.Song);
+                    }
+
 
                     // Load SongDetail
                     if (Constants.CurrentPlaylist.panelContent.Controls.Count > 0)
@@ -219,7 +238,10 @@ namespace App
                 }
             }
 
-            media.Ctlcontrols.play();
+            if (Constants.CurrentPlaylistItemPUC != null && Constants.CurrentPlaylistItemUC != null)
+            {
+                media.Ctlcontrols.play();
+            }
         }
 
         private void ActivateButton(object senderBtn)
@@ -298,6 +320,7 @@ namespace App
 
             fPersonal.Visible = true;
             fPlaylist.Visible = false;
+            fManager.Visible = false;
         }
 
         private void VisibleButton()
@@ -314,12 +337,30 @@ namespace App
             return media.playState == WMPLib.WMPPlayState.wmppsPlaying;
         }
 
+        public void ResetDataSong()
+        {
+            media.URL = "";
+            imgThumbnail.BackgroundImage = UIHelper.ClipToCircle(new Bitmap(Constants.ROOT_PATH + "Assets/Images/thumnail-default.png"), Constants.FOOTER_BACKGROUND);
+            lblSongName.Text = "Tên bài hát";
+            lblSongName.Left = 0;
+            progressBarSongTime.Value = 0;
+            lblArtistName.Text = "Trình bày";
+            lblMinTime.Text = "00:00";
+            lblMaxTime.Text = "00:00";
+        }
+
         public void LoadDataSong(Song song)
         {
             if (song.URL == media.URL)
             {
                 return;
             }
+            if (song.Duration == 0)
+            {
+                Constants.errorDuration = true;
+            }
+
+            currentSong = song;
 
             rotateThumbnail = 0;
             lblSongName.Left = 0;
@@ -334,9 +375,12 @@ namespace App
                 imgThumbnail.BackgroundImage = thumbnailMain;
             }
             lblMinTime.Text = $"{(0 / 60).ToString().PadLeft(2, '0')}:{(0 % 60).ToString().PadLeft(2, '0')}";
+            song.Duration = song.Duration == 0 ? 232 : song.Duration;
             lblMaxTime.Text = $"{(song.Duration / 60).ToString().PadLeft(2, '0')}:{(song.Duration % 60).ToString().PadLeft(2, '0')}";
             progressBarSongTime.MaximumValue = song.Duration;
             progressBarSongTime.Value = 0;
+
+
 
             lblSongName.Text = song.DisplayName;
             lblArtistName.Text = song.ArtistsNames;
@@ -351,12 +395,12 @@ namespace App
                 case CURRENT_PAGE.PLAYLIST:
                     Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.PLAYLIST_PLAYLIST;
                     break;
-                case CURRENT_PAGE.HISTORY:
-                    Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.HISTORY_PLAYLIST;
+                case CURRENT_PAGE.MANAGER:
+                    Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.MANAGER_PLAYLIST;
                     break;
             }
 
-            if(!SongSeens.Any(s=>s.ID == song.ID))
+            if (!SongSeens.Any(s => s.ID == song.ID))
             {
                 SongSeens.Add(new SongSeen() { ID = song.ID });
                 _songSeenService.InsertRange(SongSeens);
@@ -393,8 +437,8 @@ namespace App
             ActivateButton(sender);
 
             fPersonal.Visible = true;
-            //panelContent.Controls.Clear();
             fPlaylist.Visible = false;
+            fManager.Visible = false;
         }
 
         private void btnSongs_Click(object sender, EventArgs e)
@@ -404,18 +448,19 @@ namespace App
             ActivateButton(sender);
 
             fPlaylist.Visible = true;
-            // panelContent.Visible = false;
             fPersonal.Visible = false;
+            fManager.Visible = false;
         }
 
         private void btnHistory_Click(object sender, EventArgs e)
         {
-            Constants.CURRENT_PAGE = CURRENT_PAGE.HISTORY;
+            Constants.CURRENT_PAGE = CURRENT_PAGE.MANAGER;
 
             ActivateButton(sender);
 
-            var fHistory = new fHistory();
-            // UIHelper.ShowControl(fHistory, panelContent);
+            fPlaylist.Visible = false;
+            fPersonal.Visible = false;
+            fManager.Visible = true;
         }
 
         private void btnOrderFirst_Click(object sender, EventArgs e)
@@ -468,13 +513,30 @@ namespace App
             }
         }
 
-        private void timerTimeline_Tick(object sender, EventArgs e)
+        private async void timerTimeline_Tick(object sender, EventArgs e)
         {
             if (isPlaying())
             {
                 var second = (int)media.Ctlcontrols.currentPosition;
                 lblMinTime.Text = $"{(second / 60).ToString().PadLeft(2, '0')}:{(second % 60).ToString().PadLeft(2, '0')}";
                 progressBarSongTime.Value = second;
+
+                if (Constants.errorDuration)
+                {
+                    progressBarSongTime.MaximumValue = (int)media.currentMedia.duration;
+                    lblMaxTime.Text = $"{(progressBarSongTime.MaximumValue / 60).ToString().PadLeft(2, '0')}:{(progressBarSongTime.MaximumValue % 60).ToString().PadLeft(2, '0')}";
+                    Constants.errorDuration = false;
+
+                    using (HttpClient client = new HttpClient())
+                    {
+                        currentSong.Duration = progressBarSongTime.MaximumValue;
+
+                        var objAsJson = JsonConvert.SerializeObject(currentSong);
+                        var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+                        var _httpClient = new HttpClient();
+                        var result = await client.PostAsync(Constants.UPDATE_SONG, content);
+                    }
+                }
             }
         }
 
@@ -559,7 +621,11 @@ namespace App
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            ClickButtonPauseOrPlay();
+            if (!Constants.isDelete)
+            {
+                ClickButtonPauseOrPlay();
+                Constants.isDelete = false;
+            }
         }
 
         private void trackBarVolume_Scroll(object sender, EventArgs e)
@@ -603,6 +669,6 @@ namespace App
             }
         }
 
-        #endregion
+        #endregion 
     }
 }

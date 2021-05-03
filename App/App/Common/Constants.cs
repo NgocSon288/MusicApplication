@@ -18,9 +18,13 @@ namespace App.Common
         public static readonly string SEPERATE_CHAR = "CS511";
 
         public static readonly string DOMAIN = "http://localhost/MusicApplicationAPI/";
+        public static readonly string DOMAIN2 = "https://localhost:44309/";
         public static readonly string SAY_HELLO = DOMAIN + "Api/MusicAPIController/SayHello";
         public static readonly string GET_CATEGORIES = DOMAIN + "Api/MusicAPIController/GetCategories";
         public static readonly string GET_SONGS = DOMAIN + "Api/MusicAPIController/GetSongs";
+        public static readonly string CREATE_SONG = DOMAIN2 + "Api/MusicAPIController/Create";
+        public static readonly string UPDATE_SONG = DOMAIN2 + "Api/MusicAPIController/Update";
+        public static readonly string SAVE_FILES_SONG = DOMAIN2 + "Api/MusicAPIController/UploadFile"; 
 
 
 
@@ -39,11 +43,14 @@ namespace App.Common
         public static readonly Color COLOR_THRID = Color.FromArgb(227, 80, 80); // fSongList
         public static readonly Color COLOR_DEFAULT = Color.FromArgb(192, 190, 195); // fSongList
 
+        public static bool errorDuration = false;
 
 
         public static int CURRENT_ROTATION = 0;
         public static bool IsPlaulistReady = false;
         public static bool IsPersonalReady = false;
+        public static bool isPriority = false;
+        public static bool isDelete = false;
 
         public static fLayout MainForm;
         public static AxWindowsMediaPlayer MainMedia;
@@ -53,6 +60,7 @@ namespace App.Common
 
         public static fPlaylist CurrentPlaylist;
         public static fPersonal CurrentPersonal;
+        public static fManager CurrentManager;
 
         public static CURRENT_PAGE CURRENT_PAGE;
         public static CURRENT_PLAYLIST CURRENT_PLAYLIST;
@@ -72,20 +80,20 @@ namespace App.Common
     {
         PERSONAL,
         PLAYLIST,
-        HISTORY
+        MANAGER
     }
 
     public enum CURRENT_PLAYLIST
     {
         PERSONA_PLAYLISTL,
         PLAYLIST_PLAYLIST,
-        HISTORY_PLAYLIST
+        MANAGER_PLAYLIST
     }
 
     public enum CURRENT_SONG_PLAYING
     {
         PERSONA_SONG_PLAYING,
         PLAYLIST_SONG_PLAYING,
-        HISTORY_SONG_PLAYING
+        MANAGER_SONG_PLAYING
     }
 }

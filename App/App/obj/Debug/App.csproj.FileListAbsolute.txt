@@ -38,7 +38,6 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplica
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\Interop.WMPLib.dll
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\AxInterop.WMPLib.dll
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.csproj.ResolveComReference.cache
-C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.fHistory.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.fLayout.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.fMain.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.fOrder.resources
@@ -53,3 +52,14 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplica
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.exe
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.pdb
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.UCs.PlaylistItemPUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.fManager.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.UCs.CreateSongUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml

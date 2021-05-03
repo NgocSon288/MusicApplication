@@ -45,7 +45,7 @@ namespace App
 
         // Load item from  Static
 
-        new private async Task Load()
+        new public async Task Load()
         {
             flpPlaylist.Size = new Size(flpPlaylist.Size.Width, flpPlaylist.Size.Height + 300);
             flpFavoriteList.Size = new Size(flpFavoriteList.Size.Width, flpFavoriteList.Size.Height + 300);
@@ -131,7 +131,7 @@ namespace App
 
             if(s != null)
             {
-                SetPlaying(s);
+                SetPlaying();
             }
         }
 
@@ -146,6 +146,21 @@ namespace App
             await LoadPlaylistItemUC();
 
             callback(true);
+        }
+         
+        public async void DeleteByIDAndReload(int songId)
+        {
+            var item = PlaylistItemPUCMockData.FirstOrDefault(s => s.Song.ID == songId);
+            PlaylistItemPUCMockData.Remove(item);
+
+            SetStatusFilter(false);
+
+            stt = 1;
+            await FilterPlaylistItem();
+
+            LoadPlaylistItemUC(new Action<bool>(SetStatusFilter));
+
+            UpdateFavoriteMusic();
         }
 
         private Task LoadPlaylistItemUC()
@@ -283,13 +298,13 @@ namespace App
             }
         }
 
-        public void SetPlaying(Song s)
+        public void SetPlaying()
         {
             PlaylistItemPUC curItem = null;
             foreach (PlaylistItemPUC item in flpPlaylist.Controls)
             {
                 item.visualiation.Visible = false;
-                if (item.Song.ID == s.ID)
+                if (item.Song.ID == Constants.CurrentPlaylistItemUC?.Song.ID || item.Song.ID == Constants.CurrentPlaylistItemPUC?.Song.ID)
                 {
                     curItem = item;
                 }
@@ -307,7 +322,7 @@ namespace App
             }
         }
 
-        #endregion Methods
+        #endregion
 
         #region Header
 
