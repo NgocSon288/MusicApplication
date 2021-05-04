@@ -55,8 +55,7 @@ namespace App
         }
 
         public async void DeleteByIDAndReload(int songId)
-        {  
-
+        {
             var item = PlaylistItemUCMockData.FirstOrDefault(s => s.Song.ID == songId);
             PlaylistItemUCMockData.Remove(item);
 
@@ -262,7 +261,6 @@ namespace App
                 flpPlaylist.Controls.Add(playlistItem);
             }));
             lblCount.Text = (PlaylistItemUC.STT - 1).ToString();
-
 
             PlaylistItemUCMockData.Insert(PlaylistItemUCMockData.Count - 1, playlistItem);
 

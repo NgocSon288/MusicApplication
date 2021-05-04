@@ -39,8 +39,6 @@ namespace App
             Load();
         }
 
-
-
         #region Methods
 
         // Load item from  Static
@@ -91,25 +89,6 @@ namespace App
 
         private async void Btn_Click(object sender, EventArgs e)
         {
-            SetStatusFilter(false);
-
-            var btn = sender as Button;
-            var categoryID = (int)btn.Tag;
-
-            if (btn.ForeColor == Color.FromArgb(58, 216, 245))
-            {
-                CategoryListActive.Add(categoryID);
-                btn.ForeColor = Color.FromArgb(40, 40, 40);
-                btn.BackColor = Color.FromArgb(58, 216, 245);
-            }
-            else
-            {
-                CategoryListActive.RemoveAt(CategoryListActive.IndexOf(categoryID));
-                btn.ForeColor = Color.FromArgb(58, 216, 245);
-                btn.BackColor = Color.FromArgb(40, 40, 40);
-            }
-
-            UpdateFavoriteMusic();
         }
 
         public async void UpdateFavoriteMusic(Song s = null)
@@ -124,12 +103,12 @@ namespace App
 
             if (flpPlaylist.Controls.Count <= 0)
             {
-                lblCount.Text = "0"; 
+                lblCount.Text = "0";
             }
 
             SetStatusPlaylist();
 
-            if(s != null)
+            if (s != null)
             {
                 SetPlaying();
             }
@@ -147,7 +126,7 @@ namespace App
 
             callback(true);
         }
-         
+
         public async void DeleteByIDAndReload(int songId)
         {
             var item = PlaylistItemPUCMockData.FirstOrDefault(s => s.Song.ID == songId);
@@ -311,7 +290,6 @@ namespace App
             }
 
             curItem?.SetVisualiation();
-
         }
 
         public void ResetPlaying()
@@ -322,7 +300,7 @@ namespace App
             }
         }
 
-        #endregion
+        #endregion Methods
 
         #region Header
 
@@ -383,6 +361,21 @@ namespace App
                 flpPlaylist.Visible = !flpPlaylist.Visible;
         }
 
+        private void iconButton2_MouseEnter(object sender, EventArgs e)
+        {
+            var btn = sender as IconButton;
+            btn.BackColor = Color.FromArgb(23, 15, 35);
+            btn.IconColor = Color.FromArgb(255, 34, 101);
+            btn.ForeColor = Color.FromArgb(255, 34, 101);
+        }
+
+        private void iconButton2_MouseLeave(object sender, EventArgs e)
+        {
+            var btn = sender as IconButton;
+            btn.BackColor = Color.FromArgb(23, 15, 35);
+            btn.IconColor = Color.FromArgb(68, 226, 255);
+            btn.ForeColor = Color.FromArgb(68, 226, 255);
+        }
 
         #endregion UI
     }

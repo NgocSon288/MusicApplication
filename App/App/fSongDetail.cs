@@ -3,14 +3,11 @@ using App.Models;
 using App.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace App
@@ -30,12 +27,10 @@ namespace App
         {
             InitializeComponent();
 
-
             this._songCategoryService = new SongCategoryService();
             this.Song = song;
 
             Load();
-
         }
 
         #region Methods
@@ -103,7 +98,6 @@ namespace App
                 flpLyrics.Controls.Add(lbl);
                 LyricLabel.Add(lbl);
             }
-
         }
 
         private void Lbl_Click(object sender, EventArgs e)
@@ -191,11 +185,10 @@ namespace App
             var index = LyricLabel.IndexOf(lbl);
             return index > 8 && index < LyricLabel.Count - 8 ? LyricLabel[index - 9] : lbl;
         }
-        #endregion
 
+        #endregion Methods
 
-
-        #region Header 
+        #region Header
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -249,8 +242,7 @@ namespace App
             btnBack.ForeColor = Color.FromArgb(68, 226, 255);
         }
 
-
-        #endregion
+        #endregion Header
 
         private void timerThumbnail_Tick(object sender, EventArgs e)
         {
@@ -266,7 +258,6 @@ namespace App
             lblLyricLine.Text = GetLyricLine(Constants.MainMedia.Ctlcontrols.currentPosition);
             lblLyricLine.Left = pnlLeft.Width / 2 - lblLyricLine.Width / 2;
 
-
             // handle right
             var lbl = GetLyricLineLabel(Constants.MainMedia.Ctlcontrols.currentPosition);
             if (lbl != null)
@@ -279,7 +270,6 @@ namespace App
                 PreviousLabel = lbl;
 
                 lbl.ForeColor = Color.FromArgb(68, 226, 255);
-
 
                 var lblMiddleMin = FindMiddleLabelByCurrentLabelMin(lbl);
                 var lblMiddleMax = FindMiddleLabelByCurrentLabelMax(lbl);

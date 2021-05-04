@@ -1,18 +1,14 @@
 ﻿using App.Common;
-using App.DatabaseLocal.Services;
 using App.Models;
 using App.Services;
 using App.UCs;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -50,9 +46,7 @@ namespace App
             }
         }
 
-
-        #endregion
-
+        #endregion Events
 
         #region Methods
 
@@ -147,7 +141,6 @@ namespace App
                             CurrentSong = Songs[0];
                             LoadDetail();
                         }
-
                     }
 
                     MessageBox.Show(text == "1" ? "Xóa thành công!" : "Xóa không thành công");
@@ -185,9 +178,8 @@ namespace App
             }
             else
             {
-
                 Constants.CurrentPersonal.SetPlaying();
-                //Constants.CurrentPlaylist.SetPlaying(); 
+                //Constants.CurrentPlaylist.SetPlaying();
             }
             Constants.isPriority = false;
         }
@@ -206,8 +198,24 @@ namespace App
             UIHelper.ShowControl(createSongUC, Constants.CurrentManager.panelContent);
         }
 
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            if (CurrentSong == null)
+                return;
 
-        #endregion
+            foreach (Control item in Constants.CurrentManager.Controls)
+            {
+                if (item.Name != "panelContent")
+                {
+                    item.Visible = false;
+                }
+            }
+
+            var updateSongUC = new UpdateSongUC(CurrentSong);
+            UIHelper.ShowControl(updateSongUC, Constants.CurrentManager.panelContent);
+        }
+
+        #endregion Methods
 
         #region Header
 
@@ -224,6 +232,6 @@ namespace App
             Constants.MainForm.WindowState = FormWindowState.Minimized;
         }
 
-        #endregion
+        #endregion Header
     }
 }

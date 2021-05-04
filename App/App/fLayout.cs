@@ -2,25 +2,17 @@
 using App.DatabaseLocal.Models;
 using App.DatabaseLocal.Services;
 using App.Models;
-using App.Services;
 using App.UCs;
-using AxWMPLib;
 using FontAwesome.Sharp;
-using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WMPLib;
 
 namespace App
 {
@@ -65,7 +57,7 @@ namespace App
             NextOrPrevious();
         }
 
-        #endregion
+        #endregion Events
 
         #region Methods
 
@@ -79,7 +71,6 @@ namespace App
             btnPrevious.Click += BtnPrevious_Click;
             btnRandom.Click += BtnRandom_Click;
             media.PlayStateChange += Media_PlayStateChange;
-
 
             imgLogo.BackgroundImage = new Bitmap(Constants.ROOT_PATH + "Assets/Images/logo-zing.png");
             imgLogo.BackgroundImageLayout = ImageLayout.Stretch;
@@ -126,7 +117,6 @@ namespace App
 
                     if (isRepeat)
                     {
-
                     }
                     // find next index
                     else if (!isRandom)
@@ -169,7 +159,6 @@ namespace App
                         Constants.CurrentPlaylist.SetPlaying(itemUC.Song);
                     }
 
-
                     // Load SongDetail
                     if (Constants.CurrentPlaylist.panelContent.Controls.Count > 0)
                     {
@@ -194,7 +183,6 @@ namespace App
 
                     if (isRepeat)
                     {
-
                     }
                     // find next index
                     else if (!isRandom)
@@ -327,9 +315,7 @@ namespace App
         {
             btnPersonal.Visible = true;
             btnSongs.Visible = true;
-            btnHistory.Visible = true;
-            btnOrderFirst.Visible = true;
-            btnOrderSecond.Visible = true;
+            btnHistory.Visible = true; 
         }
 
         public bool isPlaying()
@@ -349,12 +335,16 @@ namespace App
             lblMaxTime.Text = "00:00";
         }
 
-        public void LoadDataSong(Song song)
+        public void LoadDataSong(Song song, bool isPass = false, bool isChangeURL = false)
         {
-            if (song.URL == media.URL)
+            if (!isPass)
             {
-                return;
+                if (song.URL == media.URL)
+                {
+                    return;
+                }
             }
+
             if (song.Duration == 0)
             {
                 Constants.errorDuration = true;
@@ -364,7 +354,10 @@ namespace App
 
             rotateThumbnail = 0;
             lblSongName.Left = 0;
-            media.URL = song.URL;
+            if (!isChangeURL)
+            {
+                media.URL = song.URL;
+            }
 
             var request = WebRequest.Create(song.Thumbnail);
 
@@ -374,27 +367,33 @@ namespace App
                 thumbnailMain = UIHelper.ClipToCircle(Bitmap.FromStream(stream), Constants.FOOTER_BACKGROUND);
                 imgThumbnail.BackgroundImage = thumbnailMain;
             }
-            lblMinTime.Text = $"{(0 / 60).ToString().PadLeft(2, '0')}:{(0 % 60).ToString().PadLeft(2, '0')}";
-            song.Duration = song.Duration == 0 ? 232 : song.Duration;
-            lblMaxTime.Text = $"{(song.Duration / 60).ToString().PadLeft(2, '0')}:{(song.Duration % 60).ToString().PadLeft(2, '0')}";
-            progressBarSongTime.MaximumValue = song.Duration;
-            progressBarSongTime.Value = 0;
-
-
+            if (!isChangeURL)
+            {
+                lblMinTime.Text = $"{(0 / 60).ToString().PadLeft(2, '0')}:{(0 % 60).ToString().PadLeft(2, '0')}";
+                song.Duration = song.Duration == 0 ? 232 : song.Duration;
+                lblMaxTime.Text = $"{(song.Duration / 60).ToString().PadLeft(2, '0')}:{(song.Duration % 60).ToString().PadLeft(2, '0')}";
+                progressBarSongTime.MaximumValue = song.Duration;
+                progressBarSongTime.Value = 0;
+            }
 
             lblSongName.Text = song.DisplayName;
             lblArtistName.Text = song.ArtistsNames;
 
-            media.Ctlcontrols.play();
+            if (!isChangeURL)
+            {
+                media.Ctlcontrols.play();
+            }
 
             switch (Constants.CURRENT_PAGE)
             {
                 case CURRENT_PAGE.PERSONAL:
                     Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.PERSONA_PLAYLISTL;
                     break;
+
                 case CURRENT_PAGE.PLAYLIST:
                     Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.PLAYLIST_PLAYLIST;
                     break;
+
                 case CURRENT_PAGE.MANAGER:
                     Constants.CURRENT_PLAYLIST = CURRENT_PLAYLIST.MANAGER_PLAYLIST;
                     break;
@@ -421,7 +420,7 @@ namespace App
             }
         }
 
-        #endregion
+        #endregion Methods
 
         #region Menu animation
 
@@ -498,8 +497,7 @@ namespace App
             }
         }
 
-        #endregion
-
+        #endregion Menu animation
 
         #region Footer animation
 
@@ -534,7 +532,17 @@ namespace App
                         var objAsJson = JsonConvert.SerializeObject(currentSong);
                         var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
                         var _httpClient = new HttpClient();
-                        var result = await client.PostAsync(Constants.UPDATE_SONG, content);
+                        var result = client.PostAsync(Constants.UPDATE_SONG, content);
+                    }
+
+                    if (Constants.CurrentPlaylistItemPUC != null)
+                    {
+                        Constants.CurrentPlaylistItemPUC.lblDuration.Text = $"{(currentSong.Duration / 60).ToString().PadLeft(2, '0')}:{(currentSong.Duration % 60).ToString().PadLeft(2, '0')}";
+                    }
+
+                    if (Constants.CurrentPlaylistItemUC != null)
+                    {
+                        Constants.CurrentPlaylistItemUC.lblDuration.Text = $"{(currentSong.Duration / 60).ToString().PadLeft(2, '0')}:{(currentSong.Duration % 60).ToString().PadLeft(2, '0')}";
                     }
                 }
             }
@@ -669,6 +677,7 @@ namespace App
             }
         }
 
-        #endregion 
+        #endregion Footer animation
+
     }
 }

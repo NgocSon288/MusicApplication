@@ -17,14 +17,13 @@ namespace App.Common
         public static readonly string ROOT_PATH = "../../";
         public static readonly string SEPERATE_CHAR = "CS511";
 
-        public static readonly string DOMAIN = "http://localhost/MusicApplicationAPI/";
-        public static readonly string DOMAIN2 = "https://localhost:44309/";
+        public static readonly string DOMAIN = "https://localhost:44309/"; 
         public static readonly string SAY_HELLO = DOMAIN + "Api/MusicAPIController/SayHello";
         public static readonly string GET_CATEGORIES = DOMAIN + "Api/MusicAPIController/GetCategories";
         public static readonly string GET_SONGS = DOMAIN + "Api/MusicAPIController/GetSongs";
-        public static readonly string CREATE_SONG = DOMAIN2 + "Api/MusicAPIController/Create";
-        public static readonly string UPDATE_SONG = DOMAIN2 + "Api/MusicAPIController/Update";
-        public static readonly string SAVE_FILES_SONG = DOMAIN2 + "Api/MusicAPIController/UploadFile"; 
+        public static readonly string CREATE_SONG = DOMAIN + "Api/MusicAPIController/Create";
+        public static readonly string UPDATE_SONG = DOMAIN + "Api/MusicAPIController/Update";
+        public static readonly string SAVE_FILES_SONG = DOMAIN + "Api/MusicAPIController/UploadFile"; 
 
 
 

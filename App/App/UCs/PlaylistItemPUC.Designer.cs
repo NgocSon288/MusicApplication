@@ -209,7 +209,6 @@ namespace App.UCs
         #endregion
         private System.Windows.Forms.Label lblArtistsName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.Label lblSongName;
         private System.Windows.Forms.PictureBox imgThumbnail;
         public System.Windows.Forms.PictureBox visualiation;
@@ -218,5 +217,6 @@ namespace App.UCs
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btnArrowAll;
         public FontAwesome.Sharp.IconButton btnHeart;
+        public System.Windows.Forms.Label lblDuration;
     }
 }

@@ -53,17 +53,15 @@ namespace App
             this.imgThumbnail = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.btnOrderSecond = new FontAwesome.Sharp.IconButton();
-            this.btnOrderFirst = new FontAwesome.Sharp.IconButton();
             this.btnHistory = new FontAwesome.Sharp.IconButton();
             this.btnSongs = new FontAwesome.Sharp.IconButton();
             this.btnPersonal = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.imgLogo = new System.Windows.Forms.PictureBox();
             this.timerSongName = new System.Windows.Forms.Timer(this.components);
+            this.fManager = new App.fManager();
             this.fPersonal = new App.fPersonal();
             this.fPlaylist = new App.fPlaylist();
-            this.fManager = new App.fManager();
             this.panelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
             this.panel4.SuspendLayout();
@@ -361,8 +359,6 @@ namespace App
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.panelMenu.Controls.Add(this.btnOrderSecond);
-            this.panelMenu.Controls.Add(this.btnOrderFirst);
             this.panelMenu.Controls.Add(this.btnHistory);
             this.panelMenu.Controls.Add(this.btnSongs);
             this.panelMenu.Controls.Add(this.btnPersonal);
@@ -372,58 +368,6 @@ namespace App
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(238, 609);
             this.panelMenu.TabIndex = 3;
-            // 
-            // btnOrderSecond
-            // 
-            this.btnOrderSecond.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.btnOrderSecond.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrderSecond.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrderSecond.FlatAppearance.BorderSize = 0;
-            this.btnOrderSecond.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnOrderSecond.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderSecond.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderSecond.ForeColor = System.Drawing.Color.White;
-            this.btnOrderSecond.IconChar = FontAwesome.Sharp.IconChar.Hamsa;
-            this.btnOrderSecond.IconColor = System.Drawing.Color.White;
-            this.btnOrderSecond.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnOrderSecond.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderSecond.Location = new System.Drawing.Point(0, 312);
-            this.btnOrderSecond.Name = "btnOrderSecond";
-            this.btnOrderSecond.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnOrderSecond.Size = new System.Drawing.Size(238, 53);
-            this.btnOrderSecond.TabIndex = 15;
-            this.btnOrderSecond.TabStop = false;
-            this.btnOrderSecond.Text = "...";
-            this.btnOrderSecond.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderSecond.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnOrderSecond.UseVisualStyleBackColor = false;
-            this.btnOrderSecond.Click += new System.EventHandler(this.btnOrderSecond_Click);
-            // 
-            // btnOrderFirst
-            // 
-            this.btnOrderFirst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(27)))), ((int)(((byte)(46)))));
-            this.btnOrderFirst.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOrderFirst.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrderFirst.FlatAppearance.BorderSize = 0;
-            this.btnOrderFirst.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnOrderFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrderFirst.ForeColor = System.Drawing.Color.White;
-            this.btnOrderFirst.IconChar = FontAwesome.Sharp.IconChar.HandHoldingMedical;
-            this.btnOrderFirst.IconColor = System.Drawing.Color.White;
-            this.btnOrderFirst.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnOrderFirst.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderFirst.Location = new System.Drawing.Point(0, 259);
-            this.btnOrderFirst.Name = "btnOrderFirst";
-            this.btnOrderFirst.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnOrderFirst.Size = new System.Drawing.Size(238, 53);
-            this.btnOrderFirst.TabIndex = 14;
-            this.btnOrderFirst.TabStop = false;
-            this.btnOrderFirst.Text = "...";
-            this.btnOrderFirst.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderFirst.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnOrderFirst.UseVisualStyleBackColor = false;
-            this.btnOrderFirst.Click += new System.EventHandler(this.btnOrderFirst_Click);
             // 
             // btnHistory
             // 
@@ -530,6 +474,14 @@ namespace App
             this.timerSongName.Interval = 10;
             this.timerSongName.Tick += new System.EventHandler(this.timerSongName_Tick);
             // 
+            // fManager
+            // 
+            this.fManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
+            this.fManager.Location = new System.Drawing.Point(238, 0);
+            this.fManager.Name = "fManager";
+            this.fManager.Size = new System.Drawing.Size(1071, 609);
+            this.fManager.TabIndex = 6;
+            // 
             // fPersonal
             // 
             this.fPersonal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
@@ -547,14 +499,6 @@ namespace App
             this.fPlaylist.Name = "fPlaylist";
             this.fPlaylist.Size = new System.Drawing.Size(1071, 609);
             this.fPlaylist.TabIndex = 4;
-            // 
-            // fManager
-            // 
-            this.fManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(15)))), ((int)(((byte)(35)))));
-            this.fManager.Location = new System.Drawing.Point(238, 0);
-            this.fManager.Name = "fManager";
-            this.fManager.Size = new System.Drawing.Size(1071, 609);
-            this.fManager.TabIndex = 6;
             // 
             // fLayout
             // 
@@ -595,8 +539,6 @@ namespace App
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.PictureBox imgThumbnail;
-        private FontAwesome.Sharp.IconButton btnOrderSecond;
-        private FontAwesome.Sharp.IconButton btnOrderFirst;
         private FontAwesome.Sharp.IconButton btnHistory;
         private FontAwesome.Sharp.IconButton btnSongs;
         private FontAwesome.Sharp.IconButton btnPersonal;

@@ -63,3 +63,4 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplica
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Main2\MusicApplication\App\App\obj\Debug\App.UCs.UpdateSongUC.resources

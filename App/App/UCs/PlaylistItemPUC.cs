@@ -4,14 +4,9 @@ using App.DatabaseLocal.Services;
 using App.Models;
 using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace App.UCs
@@ -43,7 +38,6 @@ namespace App.UCs
 
         #region Methods
 
-
         new private void Load()
         {
             this.MouseEnter += PlaylistItemEnter;
@@ -56,7 +50,6 @@ namespace App.UCs
             {
                 item.MouseHover += PlaylistItemEnter;
             }
-
 
             this.MouseDoubleClick += PlayListItemMouseDoubleClick;
 
@@ -81,7 +74,6 @@ namespace App.UCs
                 btnHeart.IconColor = Color.FromArgb(144, 0, 161);
                 btnHeart.IconChar = IconChar.Heartbeat;
             }
-
         }
 
         private bool IsFavorite()
@@ -99,12 +91,15 @@ namespace App.UCs
                 case 1:
                     lblSTT.ForeColor = Constants.COLOR_FIRST;
                     break;
+
                 case 2:
                     lblSTT.ForeColor = Constants.COLOR_SECONDE;
                     break;
+
                 case 3:
                     lblSTT.ForeColor = Constants.COLOR_THRID;
                     break;
+
                 default:
                     lblSTT.ForeColor = Constants.COLOR_DEFAULT;
                     break;
@@ -191,7 +186,7 @@ namespace App.UCs
             }
         }
 
-        #endregion
+        #endregion Methods
 
         private void btnHeart_Click(object sender, EventArgs e)
         {
@@ -218,7 +213,7 @@ namespace App.UCs
                 _songPersonalService.InsertRange(Constants.SongPersonals);
             }
 
-            // 
+            //
             Constants.CurrentPersonal.UpdateFavoriteMusic();
             Constants.CurrentPlaylist.UpdateFavoriteMusic(Song.ID);
         }
@@ -242,7 +237,6 @@ namespace App.UCs
                 if (Constants.CurrentPlaylistItemPUC != this || (Constants.CurrentPlaylistItemUC != null && Constants.CurrentPlaylistItemUC.Song.ID == Song.ID))
                 {
                     PlaylistItemDoubleClick();
-
                 }
             }
 
@@ -263,7 +257,6 @@ namespace App.UCs
 
                 fSongDetail fSongDetail = new fSongDetail(this.Song);
                 UIHelper.ShowControl(fSongDetail, Constants.CurrentPersonal.panelContent);
-
             }
         }
 

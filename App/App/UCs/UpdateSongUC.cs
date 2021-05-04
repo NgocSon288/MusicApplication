@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,76 +15,45 @@ using System.Windows.Forms;
 
 namespace App.UCs
 {
-    public partial class CreateSongUC : UserControl
+    public partial class UpdateSongUC : UserControl
     {
         private readonly ISongCategoryService _songCategoryService;
 
-        private List<SongCategory> SongCategories;
-
         private Song song;
+        private bool isLyricChange = false;
+        private bool isAudioChange = false;
+        private bool isThumbnailChange = false;
 
-        public CreateSongUC()
+        public UpdateSongUC(Song song)
         {
             InitializeComponent();
 
             this._songCategoryService = new SongCategoryService();
+
+            this.song = song;
 
             Load();
         }
 
         #region Events
 
-        private async void btnCreate_Click(object sender, EventArgs e)
+        private void imgThumbnail_Click(object sender, EventArgs e)
         {
-            if (CheckValidateValue())
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Chọn một hình ảnh";
+            openFileDialog.Filter = "txt files (*.jpg)|*.jpg|(*.png)|*.png|(*.jpeg)|*.jpeg|(*.jfif)|*.jfif|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                song.DisplayName = txtDisplayName.Text.Trim();
-                song.CategorySongID = (cbbCategory.SelectedItem as SongCategory).ID;
-                song.Title = txtTitle.Text;
-                song.ArtistsNames = txtArtistName.Text;
-                song.Performer = txtPerformer.Text;
+                var fileName = openFileDialog.FileName;
 
-                // gọi api save file
-                var rand = new Random();
-                List<string> randStr = new List<string>()
+                if (File.Exists(fileName))
                 {
-                    rand.Next(10000,10000000).ToString(),
-                    rand.Next(10000,10000000).ToString(),
-                    rand.Next(10000,10000000).ToString()
-                };
-
-                var check = await SaveFiles(Constants.SAVE_FILES_SONG, new List<string>() { song.Thumbnail, song.Lyric, song.URL }, randStr);
-
-                song.Thumbnail = Constants.DOMAIN + "Assets/Images/" + randStr[0] + Path.GetFileName(song.Thumbnail);
-                song.Lyric = Constants.DOMAIN + "Assets/Images/" + randStr[1] + Path.GetFileName(song.Lyric);
-                song.URL = Constants.DOMAIN + "Assets/Images/" + randStr[2] + Path.GetFileName(song.URL);
-
-                song.ViewCount = 0;
-                song.IDZing = "";
-                song.Code = "";
-
-                // gọi api save song
-                if (check)
-                {
-                    var objAsJson = JsonConvert.SerializeObject(song);
-                    var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
-                    var _httpClient = new HttpClient();
-                    var result = await _httpClient.PostAsync(Constants.CREATE_SONG, content);
-                    if ((await result.Content.ReadAsStringAsync()) == "1")
-                    {
-                        MessageBox.Show("Thêm bài hát thành công");
-
-                        //Constants.CurrentPlaylist.AddMockData(song);
-                        Constants.CurrentPlaylist.Load();
-                        Constants.CurrentPersonal.Load();
-                        Constants.CurrentManager.Load();
-                        btnBack_Click(btnBack, new EventArgs());
-                    }
+                    isThumbnailChange = true;
+                    song.Thumbnail = fileName;
+                    pnlThumbnail.BackColor = Color.FromArgb(68, 226, 255);
+                    imgThumbnail.BackgroundImage = Image.FromFile(fileName);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Thông tin bài hát không hợp lệ");
             }
         }
 
@@ -98,26 +69,115 @@ namespace App.UCs
 
                 if (File.Exists(fileName))
                 {
+                    isLyricChange = true;
                     song.Lyric = fileName;
                     btnLyric.FlatAppearance.BorderColor = Color.FromArgb(68, 226, 255);
                     btnLyric.ForeColor = Color.FromArgb(68, 226, 255);
                     btnLyric.IconColor = Color.FromArgb(68, 226, 255);
                 }
-                else
+            }
+        }
+
+        private void btnURL_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Chọn một bài hát";
+            openFileDialog.Filter = "mp3 files (*.mp3)|*.mp3|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var fileName = openFileDialog.FileName;
+
+                if (File.Exists(fileName))
                 {
-                    btnLyric.FlatAppearance.BorderColor = Color.Red;
-                    btnLyric.ForeColor = Color.Red;
-                    btnLyric.IconColor = Color.Red;
+                    isAudioChange = true;
+                    song.URL = fileName;
+                    btnURL.FlatAppearance.BorderColor = Color.FromArgb(68, 226, 255);
+                    btnURL.ForeColor = Color.FromArgb(68, 226, 255);
+                    btnURL.IconColor = Color.FromArgb(68, 226, 255);
+                }
+            }
+        }
+
+        private async void btnCreate_Click(object sender, EventArgs e)
+        {
+            if (CheckValidateValue())
+            {
+                song.DisplayName = txtDisplayName.Text.Trim();
+                song.CategorySongID = (cbbCategory.SelectedItem as SongCategory).ID;
+                song.Title = txtTitle.Text;
+                song.ArtistsNames = txtArtistName.Text;
+                song.Performer = txtPerformer.Text;
+
+                // gọi api save file
+                var rand = new Random();
+
+                List<string> randStr = new List<string>();
+
+                var check = true;
+                if (isThumbnailChange || isLyricChange || isAudioChange)
+                {
+                    var list = new List<string>();
+                    if (isThumbnailChange)
+                    {
+                        list.Add(song.Thumbnail);
+                        randStr.Add(rand.Next(10000, 10000000).ToString());
+                        song.Thumbnail = Constants.DOMAIN + "Assets/Images/" + randStr[randStr.Count - 1] + Path.GetFileName(song.Thumbnail);
+                    }
+                    if (isLyricChange)
+                    {
+                        list.Add(song.Lyric);
+                        randStr.Add(rand.Next(10000, 10000000).ToString());
+                        song.Lyric = Constants.DOMAIN + "Assets/Images/" + randStr[randStr.Count - 1] + Path.GetFileName(song.Lyric);
+                    }
+                    if (isAudioChange)
+                    {
+                        list.Add(song.URL);
+                        randStr.Add(rand.Next(10000, 10000000).ToString());
+                        song.URL = Constants.DOMAIN + "Assets/Images/" + randStr[randStr.Count - 1] + Path.GetFileName(song.URL);
+                    }
+
+                    check = await SaveFiles(Constants.SAVE_FILES_SONG, list, randStr);
+                }
+
+                song.ViewCount = 0;
+                song.IDZing = "";
+                song.Code = "";
+
+                // gọi api save song
+                if (check)
+                {
+                    var objAsJson = JsonConvert.SerializeObject(song);
+                    var content = new StringContent(objAsJson, Encoding.UTF8, "application/json");
+                    var _httpClient = new HttpClient();
+                    var result = await _httpClient.PostAsync(Constants.UPDATE_SONG, content);
+                    if ((await result.Content.ReadAsStringAsync()) == "1")
+                    {
+                        MessageBox.Show("Cập nhật bài hát thành công");
+
+                        //Constants.CurrentPlaylist.AddMockData(song);
+                        Constants.CurrentPlaylist.Load();
+                        Constants.CurrentPersonal.Load();
+                        Constants.CurrentManager.Load();
+                        btnBack_Click(btnBack, new EventArgs());
+                    }
+                }
+
+                if (Constants.CurrentPlaylistItemPUC?.Song?.ID == song.ID || Constants.CurrentPlaylistItemUC?.Song?.ID == song.ID)
+                {
+                    if (isAudioChange)
+                    {
+                        Constants.MainForm.LoadDataSong(song);
+                    }
+                    else
+                    {
+                        Constants.MainForm.LoadDataSong(song, true, true);
+                    }
                 }
             }
             else
             {
-                if (song.Lyric == null || song.Lyric == "")
-                {
-                    btnLyric.FlatAppearance.BorderColor = Color.Red;
-                    btnLyric.ForeColor = Color.Red;
-                    btnLyric.IconColor = Color.Red;
-                }
+                MessageBox.Show("Thông tin bài hát không hợp lệ");
             }
         }
 
@@ -125,14 +185,67 @@ namespace App.UCs
 
         #region Methods
 
-        new private async void Load()
+        new private void Load()
         {
-            song = new Song();
+            LoadDetail();
+        }
 
-            SongCategories = await _songCategoryService.GetAll();
-
-            cbbCategory.DataSource = SongCategories;
+        private async void LoadDetail()
+        {
+            var categories = await _songCategoryService.GetAll();
+            lblDisplayName.Text = song.DisplayName;
+            txtDisplayName.Text = song.DisplayName;
+            cbbCategory.DataSource = categories;
             cbbCategory.DisplayMember = "DisplayName";
+            cbbCategory.SelectedIndex = categories.IndexOf(categories.FirstOrDefault(c => c.ID == song.CategorySongID));
+            txtTitle.Text = song.Title;
+            txtArtistName.Text = song.ArtistsNames;
+            txtPerformer.Text = song.Performer;
+
+            var request = WebRequest.Create(song.Thumbnail);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            {
+                imgThumbnail.BackgroundImage = Bitmap.FromStream(stream);
+            }
+        }
+
+        private async Task<bool> SaveFiles(string url, List<string> files, List<string> randStr)
+        {
+            try
+            {
+                List<byte[]> fileBytes = new List<byte[]>();
+                foreach (var item in files)
+                {
+                    fileBytes.Add(File.ReadAllBytes(item));
+                }
+
+                HttpClient client = new HttpClient();
+                MultipartFormDataContent content = new MultipartFormDataContent();
+
+                List<ByteArrayContent> byteArrayContents = new List<ByteArrayContent>();
+                foreach (var item in fileBytes)
+                {
+                    byteArrayContents.Add(new ByteArrayContent(item));
+                }
+
+                for (int i = 0; i < files.Count; i++)
+                {
+                    content.Add(byteArrayContents[i], "File", randStr[i] + Path.GetFileName(files[i]));
+                }
+
+                var response = await client.PostAsync(url, content);
+
+                var responsestr = response.Content.ReadAsStringAsync().Result;
+
+                return responsestr == "1";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error: " + ex.Message);
+                return false;
+            }
         }
 
         private bool CheckValidate(TextBox txt, Panel pnl, bool isNumber = false)
@@ -195,43 +308,6 @@ namespace App.UCs
             return check;
         }
 
-        private async Task<bool> SaveFiles(string url, List<string> files, List<string> randStr)
-        {
-            try
-            {
-                List<byte[]> fileBytes = new List<byte[]>();
-                foreach (var item in files)
-                {
-                    fileBytes.Add(File.ReadAllBytes(item));
-                }
-
-                HttpClient client = new HttpClient();
-                MultipartFormDataContent content = new MultipartFormDataContent();
-
-                List<ByteArrayContent> byteArrayContents = new List<ByteArrayContent>();
-                foreach (var item in fileBytes)
-                {
-                    byteArrayContents.Add(new ByteArrayContent(item));
-                }
-
-                for (int i = 0; i < files.Count; i++)
-                {
-                    content.Add(byteArrayContents[i], "File", randStr[i] + Path.GetFileName(files[i]));
-                }
-
-                var response = await client.PostAsync(url, content);
-
-                var responsestr = response.Content.ReadAsStringAsync().Result;
-
-                return responsestr == "1";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("error: " + ex.Message);
-                return false;
-            }
-        }
-
         #endregion Methods
 
         #region Header
@@ -285,73 +361,6 @@ namespace App.UCs
 
         #endregion Header
 
-        #region UI
-
-        private void btnURL_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Chọn một bài hát";
-            openFileDialog.Filter = "mp3 files (*.mp3)|*.mp3|All files (*.*)|*.*";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                var fileName = openFileDialog.FileName;
-
-                if (File.Exists(fileName))
-                {
-                    song.URL = fileName;
-                    btnURL.FlatAppearance.BorderColor = Color.FromArgb(68, 226, 255);
-                    btnURL.ForeColor = Color.FromArgb(68, 226, 255);
-                    btnURL.IconColor = Color.FromArgb(68, 226, 255);
-                }
-                else
-                {
-                    btnURL.FlatAppearance.BorderColor = Color.Red;
-                    btnURL.ForeColor = Color.Red;
-                    btnURL.IconColor = Color.Red;
-                }
-            }
-            else
-            {
-                if (song.URL == null || song.URL == "")
-                {
-                    btnURL.FlatAppearance.BorderColor = Color.Red;
-                    btnURL.ForeColor = Color.Red;
-                    btnURL.IconColor = Color.Red;
-                }
-            }
-        }
-
-        private void imgMain_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Chọn một hình ảnh";
-            openFileDialog.Filter = "txt files (*.jpg)|*.jpg|(*.png)|*.png|(*.jpeg)|*.jpeg|(*.jfif)|*.jfif|All files (*.*)|*.*";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                var fileName = openFileDialog.FileName;
-
-                if (File.Exists(fileName))
-                {
-                    song.Thumbnail = fileName;
-                    pnlThumbnail.BackColor = Color.FromArgb(68, 226, 255);
-                    imgThumbnail.BackgroundImage = Image.FromFile(fileName);
-                }
-                else
-                {
-                    pnlThumbnail.BackColor = Color.Red;
-                }
-            }
-            else
-            {
-                if (song.Thumbnail == null || song.Thumbnail == "")
-                {
-                    pnlThumbnail.BackColor = Color.Red;
-                }
-            }
-        }
-
         private void txtDisplayName_Enter(object sender, EventArgs e)
         {
             txtDisplayName.ForeColor = Color.FromArgb(68, 226, 255);
@@ -395,7 +404,5 @@ namespace App.UCs
         {
             CheckValidate(txtPerformer, pnlPerformer);
         }
-
-        #endregion UI
     }
 }

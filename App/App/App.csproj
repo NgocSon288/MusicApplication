@@ -149,6 +149,12 @@
     <Compile Include="UCs\PlaylistItemPUC.Designer.cs">
       <DependentUpon>PlaylistItemPUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCs\UpdateSongUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCs\UpdateSongUC.Designer.cs">
+      <DependentUpon>UpdateSongUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="fManager.resx">
       <DependentUpon>fManager.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCs\PlaylistItemUC.resx">
       <DependentUpon>PlaylistItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCs\UpdateSongUC.resx">
+      <DependentUpon>UpdateSongUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
